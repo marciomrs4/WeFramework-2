@@ -34,13 +34,17 @@
             include_once $vendor_loader;
         }
 
+        /*
+         * Iniciando serviços...
+         */
         try
         {
-           $conf = \core\init\Config::GetInstance();
-           $config = $conf::$config;
-        }catch (\core\exceptions\ConfigException $e)
+            $service = \core\init\Service::GetInstance();
+            $service->SetConfig(\core\init\Config::GetInstance());
+        }
+        catch (Exception $e)
         {
-            exit($e->getMessage());
+
         }
 
 // End of file Init.php

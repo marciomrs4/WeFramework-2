@@ -18,6 +18,9 @@ class Config
 {
     use Singleton;
 
+    /**
+     * @var array|null
+     */
     public static $config = null;
 
     /**

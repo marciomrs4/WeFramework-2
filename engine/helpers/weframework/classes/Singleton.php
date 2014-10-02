@@ -16,9 +16,8 @@
     {
         /**
          * Variavel responsável por armaznar uma instância de um objeto
-         * @global object $instance
          * @access private
-         * @var object
+         * @var null | object
          */
         private static $instance = null;
 
@@ -30,9 +29,9 @@
          * Consttrutor para evitar a criação de uma nova instância do via o operador `new` de fora dessa classe.
          *
          **/
-        protected function __construct()
-        {
-        }
+//        protected function __construct()
+//        {
+//        }
 
 
         /**
