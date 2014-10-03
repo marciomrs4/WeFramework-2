@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9141da46-a686-46bf-a90c-a73e2a23bef7" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/cache/.empty" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/engine/core/environment/Environment.php" afterPath="$PROJECT_DIR$/engine/core/environment/Environment.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/engine/core/init/Service.php" afterPath="$PROJECT_DIR$/engine/core/init/Service.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/engine/core/init/services/environment.php" afterPath="$PROJECT_DIR$/engine/core/init/services/environment.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/engine/core/config/we.ini" afterPath="$PROJECT_DIR$/engine/core/config/we.ini" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="dpg-framework-2.iws" />
@@ -28,19 +29,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Config.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/engine/core/init/Config.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="43" column="12" selection-start="1018" selection-end="1018" vertical-scroll-proportion="0.0" vertical-offset="774" max-vertical-offset="1116">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="ConfigException.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/engine/core/exceptions/ConfigException.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="57" selection-start="373" selection-end="373" vertical-scroll-proportion="0.0" vertical-offset="288" max-vertical-offset="450">
+            <state line="16" column="57" selection-start="373" selection-end="373" vertical-scroll-proportion="-0.0" vertical-offset="288" max-vertical-offset="450">
               <folding />
             </state>
           </provider>
@@ -49,7 +41,7 @@
       <file leaf-file-name="Service.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/engine/core/init/Service.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="146" column="112" selection-start="4481" selection-end="4481" vertical-scroll-proportion="-70.888885" vertical-offset="714" max-vertical-offset="2934">
+            <state line="110" column="25" selection-start="3055" selection-end="3055" vertical-scroll-proportion="-10.888889" vertical-offset="1686" max-vertical-offset="2934">
               <folding>
                 <element signature="e#6#211#0" expanded="true" />
                 <element signature="e#243#280#0" expanded="true" />
@@ -70,18 +62,21 @@
       <file leaf-file-name="Init.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/engine/core/init/Init.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="48" column="35" selection-start="1320" selection-end="1320" vertical-scroll-proportion="-28.0" vertical-offset="0" max-vertical-offset="936">
-              <folding />
+            <state line="48" column="35" selection-start="1320" selection-end="1320" vertical-scroll-proportion="-32.0" vertical-offset="0" max-vertical-offset="1044">
+              <folding>
+                <element signature="e#6#172#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Environment.php" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Environment.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/engine/core/environment/Environment.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="152" column="0" selection-start="4654" selection-end="4654" vertical-scroll-proportion="0.25139666" vertical-offset="2556" max-vertical-offset="3618">
+            <state line="112" column="13" selection-start="3146" selection-end="3146" vertical-scroll-proportion="-6.5185184" vertical-offset="1840" max-vertical-offset="4176">
               <folding>
                 <element signature="e#6#234#0" expanded="true" />
+                <element signature="e#272#313#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -108,7 +103,7 @@
       <file leaf-file-name="environment.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/engine/core/init/services/environment.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="0" selection-start="982" selection-end="982" vertical-scroll-proportion="-21.333334" vertical-offset="0" max-vertical-offset="810">
+            <state line="20" column="0" selection-start="589" selection-end="589" vertical-scroll-proportion="-12.0" vertical-offset="36" max-vertical-offset="864">
               <folding>
                 <element signature="e#6#419#0" expanded="true" />
               </folding>
@@ -116,10 +111,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="we.ini" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="we.ini" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/engine/core/config/we.ini">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="30" selection-start="693" selection-end="693" vertical-scroll-proportion="0.0" vertical-offset="252" max-vertical-offset="360">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="743">
               <folding />
             </state>
           </provider>
@@ -148,13 +143,13 @@
         <option value="$PROJECT_DIR$/engine/core/exceptions/ConfigException.php" />
         <option value="$PROJECT_DIR$/engine/helpers/weframework/classes/Singleton.php" />
         <option value="$PROJECT_DIR$/engine/core/exceptions/EnvironmentException.php" />
-        <option value="$PROJECT_DIR$/engine/core/config/we.ini" />
         <option value="$PROJECT_DIR$/engine/core/init/Config.php" />
         <option value="$PROJECT_DIR$/engine/core/init/Init.php" />
         <option value="$PROJECT_DIR$/engine/core/exceptions/ServiceException.php" />
         <option value="$PROJECT_DIR$/engine/core/init/Service.php" />
         <option value="$PROJECT_DIR$/engine/core/init/services/environment.php" />
         <option value="$PROJECT_DIR$/engine/core/environment/Environment.php" />
+        <option value="$PROJECT_DIR$/engine/core/config/we.ini" />
       </list>
     </option>
   </component>
@@ -251,15 +246,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="engine" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="init" />
+              <option name="myItemId" value="application" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -273,85 +260,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="engine" />
+              <option name="myItemId" value="application" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="init" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="services" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dpg-framework-2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dpg-framework-2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="engine" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="exceptions" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dpg-framework-2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dpg-framework-2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="engine" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="environment" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dpg-framework-2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dpg-framework-2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="engine" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="config" />
+              <option name="myItemId" value="cache" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -487,7 +400,9 @@
     <entry file="file://$PROJECT_DIR$/engine/core/init/Init.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="48" column="35" selection-start="1320" selection-end="1320" vertical-scroll-proportion="0.0" vertical-offset="864" max-vertical-offset="1044">
-          <folding />
+          <folding>
+            <element signature="e#6#172#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -496,6 +411,7 @@
         <state line="87" column="11" selection-start="2247" selection-end="2247" vertical-scroll-proportion="0.0" vertical-offset="1084" max-vertical-offset="1854">
           <folding>
             <element signature="e#6#234#0" expanded="true" />
+            <element signature="e#272#313#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -557,7 +473,9 @@
     <entry file="file://$PROJECT_DIR$/engine/core/init/Init.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="48" column="35" selection-start="1320" selection-end="1320" vertical-scroll-proportion="0.0" vertical-offset="864" max-vertical-offset="1044">
-          <folding />
+          <folding>
+            <element signature="e#6#172#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -566,6 +484,7 @@
         <state line="87" column="11" selection-start="2247" selection-end="2247" vertical-scroll-proportion="0.0" vertical-offset="1084" max-vertical-offset="1854">
           <folding>
             <element signature="e#6#234#0" expanded="true" />
+            <element signature="e#272#313#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -637,7 +556,9 @@
     <entry file="file://$PROJECT_DIR$/engine/core/init/Init.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="51" column="26" selection-start="1317" selection-end="1317" vertical-scroll-proportion="0.0" vertical-offset="918" max-vertical-offset="1062">
-          <folding />
+          <folding>
+            <element signature="e#6#172#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -671,7 +592,9 @@
     <entry file="file://$PROJECT_DIR$/engine/core/init/Init.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="37" column="36" selection-start="993" selection-end="993" vertical-scroll-proportion="0.0" vertical-offset="58" max-vertical-offset="774">
-          <folding />
+          <folding>
+            <element signature="e#6#172#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -683,7 +606,9 @@
     <entry file="file://$PROJECT_DIR$/engine/core/init/Init.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="29" column="17" selection-start="906" selection-end="906" vertical-scroll-proportion="0.0" vertical-offset="522" max-vertical-offset="1440">
-          <folding />
+          <folding>
+            <element signature="e#6#172#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -724,23 +649,9 @@
         <state line="15" column="35" selection-start="0" selection-end="415" vertical-scroll-proportion="-10.0" vertical-offset="0" max-vertical-offset="450" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/engine/core/config/we.ini">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="30" selection-start="693" selection-end="693" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="360">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/engine/core/exceptions/ConfigException.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="16" column="57" selection-start="373" selection-end="373" vertical-scroll-proportion="0.0" vertical-offset="288" max-vertical-offset="450">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/engine/core/init/Config.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="12" selection-start="1018" selection-end="1018" vertical-scroll-proportion="0.0" vertical-offset="774" max-vertical-offset="1116">
           <folding />
         </state>
       </provider>
@@ -752,32 +663,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/engine/core/init/Init.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="35" selection-start="1320" selection-end="1320" vertical-scroll-proportion="-28.0" vertical-offset="0" max-vertical-offset="936">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/engine/core/init/Service.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="146" column="112" selection-start="4481" selection-end="4481" vertical-scroll-proportion="-70.888885" vertical-offset="714" max-vertical-offset="2934">
-          <folding>
-            <element signature="e#6#211#0" expanded="true" />
-            <element signature="e#243#280#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/engine/core/init/services/environment.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="0" selection-start="982" selection-end="982" vertical-scroll-proportion="-21.333334" vertical-offset="0" max-vertical-offset="810">
-          <folding>
-            <element signature="e#6#419#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/index.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="53" column="59" selection-start="1723" selection-end="1740" vertical-scroll-proportion="-14.0" vertical-offset="324" max-vertical-offset="1386">
@@ -785,12 +670,62 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/engine/core/init/Service.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="110" column="25" selection-start="3055" selection-end="3055" vertical-scroll-proportion="-10.888889" vertical-offset="1686" max-vertical-offset="2934">
+          <folding>
+            <element signature="e#6#211#0" expanded="true" />
+            <element signature="e#243#280#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/engine/core/init/Config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="43" column="12" selection-start="1018" selection-end="1018" vertical-scroll-proportion="-22.0" vertical-offset="0" max-vertical-offset="936">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/engine/core/environment/Environment.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="152" column="0" selection-start="4654" selection-end="4654" vertical-scroll-proportion="0.25139666" vertical-offset="2556" max-vertical-offset="3618">
+        <state line="112" column="13" selection-start="3146" selection-end="3146" vertical-scroll-proportion="-6.5185184" vertical-offset="1840" max-vertical-offset="4176">
           <folding>
             <element signature="e#6#234#0" expanded="true" />
+            <element signature="e#272#313#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/engine/core/init/services/environment.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="0" selection-start="589" selection-end="589" vertical-scroll-proportion="-12.0" vertical-offset="36" max-vertical-offset="864">
+          <folding>
+            <element signature="e#6#419#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/engine/core/init/Init.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="48" column="35" selection-start="1320" selection-end="1320" vertical-scroll-proportion="-32.0" vertical-offset="0" max-vertical-offset="1044">
+          <folding>
+            <element signature="e#6#172#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/cache/.empty">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="743">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/engine/core/config/we.ini">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="743">
+          <folding />
         </state>
       </provider>
     </entry>

@@ -18,12 +18,15 @@
 
     try
     {
-        $env->CheckApplicationFolder();
-        $env->CheckLayoutFolder();
+
         $env->CheckEnvironment();
 
-        //Definição de Constantes
+        /*
+         * Definição de Constantes
+         */
+        // Diretório da aplicação
         define('APP_BASEPATH', $env->GetAppPath());
+        //Diretório de layout
         define('LAY_BASEPATH', $env->GetLayoutPath());
     }
     catch (\core\exceptions\EnvironmentException $e)

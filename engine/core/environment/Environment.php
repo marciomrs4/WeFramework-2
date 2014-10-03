@@ -11,6 +11,7 @@
     namespace core\environment;
 
     use core\exceptions\EnvironmentException;
+    use core\init\Config;
 
     class Environment
     {
@@ -20,14 +21,14 @@
          * O padrão do framework é ./application
          * @var null
          */
-        private static $application_path = 'application';
+        private static $application_path = null;
 
         /**
          * Variável responsável por armazenar o caminho do diretório layout
          * O padrão do framework é ./layout
          * @var null
          */
-        private static $layout_path = 'layout';
+        private static $layout_path = null;
 
         /**
          * Varíavel responsável por amrazenar o status do ambiente
@@ -88,6 +89,32 @@
         {
             return self::$layout_path;
         }
+
+
+        public function CheckCoreFiles()
+        {
+            $config = Config::GetInstance();
+            $configuration = $config::$configuration;
+            $core_files = $configuration['files'];
+
+            if(count($core_files) > 0)
+            {
+                foreach($core_files as $f)
+                {
+                    $file = __DIR__ . DIRECTORY_SEPARATOR . '../../../' . $f;
+                    if(!file_exists($file))
+                    {
+                        //Lançada uma exceção de erro do diretório inexistente
+                        $this->environment_status['CheckCoreFiles'] = 0;
+                        throw new EnvironmentException('Failed to load <b>' . $f . '</b>. Environment cannot be started.');
+                        break;
+                    }
+                }
+            }
+            $this->flag = true;
+            return $this->flag;
+        }
+
 
         /**
          * CheckApplicationFolder
@@ -186,6 +213,10 @@
          */
         public function CheckEnvironment()
         {
+            $this->CheckCoreFiles();
+            $this->CheckApplicationFolder();
+            $this->CheckLayoutFolder();
+
             if(in_array(0, $this->environment_status) && !$this->flag)
             {
                 throw new EnvironmentException('Fail to load environment.');
