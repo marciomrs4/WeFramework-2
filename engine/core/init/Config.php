@@ -21,7 +21,7 @@ class Config
     /**
      * @var array|null
      */
-    public static $config = null;
+    public static $configuration = null;
 
     /**
      * Método construtor que possuí um parâmetro opcional que indica o local aonde se encontra o arquini mi.ini
@@ -40,7 +40,7 @@ class Config
 
            if(file_exists($file_path))
            {
-               self::$config = parse_ini_file($file_path);
+               self::$configuration = parse_ini_file($file_path);
            }
            else
            {

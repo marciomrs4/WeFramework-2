@@ -40,11 +40,13 @@
         try
         {
             $service = \core\init\Service::GetInstance();
-            $service->SetConfig(\core\init\Config::GetInstance());
+            $service->SetConfiguration(\core\init\Config::GetInstance());
+            $service->InitServices();
+            $service->Start();
         }
-        catch (Exception $e)
+        catch (\core\exceptions\ServiceException $e)
         {
-
+            exit($e->getMessage());
         }
 
 // End of file Init.php
