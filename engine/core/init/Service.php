@@ -44,7 +44,7 @@
          * @access private
          * @var array
          */
-        private $services_status = array();
+        private static $services_status = array();
 
         /**
          * Variavel responsável por armazenar as mensagens de falha para cada serviço
@@ -52,7 +52,7 @@
          * @access private
          * @var array
          */
-        private $failed_services_message = array(array());
+        private static $failed_services_message = array(array());
 
 
         /**
@@ -86,10 +86,10 @@
          * @access public
          * @return null
          */
-        public function SetError($service, $error_message)
+        public static  function SetError($service, $error_message)
         {
-            $this->services_status[$service] = 0;
-            $this->failed_services_message[$service][] = $error_message;
+            self::$services_status[$service] = 0;
+            self::$failed_services_message[$service][] = $error_message;
         }
 
 
@@ -107,21 +107,21 @@
                     $service_file = $service_path . $service;
                     if(file_exists($service_file))
                     {
-                        $this->services_status[$service] = 1;
+                        self::$services_status[$service] = 1;
                         include_once $service_file;
                     }
                     else
                     {
-                        $this->services_status[$service] = 0;
-                        $this->failed_services_message[$service][] = 'Failed to load ' . $service;
+                        self::$services_status[$service] = 0;
+                        self::$failed_services_message[$service][] = 'Failed to load ' . $service;
                     }
                 }
 
-                if(count($this->services_status) > 0 && in_array(0, $this->services_status))
+                if(count(self::$services_status) > 0 && in_array(0, self::$services_status))
                 {
-                    end($this->services_status);
-                    $last_error = key($this->services_status);
-                    $last_message = $this->failed_services_message[$last_error][count($this->failed_services_message[$last_error]) - 1];
+                    end(self::$services_status);
+                    $last_error = key(self::$services_status);
+                    $last_message = self::$failed_services_message[$last_error][count(self::$failed_services_message[$last_error]) - 1];
                     throw new ServiceException($last_message);
                 }
             }
@@ -140,11 +140,11 @@
          */
         public function Start()
         {
-            if(count($this->services_status) > 0 && in_array(0, $this->services_status))
+            if(count(self::$services_status) > 0 && in_array(0, self::$services_status))
             {
-                end($this->services_status);
-                $last_error = key($this->services_status);
-                $last_message = $this->failed_services_message[$last_error][count($this->failed_services_message[$last_error]) - 1];
+                end(self::$services_status);
+                $last_error = key(self::$services_status);
+                $last_message = self::$failed_services_message[$last_error][count(self::$failed_services_message[$last_error]) - 1];
                 throw new ServiceException($last_message);
             }
 

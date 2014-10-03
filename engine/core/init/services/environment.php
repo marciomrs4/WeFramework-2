@@ -11,16 +11,26 @@
 
     //Instânciando classe Environment.php
     $env = new \core\environment\Environment();
-    //Instância da Classe Service
-    $service_inst = \core\init\Service::GetInstance();
 
     /*
      * Configuração do diretório "application"
      */
 
-    $env->CheckApplicationFolder();
-    $env->CheckLayoutFolder();
-    $env->CheckEnvironment();
+    try
+    {
+        $env->CheckApplicationFolder();
+        $env->CheckLayoutFolder();
+        $env->CheckEnvironment();
+
+        //Definição de Constantes
+        define('APP_BASEPATH', $env->GetAppPath());
+        define('LAY_BASEPATH', $env->GetLayoutPath());
+    }
+    catch (\core\exceptions\EnvironmentException $e)
+    {
+        \core\init\Service::SetError('environment', $e->getMessage());
+    }
+
 
 
 
