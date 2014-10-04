@@ -21,16 +21,17 @@ trait Config
     public static $configuration = null;
 
     /**
-     * SetFileCongig
+     * GetFileConfig
      * Método construtor que possuí um parâmetro opcional que indica o local aonde se encontra o arquivo
      * @access public
      * @param string $config_path
      * @throws ConfigException
+     * @return array
      */
     public static function GetFileConfig($config_path)
     {
 
-       if(strpos($config_path, '/') === false)
+       if(strpos($config_path, '/') === false && defined('APP_BASEPATH'))
        {
            $config_path = APP_BASEPATH . 'configs' . DS . $config_path;
        }

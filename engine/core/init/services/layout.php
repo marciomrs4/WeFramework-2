@@ -1,7 +1,6 @@
 <?php
 
 $layout = new \core\layout\Layout();
-
 try
 {
     $layout->SetConfig('themes.ini');

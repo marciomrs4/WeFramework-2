@@ -14,15 +14,17 @@ namespace core\layout;
 
 use core\exceptions\LayoutException;
 use helpers\weframework\classes\Config;
+use helpers\weframework\classes\Singleton;
 
 class Layout
 {
     use Config;
+    use Singleton;
 
     private $theme_config = null;
-    private $themes = null;
-    private $default = false;
-    private $main_theme = null;
+    private static $themes = null;
+    private static $default = false;
+    private static $main_theme = null;
 
     public function SetConfig($config_file)
     {
@@ -48,7 +50,7 @@ class Layout
             {
                 if(count($themes) > 0 && !in_array('', $themes))
                 {
-                    $this->themes = $themes;
+                    self::$themes = $themes;
                 }
             }
         }
@@ -67,8 +69,8 @@ class Layout
                 if(!file_exists($default))
                     throw new LayoutException('Nothing to show!');
 
-                $this->main_theme = $default;
-                $this->default = true;
+                self::$main_theme = $default;
+                self::$default = true;
             }
             else
             {
@@ -79,15 +81,15 @@ class Layout
                 else
                 {
                     $default = LAY_BASEPATH . 'themes' . DS . $theme . DS . 'index.php';
-                    $this->default = true;
+                    self::$default = true;
 
                 }
 
                 if(!file_exists($default))
                     throw new LayoutException('Nothing to show!');
 
-                $this->main_theme = $default;
-                $this->default = true;
+                self::$main_theme = $default;
+                self::$default = true;
             }
         }
         else
@@ -98,12 +100,16 @@ class Layout
 
     public function GetIndexTheme()
     {
-        if(isset($this->main_theme))
+        if(isset(self::$main_theme))
         {
-            return $this->main_theme;
+            return self::$main_theme;
         }
-        var_dump($this->main_theme);
         throw new LayoutException('Nothing to show!');
+    }
+
+    public function GetDirMainTheme()
+    {
+       return dirname(self::$main_theme) . DS;
     }
 
 
