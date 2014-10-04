@@ -119,8 +119,8 @@
 
                 if(count(self::$services_status) > 0 && in_array(0, self::$services_status))
                 {
-                    end(self::$services_status);
-                    $last_error = key(self::$services_status);
+                    end(self::$failed_services_message);
+                    $last_error = key(self::$failed_services_message);
                     $last_message = self::$failed_services_message[$last_error][count(self::$failed_services_message[$last_error]) - 1];
                     throw new ServiceException($last_message);
                 }

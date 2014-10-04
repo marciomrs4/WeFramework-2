@@ -1,0 +1,29 @@
+<?php
+/**
+ * Class Application
+ * Esta classe tem como responsbilidade, verificar se o diretório da aplicação está configurado corretamente. Uma de
+ * suas funções é capturar os arquivos de configurações e armazenalas.
+ *
+ * @package WeFramework
+ * @subpackage Application
+ * @version 0.1 03/10/2014
+ * @author Diogo Brito <diogo@weverest.com.br>
+ *
+ */
+    namespace core\application;
+    use helpers\weframework\classes\Singleton;
+
+    class Application
+    {
+        use Singleton;
+        /**
+         * Armazena o caminho do diretório da aplicação
+         * @var string
+         */
+        private $app_path = null;
+
+        public function __construtc($app_path)
+        {
+            $this->app_path = $app_path;
+        }
+    }

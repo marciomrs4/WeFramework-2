@@ -12,13 +12,9 @@
     //Instânciando classe Environment.php
     $env = new \core\environment\Environment();
 
-    /*
-     * Configuração do diretório "application"
-     */
-
     try
     {
-
+        //Realizando checagem do ambiente
         $env->CheckEnvironment();
 
         /*
@@ -31,9 +27,11 @@
     }
     catch (\core\exceptions\EnvironmentException $e)
     {
-        \core\init\Service::SetError('environment', $e->getMessage());
+        \core\init\Service::SetError('environment.php', $e->getMessage());
     }
 
+// End of file environment.php
+// Location: ./engine/core/init/environment.php
 
 
 

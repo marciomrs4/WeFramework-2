@@ -91,7 +91,7 @@
         }
 
 
-        public function CheckCoreFiles()
+        private function CheckCoreFiles()
         {
             $config = Config::GetInstance();
             $configuration = $config::$configuration;
@@ -124,7 +124,7 @@
          * @return bool
          * @throws \core\exceptions\EnvironmentException
          */
-        public function CheckApplicationFolder($path = null)
+        private function CheckApplicationFolder($path = null)
         {
             //Verifica se o parâmetro foi definido, caso o contrário o diretório padrão será do framework será definido
             if(isset($path))
@@ -133,6 +133,11 @@
             }
             else
             {
+                //Armazenando diretório definido no arquivo de configuração
+                $config = Config::GetInstance();
+                $configuration = $config::$configuration;
+                self::$application_path = $configuration['application_path'];
+
                 /*
                  * Criação do diretório padrão
                  */
@@ -168,7 +173,7 @@
          * @return bool
          * @throws \core\exceptions\EnvironmentException
          */
-        public function CheckLayoutFolder($path = null)
+        private function CheckLayoutFolder($path = null)
         {
             //Verifica se o parâmetro foi definido, caso o contrário o diretório padrão será do framework será definido
             if(isset($path))
@@ -177,6 +182,11 @@
             }
             else
             {
+                //Armazenando diretório definido no arquivo de configuração
+                $config = Config::GetInstance();
+                $configuration = $config::$configuration;
+                self::$layout_path = $configuration['layout_path'];
+
                 /*
                  * Criação do diretório padrão
                  */
@@ -206,6 +216,127 @@
             return false;
         }
 
+
+        /**
+         * CheckAppDirectories
+         * Este método tem como funcionalidade verificar os diretórios da aplicação e cria-los caso não exista.
+         * @param null $directories
+         * @throws \core\exceptions\EnvironmentException
+         * @return boll
+         */
+        public function CheckAppDirectories($directories = null)
+        {
+            $app_directories = null;
+            if(isset($directories))
+            {
+                if(is_array($directories))
+                {
+                    $app_directories = $directories;
+                }
+                else
+                {
+                    $this->environment_status['CheckAppDirectories'] = 0;
+                    throw new EnvironmentException('CheckAppDirectories() parameter must to be an array.');
+                }
+            }
+
+            if(!isset($app_directories))
+            {
+                $config = Config::GetInstance();
+                $configuration = $config::$configuration;
+                $app_directories = $configuration['app_directories'];
+            }
+
+            if(count($app_directories) > 0)
+            {
+                foreach($app_directories as $d)
+                {
+                    if(!is_dir(self::$application_path . $d))
+                    {
+                        if(strtolower($configuration['auto_create_directories']) == 'on')
+                        {
+                            if(!mkdir(self::$application_path .$d))
+                            {
+                                $this->environment_status['CheckAppDirectories'] = 0;
+                                throw new EnvironmentException('Could not find the directory <b>' . $d . '</b>.
+                                We try to create the directory but something unexpected happened:');
+                            }
+                            touch(self::$application_path . $d . DIRECTORY_SEPARATOR . '.empty');
+                        }
+                        else
+                        {
+                            //Criando arquivo vazio
+                            $this->environment_status['CheckAppDirectories'] = 0;
+                            throw new EnvironmentException('Could not find the directory <b>' . $d . '</b>.');
+                        }
+                    }
+                }
+            }
+            $this->flag = true;
+            return $this->flag;
+        }
+
+        /**
+         * CheckLayoutDirectories
+         * Este método tem como funcionalidade verificar os diretórios da aplicação e cria-los caso não exista.
+         * @param null $directories
+         * @throws \core\exceptions\EnvironmentException
+         * @return boll
+         */
+        public function CheckLayoutDirectories($directories = null)
+        {
+            $lay_directories = null;
+            if(isset($directories))
+            {
+                if(is_array($directories))
+                {
+                    $lay_directories = $directories;
+                }
+                else
+                {
+                    $this->environment_status['CheckLayoutDirectories'] = 0;
+                    throw new EnvironmentException('CheckAppDirectories() parameter must to be an array.');
+                }
+            }
+
+            if(!isset($app_directories))
+            {
+                $config = Config::GetInstance();
+                $configuration = $config::$configuration;
+                $lay_directories = $configuration['lay_directories'];
+            }
+
+            if(count($lay_directories) > 0)
+            {
+                foreach($lay_directories as $d)
+                {
+                    if(!is_dir(self::$layout_path . $d))
+                    {
+                        if(strtolower($configuration['auto_create_directories']) == 'on')
+                        {
+                            if(!mkdir(self::$layout_path .$d))
+                            {
+                                $this->environment_status['CheckLayoutDirectories'] = 0;
+                                throw new EnvironmentException('Could not find the directory <b>' . $d . '</b>.
+                                We try to create the directory but something unexpected happened:');
+                            }
+                            //Criando arquivo vazio
+                            touch(self::$layout_path . $d . DIRECTORY_SEPARATOR . '.empty');
+                        }
+                        else
+                        {
+                            $this->environment_status['CheckLayoutDirectories'] = 0;
+                            throw new EnvironmentException('Could not find the directory <b>' . $d . '</b>.');
+                        }
+                    }
+                }
+            }
+            $this->flag = true;
+            return $this->flag;
+        }
+
+
+
         /**
          * CheckEnvironment
          * @return bool
@@ -216,6 +347,8 @@
             $this->CheckCoreFiles();
             $this->CheckApplicationFolder();
             $this->CheckLayoutFolder();
+            $this->CheckAppDirectories();
+            $this->CheckLayoutDirectories();
 
             if(in_array(0, $this->environment_status) && !$this->flag)
             {
@@ -225,3 +358,6 @@
             return $this->flag;
         }
     }
+
+// End of file Environment.php
+// Location: ./engine/core/environment/Environment.php
