@@ -38,3 +38,6 @@ $rs->delete('/(:params+)', function() use ($app) {
 });
 
 $rs->run();
+
+// End of file router.php
+// Location: ./engine/core/init/services/router.php
