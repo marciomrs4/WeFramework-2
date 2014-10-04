@@ -22,6 +22,10 @@
          */
         private $app_path = null;
 
+        /**
+         * Construtor - Como parâmetro o diretório da aplicação
+         * @param $app_path
+         */
         public function __construtc($app_path)
         {
             $this->app_path = $app_path;
