@@ -15,29 +15,64 @@ $router = \core\router\Router::GetInstance();
 $rs = new \Slim\Slim();
 
 // GET route
-$rs->get('/(:params+)', function() use ($rs) {
-    $args = func_get_args();
-    $layout = \core\layout\Layout::GetInstance();
-    $theme = $layout->GetDirMainTheme();
-    if(count($args) > 0)
+$rs->get('/(:params+)', function() use ($rs, $router) {
+    try
     {
-        if(file_exists($theme . 'pages' . DS . $args[0][0] . DS . $args[0][0] . '.php'))
+        // Header HTTP
+        $http_header = $rs->response->getStatus();
+        if($http_header == 200)
         {
-            include_once $theme . 'pages' . DS . $args[0][0] . DS . $args[0][0] . '.php';
-        }
-        else
-        {
-            $rs->response->setStatus(404);
-            if($args[0][0] != '404' || ($args[0][0] == '404' && count($args[0]) > 1))
+            //Argumentos da URL
+            $args = func_get_args();
+            //Registrando argumentos
+            $router->SetArgs($args);
+            //Controller View
+            $controller = $router->GetArg(0);
+            //Instância do Layout
+            $layout = core\layout\Layout::GetInstance();
+            //Diretório do tema
+            $dir_theme = $layout->GetDirMainTheme();
+            //Verificando Resposta HTTP
+            $checkHttp = $router->CheckHtppResponse($controller);
+            //Verificando se controller não está definido
+            if($checkHttp)
             {
-                echo 'here';
-                if($rs->response->getStatus() == 404)
-                {
-                    $rs->redirect('http://localhost/dpg-framework-2/404');
-                }
+                $fcontroller = 'error';
+                $page = $dir_theme . 'pages' . DS . $fcontroller . DS . $controller .'.php';
+                if(!file_exists($page))
+                    $page = $checkHttp;
             }
+            elseif(!$controller)
+            {
+                $fcontroller = 'home';
+                $controller = 'home';
+                $page = $dir_theme . 'pages' . DS . $fcontroller . DS . $controller .'.php';
+            }
+            else
+            {
+                $fcontroller = $controller;
+                //página para ser renderizada
+                $page = $dir_theme . 'pages' . DS . $fcontroller . DS . $controller .'.php';
+            }
+
+
+            //Adiciona página para renderização
+            $render = \core\layout\Render::GetInstance();
+            $render->FlushRender();
+            $render->RenderQueueAdd($page);
+
+        }
+        //Verificamos se o header foi alterado para outro código após a verificação dos arquivos html
+        if($http_header != 200)
+        {
+            $rs->redirect('http://localhost/dpg-framework-2/' . $http_header);
         }
     }
+    catch(\core\exceptions\RouterException $re)
+    {
+        \core\init\Service::SetError('router.php', $re->getMessage());
+    }
+
 });
 
 // POST route

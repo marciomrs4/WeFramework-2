@@ -1,7 +1,7 @@
 <?php
 /**
  * ServiceException
- * Classe de Exceção da classe ServiceException
+ * Classe de Exceção da classe Service
  *
  * @package WeFramework
  * @subpackage ServiceException
@@ -10,8 +10,6 @@
  *
  */
 namespace core\exceptions;
-
-use core\init\Service;
 
 class ServiceException extends \Exception {}
 

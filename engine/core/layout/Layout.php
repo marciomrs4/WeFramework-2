@@ -25,6 +25,7 @@ class Layout
     private static $themes = null;
     private static $default = false;
     private static $main_theme = null;
+    private static $main_theme_path = null;
 
     public function SetConfig($config_file)
     {
@@ -69,7 +70,8 @@ class Layout
                 if(!file_exists($default))
                     throw new LayoutException('Nothing to show!');
 
-                self::$main_theme = $default;
+                self::$main_theme_path = $default;
+                self::$main_theme = '';
                 self::$default = true;
             }
             else
@@ -88,7 +90,8 @@ class Layout
                 if(!file_exists($default))
                     throw new LayoutException('Nothing to show!');
 
-                self::$main_theme = $default;
+                self::$main_theme_path = $default;
+                self::$main_theme = $theme;
                 self::$default = true;
             }
         }
@@ -100,23 +103,35 @@ class Layout
 
     public function GetIndexTheme()
     {
-        if(isset(self::$main_theme))
+        if(isset(self::$main_theme_path) && is_file(self::$main_theme_path))
         {
-            return self::$main_theme;
+            return self::$main_theme_path;
         }
         throw new LayoutException('Nothing to show!');
     }
 
     public function GetDirMainTheme()
     {
-       return dirname(self::$main_theme) . DS;
+        $path = LAY_BASEPATH . 'themes' . DS;
+        if(!isset(self::$main_theme) || self::$main_theme == '')
+        {
+            return $path;
+        }
+        else
+        {
+            if(is_dir($path . self::$main_theme))
+            {
+                return $path . self::$main_theme . DS;
+            }
+        }
+        return false;
     }
 
 
     public function CheckLayout()
     {
         $this->SetThemes();
-        $this->StartMainTheme();
+       // $this->StartMainTheme();
     }
 }
 

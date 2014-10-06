@@ -10,7 +10,9 @@ try
         \core\layout\Render::RenderFile($layout->GetIndexTheme());
     }catch (\core\exceptions\LayoutException $l)
     {
-        \core\init\Service::SetError('layout.php', $l->getMessage());
+        $render = \core\layout\Render::GetInstance();
+        if(!\core\layout\Render::IsRendered())
+            \core\init\Service::SetError('layout.php', $l->getMessage());
     }
 }
 catch (\core\exceptions\ConfigException $e)
