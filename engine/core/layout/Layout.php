@@ -131,7 +131,7 @@ class Layout
     public function CheckLayout()
     {
         $this->SetThemes();
-       // $this->StartMainTheme();
+        $this->StartMainTheme();
     }
 }
 

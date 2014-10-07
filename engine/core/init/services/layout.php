@@ -1,24 +1,24 @@
 <?php
 
-$layout = new \core\layout\Layout();
+$layout = \core\layout\Layout::GetInstance();
 try
 {
     $layout->SetConfig('themes.ini');
     try
     {
         $layout->CheckLayout();
-        \core\layout\Render::RenderFile($layout->GetIndexTheme());
+        $render = \core\layout\Render::GetInstance();
+        $render->RenderQueueAdd($layout->GetIndexTheme());
     }catch (\core\exceptions\LayoutException $l)
     {
-        $render = \core\layout\Render::GetInstance();
-        if(!\core\layout\Render::IsRendered())
-            \core\init\Service::SetError('layout.php', $l->getMessage());
+        \core\init\Service::SetError('layout.php', $l->getMessage());
     }
 }
 catch (\core\exceptions\ConfigException $e)
 {
     \core\init\Service::SetError('layout.php', $e->getMessage());
 }
+
 
 
 // End of file layout.php

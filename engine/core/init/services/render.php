@@ -8,11 +8,27 @@
  * armazenado na classe Render
  */
 
-$render = \core\layout\Render::GetInstance();
-//Renderiza
-if(!$render->Render())
+
+//Carregando Rota
+$router = \core\router\Router::GetInstance();
+//Response 200
+if($router->GetStatus())
 {
-    header('Location: http://localhost/dpg-framework-2/404');
+    $render = \core\layout\Render::GetInstance();
+    //Renderiza
+    if(!$render->Render())
+    {
+        header('Location: http://localhost/dpg-framework-2/404');
+    }
+}
+else
+{
+    if(isset($router->error))
+        \core\init\Service::SetError('render.php', $router->error);
+    elseif(count($render->QueueError()) > 0)
+    {
+        $render->RenderError();
+    }
 }
 
 // End of file render.php

@@ -25,6 +25,13 @@ class Render
     private static  $render_queue = array();
 
     /**
+     * Fila de arquivos para serem renderizado de erro
+     * @access private
+     * @var array
+     */
+    private static  $render_queue_error = array();
+
+    /**
      * Esta vaíavel indica se algo já foi renderizado
      * @access private
      * @var bool
@@ -105,22 +112,95 @@ class Render
        return true;
     }
 
+
+    /**
+     * Render
+     * Renderiza arquivos na fila de erro
+     *
+     * @access public
+     * @return bool
+     */
+    public function RenderError()
+    {
+        if(count(self::$render_queue_error) > 0)
+        {
+            $i = 0;
+            foreach(self::$render_queue_error as $item)
+            {
+                if(file_exists($item))
+                {
+                    self::$rendered = true;
+                    include_once $item;
+                    $i++;
+                }
+                elseif(strpos($item, DS) === false)
+                {
+                    self::$rendered = true;
+                    echo $item;
+                    $i++;
+                }
+                else
+                {
+                    if($i == 0)
+                        self::$rendered = false;
+
+                    return false;
+                }
+            }
+            $this->FlushRenderError();
+        }
+        return true;
+    }
+
     /**
      * RenderQueueAdd
      * Este método armazena um arquivo para a renderização
      *
      * @access public
-     * @param $file
+     * @param $content
      * @return void
      */
-    public function RenderQueueAdd($file)
+    public function RenderQueueAdd($content)
     {
-        self::$render_queue[] = $file;
+        self::$render_queue[] = $content;
     }
 
     /**
-     * ClearRender
-     * Reinicia vaíravel $pre_render_file ao seu estado original
+     * Fila de mensagens de erro
+     * @access public
+     * @param $content
+     * @return void
+     */
+    public function RenderQueueAddError($content)
+    {
+        self::$render_queue_error[] = $content;
+    }
+
+    /**
+     * Queue
+     * Retorna a fila de renderização
+     *
+     * @return array
+     */
+    public function Queue()
+    {
+        return self::$render_queue;
+    }
+
+    /**
+     * QueueError
+     * Retorna a fila de renderização de erro
+     *
+     * @return array
+     */
+    public function QueueError()
+    {
+        return self::$render_queue_error;
+    }
+
+    /**
+     * FlushRender
+     * Reinicia vaíravel $render_queue ao seu estado original
      *
      * @access public
      * @return void
@@ -128,6 +208,19 @@ class Render
     public function FlushRender()
     {
         self::$render_queue = array();
+    }
+
+
+    /**
+     * FlushRenderError
+     * Reinicia vaíravel $render_queue_error ao seu estado original
+     *
+     * @access public
+     * @return void
+     */
+    public function FlushRenderError()
+    {
+        self::$render_queue_error = array();
     }
 }
 

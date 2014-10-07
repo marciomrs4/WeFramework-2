@@ -18,6 +18,8 @@ $rs = new \Slim\Slim();
 $rs->get('/(:params+)', function() use ($rs, $router) {
     try
     {
+        //Render
+        $render = \core\layout\Render::GetInstance();
         // Header HTTP
         $http_header = $rs->response->getStatus();
         if($http_header == 200)
@@ -40,26 +42,29 @@ $rs->get('/(:params+)', function() use ($rs, $router) {
                 $fcontroller = 'error';
                 $page = $dir_theme . 'pages' . DS . $fcontroller . DS . $controller .'.php';
                 if(!file_exists($page))
+                {
                     $page = $checkHttp;
+                    //Erro
+                    $router->error = $checkHttp;
+                }
+                $render->RenderQueueAddError($page);
+                //Novo cabeçalho
+                $rs->response->setStatus(404);
             }
             elseif(!$controller)
             {
                 $fcontroller = 'home';
                 $controller = 'home';
                 $page = $dir_theme . 'pages' . DS . $fcontroller . DS . $controller .'.php';
+                $render->RenderQueueAdd($page);
             }
             else
             {
                 $fcontroller = $controller;
                 //página para ser renderizada
                 $page = $dir_theme . 'pages' . DS . $fcontroller . DS . $controller .'.php';
+                $render->RenderQueueAdd($page);
             }
-
-
-            //Adiciona página para renderização
-            $render = \core\layout\Render::GetInstance();
-            $render->FlushRender();
-            $render->RenderQueueAdd($page);
 
         }
         //Verificamos se o header foi alterado para outro código após a verificação dos arquivos html

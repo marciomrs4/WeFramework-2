@@ -26,7 +26,22 @@ class Router
     private $args = array();
 
     /**
+     * Estado do cabeçãlho da página
+     * @access private
+     * @var bool
+     */
+    private static $status = true;
+
+    /**
+     * Erro de rota
+     * @access public
+     * @var string
+     */
+    public $error = null;
+
+    /**
      * Respostas HTTP códigos e mensagens
+     * @access private
      * @var array
      */
     private $http_header_response = array(
@@ -82,13 +97,24 @@ class Router
                                     );
 
 
+    /**
+     * Varifica se o código do cabeçalho existe
+     * @param $code
+     * @return bool
+     */
     public function CheckHtppResponse($code)
     {
         if(array_key_exists((int) $code, $this->http_header_response))
         {
+            self::$status = false;
             return $this->http_header_response[$code];
         }
         return false;
+    }
+
+    public function GetStatus()
+    {
+        return self::$status;
     }
 
     /**
