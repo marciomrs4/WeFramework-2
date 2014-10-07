@@ -11,7 +11,9 @@
  */
 namespace core\layout;
 
-use core\exceptions\LayoutException;
+
+use core\exceptions\RenderException;
+use core\exceptions\ServiceException;
 use helpers\weframework\classes\Singleton;
 
 class Render
@@ -30,6 +32,13 @@ class Render
      * @var array
      */
     private static  $render_queue_error = array();
+
+    /**
+     * Enderço do tema principal
+     * #access private
+     * @var null
+     */
+    private static $render_theme = null;
 
     /**
      * Esta vaíavel indica se algo já foi renderizado
@@ -150,6 +159,30 @@ class Render
             $this->FlushRenderError();
         }
         return true;
+    }
+
+    /**
+     * SetTheme
+     * Prepara Renderização do tema principal
+     *
+     * @param Layout $layout
+     * @return void
+     */
+    public function SetTheme(Layout $layout)
+    {
+        self::$render_theme = $layout->GetIndexTheme();
+    }
+
+    public function RenderTheme()
+    {
+        if(isset(self::$render_theme))
+        {
+            include_once self::$render_theme;
+        }
+        else
+        {
+            throw new RenderException('Fail to render theme. Theme not defined.');
+        }
     }
 
     /**

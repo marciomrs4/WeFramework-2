@@ -14,12 +14,17 @@ $router = \core\router\Router::GetInstance();
 //Response 200
 if($router->GetStatus())
 {
-    $render = \core\layout\Render::GetInstance();
-    //Renderiza
-    if(!$render->Render())
+    try
     {
-        header('Location: http://localhost/dpg-framework-2/404');
+        $render = \core\layout\Render::GetInstance();
+        //Renderiza
+        $render->RenderTheme();
     }
+    catch(\core\exceptions\RenderException $e)
+    {
+        \core\init\Service::SetError('render.php', $e->getMessage());
+    }
+
 }
 else
 {

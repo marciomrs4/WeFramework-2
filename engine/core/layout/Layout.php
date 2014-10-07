@@ -127,7 +127,6 @@ class Layout
         return false;
     }
 
-
     public function CheckLayout()
     {
         $this->SetThemes();

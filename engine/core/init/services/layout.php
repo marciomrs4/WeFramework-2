@@ -8,7 +8,7 @@ try
     {
         $layout->CheckLayout();
         $render = \core\layout\Render::GetInstance();
-        $render->RenderQueueAdd($layout->GetIndexTheme());
+        $render->SetTheme($layout);
     }catch (\core\exceptions\LayoutException $l)
     {
         \core\init\Service::SetError('layout.php', $l->getMessage());
