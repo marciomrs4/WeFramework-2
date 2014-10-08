@@ -12,11 +12,17 @@
 namespace core\router;
 
 use core\exceptions\RouterException;
+use core\layout\Layout;
+use core\layout\Render;
+use helpers\weframework\classes\Config;
 use helpers\weframework\classes\Singleton;
+use Slim\Slim;
 
 class Router
 {
+    use Config;
     use Singleton;
+
 
     /**
      * Argumentos passados via URL. Nesta varável é armazenada todas as requisições via GET
@@ -26,11 +32,24 @@ class Router
     private $args = array();
 
     /**
+     * Istância do arquivo default.ini
+     * @var null
+     */
+    private static $default_config = null;
+
+    /**
      * Estado do cabeçãlho da página
      * @access private
      * @var bool
      */
     private static $status = true;
+
+    /**
+     * URL base da aplicação
+     * @access private
+     * @var null
+     */
+    private static $base_url = null;
 
     /**
      * Erro de rota
@@ -97,6 +116,7 @@ class Router
                                     );
 
 
+
     /**
      * Varifica se o código do cabeçalho existe
      * @param $code
@@ -112,6 +132,96 @@ class Router
         return false;
     }
 
+    /**
+     * AddRoute
+     * Adiciona rota para renderização
+     *
+     * @param $controller
+     * @return void
+     */
+    public function AddRoute($controller)
+    {
+
+
+        //Instância do Layout
+        $layout = Layout::GetInstance();
+        //Instância do Render
+        $render = Render::GetInstance();
+        //Slim
+        $slim = Slim::getInstance();
+        //Diretório do tema
+        $dir_theme = WE_THEME_DIR . WE_THEME . DS;
+        //Verificando Resposta HTTP
+        $checkHttp = $this->CheckHtppResponse($controller);
+
+
+        if($checkHttp)
+        {
+            $fcontroller = 'error';
+            $page = $dir_theme . 'pages' . DS . $fcontroller . DS . $controller .'.php';
+            if(!file_exists($page))
+            {
+                $page = $checkHttp;
+                //Erro
+                $this->error = $checkHttp;
+            }
+            $render->RenderQueueAddError($page);
+            //Novo cabeçalho
+            $slim->response->setStatus(404);
+        }
+        elseif(!$controller)
+        {
+            $fcontroller = 'home';
+            $controller = 'home';
+            $page = $dir_theme . 'pages' . DS . $fcontroller . DS . $controller .'.php';
+            $render->RenderQueueAdd($page);
+        }
+        else
+        {
+            $fcontroller = $controller;
+            //página para ser renderizada
+            $page = $dir_theme . 'pages' . DS . $fcontroller . DS . $controller .'.php';
+            $render->RenderQueueAdd($page);
+        }
+    }
+
+    /**
+     * BaseURL
+     * URL base da aplicação
+     *
+     * @access public
+     * @return string
+     */
+    public function BaseURL()
+    {
+        if(!isset(self::$base_url) || isset(self::$default_config))
+        {
+            self::$default_config = $this->GetFileConfig('default.ini');
+        }
+        //wrapper protocol - http, https, ftp...
+        $wrapper = (!empty(self::$default_config['wrapper']) ? self::$default_config['wrapper'] : 'http') . '://';
+        //Url base
+        $url = $wrapper . $_SERVER['HTTP_HOST'] . '/' . rtrim(self::$default_config['base_url'], '/') . '/';
+
+        if(defined('WE_IS_HOT_THEME') && WE_IS_HOT_THEME)
+        {
+            if(defined('WE_THEME'))
+            {
+                $url = $url . WE_THEME . '/';
+            }
+        }
+
+        return $url;
+    }
+
+
+    /**
+     * GetStatus
+     * Status da rota
+     *
+     * @access public
+     * @return bool
+     */
     public function GetStatus()
     {
         return self::$status;
@@ -127,8 +237,12 @@ class Router
      */
     public function SetArgs($args)
     {
+
         if(gettype($args) == 'array')
         {
+            //Limpando argumentos
+            $this->args = array();
+
             if(isset($args[0]) && count($args[0]) > 0)
             {
                 $this->args = $args[0];
@@ -185,6 +299,30 @@ class Router
            return false;
 
         return $this->args;
+    }
+
+    /**
+     * IsHotTheme
+     * Método responsável por verificar o estado da aplicação está em um tema adicional
+     *
+     * @param $controller
+     * @return bool
+     */
+    public function IsHotTheme($controller)
+    {
+        $flag = false;
+        if(defined('WE_THEMES_INSTALLED') && defined('WE_THEME_SWITCH_MODE'))
+        {
+            if(WE_THEMES_INSTALLED > 1 && $controller != '' && WE_THEME_SWITCH_MODE)
+            {
+                if(is_dir(WE_THEME_DIR . $controller))
+                {
+                    //Constante para indicar que a aplicação está em um tema adicional
+                    $flag = true;
+                }
+            }
+        }
+        return $flag;
     }
 
 

@@ -10,16 +10,12 @@
  */
 
 $router = \core\router\Router::GetInstance();
-
-\Slim\Slim::registerAutoloader();
 $rs = new \Slim\Slim();
 
 // GET route
 $rs->get('/(:params+)', function() use ($rs, $router) {
     try
     {
-        //Render
-        $render = \core\layout\Render::GetInstance();
         // Header HTTP
         $http_header = $rs->response->getStatus();
         if($http_header == 200)
@@ -30,75 +26,54 @@ $rs->get('/(:params+)', function() use ($rs, $router) {
             $router->SetArgs($args);
             //Controller View
             $controller = $router->GetArg(0);
-            //Instância do Layout
-            $layout = core\layout\Layout::GetInstance();
-            //Diretório do tema
-            $dir_theme = $layout->GetDirMainTheme();
-            //Verificando Resposta HTTP
-            $checkHttp = $router->CheckHtppResponse($controller);
-            //Verificando se controller não está definido
-            if($checkHttp)
+            //Varificando temas adicionais
+            /*
+             * Constantes
+             */
+            define('WE_IS_HOT_THEME', $router->IsHotTheme($controller));
+            //Definido tema atual
+            define('WE_THEME', (WE_IS_HOT_THEME) ? $controller : WE_MAIN_THEME);
+            //Walking URL - Caso seja um tema, descartamos o controller
+            if(WE_IS_HOT_THEME)
             {
-                $fcontroller = 'error';
-                $page = $dir_theme . 'pages' . DS . $fcontroller . DS . $controller .'.php';
-                if(!file_exists($page))
-                {
-                    $page = $checkHttp;
-                    //Erro
-                    $router->error = $checkHttp;
-                }
-                $render->RenderQueueAddError($page);
-                //Novo cabeçalho
-                $rs->response->setStatus(404);
+                array_shift($args[0]);
+                $router->SetArgs($args);
+                $controller = $router->GetArg(0);
             }
-            elseif(!$controller)
-            {
-                $fcontroller = 'home';
-                $controller = 'home';
-                $page = $dir_theme . 'pages' . DS . $fcontroller . DS . $controller .'.php';
-                $render->RenderQueueAdd($page);
-            }
-            else
-            {
-                $fcontroller = $controller;
-                //página para ser renderizada
-                $page = $dir_theme . 'pages' . DS . $fcontroller . DS . $controller .'.php';
-                $render->RenderQueueAdd($page);
-            }
-
+            //Adiciona Rota
+            $router->AddRoute($controller);
         }
         //Verificamos se o header foi alterado para outro código após a verificação dos arquivos html
         if($http_header != 200)
         {
-            $rs->redirect('http://localhost/dpg-framework-2/' . $http_header);
+            $rs->redirect($router->BaseURL() . $http_header);
         }
     }
     catch(\core\exceptions\RouterException $re)
     {
         \core\init\Service::SetError('router.php', $re->getMessage());
     }
-
 });
 
 // POST route
-$rs->post('/(:params+)', function() use ($app) {
+$rs->post('/(:params+)', function() use ($rs, $router) {
     $args = func_get_args();
 });
 
-// PUT route
-$rs->put('/(:params+)', function() use ($app) {
-    $args = func_get_args();
-});
-
-// PATCH route
-$rs->patch('/(:params+)', function() use ($app) {
-    $args = func_get_args();
-});
-
-// DELETE route
-$rs->delete('/(:params+)', function() use ($app) {
-    $args = func_get_args();
-});
+//// PUT route
+//$rs->put('/(:params+)', function() use ($app) {
+//    $args = func_get_args();
+//});
+//
+//// PATCH route
+//$rs->patch('/(:params+)', function() use ($app) {
+//    $args = func_get_args();
+//});
+//
+//// DELETE route
+//$rs->delete('/(:params+)', function() use ($app) {
+//    $args = func_get_args();
+//});
 
 $rs->run();
 

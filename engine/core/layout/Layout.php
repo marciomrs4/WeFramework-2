@@ -26,6 +26,7 @@ class Layout
     private static $default = false;
     private static $main_theme = null;
     private static $main_theme_path = null;
+    private static $themes_installed = 1;
 
     public function SetConfig($config_file)
     {
@@ -52,9 +53,33 @@ class Layout
                 if(count($themes) > 0 && !in_array('', $themes))
                 {
                     self::$themes = $themes;
+                    self::$themes_installed = count($themes);
                 }
             }
         }
+    }
+
+    public function ThemesInstelled()
+    {
+        return self::$themes_installed;
+    }
+
+    public function GetConfiguration()
+    {
+        return $this->$theme_config;
+    }
+
+    public function SwitchMode()
+    {
+        if(strtolower($this->theme_config['switch_themes']) == 'on')
+            return true;
+
+        return false;
+    }
+
+    public function GetMainTheme()
+    {
+        return self::$main_theme;
     }
 
     public function StartMainTheme()
@@ -103,7 +128,12 @@ class Layout
 
     public function GetIndexTheme()
     {
-        if(isset(self::$main_theme_path) && is_file(self::$main_theme_path))
+        if(defined('WE_THEME'))
+        {
+            die(var_dump(WE_THEME));
+            return LAY_BASEPATH . 'themes' . DS . WE_THEME . DS . 'index.php';
+        }
+        elseif(isset(self::$main_theme_path) && is_file(self::$main_theme_path))
         {
             return self::$main_theme_path;
         }

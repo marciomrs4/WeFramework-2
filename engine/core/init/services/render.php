@@ -11,13 +11,18 @@
 
 //Carregando Rota
 $router = \core\router\Router::GetInstance();
+$rs = \Slim\Slim::getInstance();
+$render = \core\layout\Render::GetInstance();;
 //Response 200
 if($router->GetStatus())
 {
     try
     {
-        $render = \core\layout\Render::GetInstance();
-        //Renderiza
+        /*
+         * Processo de Renderiza
+         */
+        //Renderização do tema
+        $render->SetTheme();
         $render->RenderTheme();
     }
     catch(\core\exceptions\RenderException $e)

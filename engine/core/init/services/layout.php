@@ -7,8 +7,14 @@ try
     try
     {
         $layout->CheckLayout();
-        $render = \core\layout\Render::GetInstance();
-        $render->SetTheme($layout);
+        /*
+         * Criação de constantes
+         */
+        define('WE_THEMES_INSTALLED', $layout->ThemesInstelled());
+        define('WE_MAIN_THEME', $layout->GetMainTheme());
+        define('WE_THEME_SWITCH_MODE', $layout->SwitchMode());
+        define('WE_THEME_DIR', LAY_BASEPATH . 'themes' . DS);
+
     }catch (\core\exceptions\LayoutException $l)
     {
         \core\init\Service::SetError('layout.php', $l->getMessage());

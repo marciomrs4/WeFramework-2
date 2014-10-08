@@ -86,18 +86,15 @@ function GetContent()
 
 /*
  * GetLoop()
- * Inclusão de cabeçalho Html
+ * Conteúdo dinâmico da página
  */
 function GetLoop()
 {
-    //Recuperando instância da classe Layout
-    $lay = \core\layout\Layout::GetInstance();
-    //Retonrnado o diretório do tema principal
-    $main_theme = $lay->GetDirMainTheme();
-    //Arquivo para include
-    $file = $main_theme . 'inc' . DS . 'base' . DS. 'loop.php';
-    //Imprimindo arquivo
-    echo GlobalInclude($file);
+    if(!\core\layout\Render::GetInstance()->Render())
+    {
+        header('Location: '.\core\router\Router::GetInstance()->BaseURL() . '404');
+    }
+    echo PHP_EOL;
 }
 
 /*

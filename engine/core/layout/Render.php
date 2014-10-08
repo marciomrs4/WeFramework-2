@@ -13,7 +13,6 @@ namespace core\layout;
 
 
 use core\exceptions\RenderException;
-use core\exceptions\ServiceException;
 use helpers\weframework\classes\Singleton;
 
 class Render
@@ -68,6 +67,7 @@ class Render
      * @access public
      * @param $html
      * @throws \core\exceptions\LayoutException
+     * @return void
      */
     public static function RenderFile($html)
     {
@@ -91,36 +91,47 @@ class Render
      */
     public function Render()
     {
-       if(count(self::$render_queue) > 0)
-       {
-           $i = 0;
-           foreach(self::$render_queue as $item)
-           {
-               if(file_exists($item))
-               {
-                   self::$rendered = true;
-                   include_once $item;
-                   $i++;
-               }
-               elseif(strpos($item, DS) === false)
-               {
-                   self::$rendered = true;
-                   echo $item;
-                   $i++;
-               }
-               else
-               {
-                   if($i == 0)
-                        self::$rendered = false;
-
-                   return false;
-               }
-           }
-           $this->FlushRender();
-       }
-       return true;
+        return $this->DefaultRender();
     }
 
+    /**
+     * DefaultRender
+     * Renerização padrão
+     *
+     * @access private
+     * @return bool
+     */
+    private function DefaultRender()
+    {
+        if(count(self::$render_queue) > 0)
+        {
+            $i = 0;
+            foreach(self::$render_queue as $item)
+            {
+                if(file_exists($item))
+                {
+                    self::$rendered = true;
+                    include_once $item;
+                    $i++;
+                }
+                elseif(strpos($item, DS) === false)
+                {
+                    self::$rendered = true;
+                    echo $item;
+                    $i++;
+                }
+                else
+                {
+                    if($i == 0)
+                        self::$rendered = false;
+
+                    return false;
+                }
+            }
+            $this->FlushRender();
+        }
+        return true;
+    }
 
     /**
      * Render
@@ -165,12 +176,15 @@ class Render
      * SetTheme
      * Prepara Renderização do tema principal
      *
-     * @param Layout $layout
      * @return void
      */
-    public function SetTheme(Layout $layout)
+    public function SetTheme()
     {
-        self::$render_theme = $layout->GetIndexTheme();
+        if(defined('WE_THEME'))
+        {
+            $theme_path = WE_THEME_DIR . WE_THEME . DS . 'index.php';
+        }
+        self::$render_theme = $theme_path;
     }
 
     public function RenderTheme()
