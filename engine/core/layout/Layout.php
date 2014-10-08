@@ -27,12 +27,13 @@ class Layout
     private static $main_theme = null;
     private static $main_theme_path = null;
     private static $themes_installed = 1;
+    private static $themes_definitions = array();
 
-    public function SetConfig($config_file)
+    public function SetConfig($config_file, $flag = false)
     {
         if(strpos($config_file, '.ini') !== false)
         {
-            $this->theme_config = self::GetFileConfig($config_file);
+            $this->theme_config = self::GetFileConfig($config_file, $flag);
         }
         else
         {
@@ -42,11 +43,26 @@ class Layout
 
     private function SetThemes()
     {
-
         if(isset($this->theme_config))
         {
-            $themes = $this->theme_config['themes'];
+            foreach($this->theme_config as $k => $val)
+            {
+                $preg = preg_match('@^theme([0-9]?)$@', $k, $match);
+                if($preg)
+                {
+                    $themes[] = $k;
+                    $definitions = $this->theme_config[$k];
+                    if(empty($definitions['theme']))
+                        $theme = 'default';
+                    else
+                        $theme = $definitions['theme'];
 
+                    self::$themes_definitions[$theme] = array(
+                        'package' => $definitions['package'],
+                        'page_index' => $definitions['page_index']
+                    );
+                }
+            }
             //Verificando se existe mais de um tema
             if(is_array($themes))
             {
@@ -71,7 +87,7 @@ class Layout
 
     public function SwitchMode()
     {
-        if(strtolower($this->theme_config['switch_themes']) == 'on')
+        if(strtolower($this->theme_config['main_theme']['switch_themes']) == 'on')
             return true;
 
         return false;
@@ -86,7 +102,7 @@ class Layout
     {
         if(isset($this->theme_config))
         {
-            $theme = $this->theme_config['main_theme'];
+            $theme = $this->theme_config['main_theme']['main_theme'];
 
             //Verificando se existe mais de um tema
            if($theme == '')
@@ -112,6 +128,7 @@ class Layout
 
                 }
 
+
                 if(!file_exists($default))
                     throw new LayoutException('Nothing to show!');
 
@@ -130,7 +147,6 @@ class Layout
     {
         if(defined('WE_THEME'))
         {
-            die(var_dump(WE_THEME));
             return LAY_BASEPATH . 'themes' . DS . WE_THEME . DS . 'index.php';
         }
         elseif(isset(self::$main_theme_path) && is_file(self::$main_theme_path))
@@ -138,6 +154,24 @@ class Layout
             return self::$main_theme_path;
         }
         throw new LayoutException('Nothing to show!');
+    }
+
+    public function GetPageIndex()
+    {
+        $index = 'home';
+        if(defined('WE_THEME'))
+        {
+            if(empty(WE_THEME))
+                $theme = 'default';
+            else
+                $theme = WE_THEME;
+
+            if(isset(self::$themes_definitions[$theme]['page_index']) && self::$themes_definitions[$theme]['page_index'] != '')
+            {
+                $index = self::$themes_definitions[$theme]['page_index'];
+            }
+        }
+        return $index;
     }
 
     public function GetDirMainTheme()

@@ -3,7 +3,7 @@
 $layout = \core\layout\Layout::GetInstance();
 try
 {
-    $layout->SetConfig('themes.ini');
+    $layout->SetConfig('themes.ini', true);
     try
     {
         $layout->CheckLayout();
@@ -17,7 +17,8 @@ try
 
     }catch (\core\exceptions\LayoutException $l)
     {
-        \core\init\Service::SetError('layout.php', $l->getMessage());
+        //Caso seja registrado erro.. A aplicação não pode prosseguir devido a outros serviços que depende desse
+        exit($l->getMessage());
     }
 }
 catch (\core\exceptions\ConfigException $e)

@@ -28,7 +28,7 @@ trait Config
      * @throws ConfigException
      * @return array
      */
-    public static function GetFileConfig($config_path)
+    public static function GetFileConfig($config_path, $flag = false)
     {
 
        if(strpos($config_path, '/') === false && defined('APP_BASEPATH'))
@@ -40,7 +40,7 @@ trait Config
        {
            if(file_exists($config_path))
            {
-               self::$configuration = parse_ini_file($config_path);
+               self::$configuration = parse_ini_file($config_path, $flag);
                return self::$configuration;
            }
            else

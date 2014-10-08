@@ -171,8 +171,8 @@ class Router
         }
         elseif(!$controller)
         {
-            $fcontroller = 'home';
-            $controller = 'home';
+            $fcontroller = $layout->GetPageIndex();
+            $controller = $fcontroller;
             $page = $dir_theme . 'pages' . DS . $fcontroller . DS . $controller .'.php';
             $render->RenderQueueAdd($page);
         }
