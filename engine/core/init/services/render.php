@@ -19,7 +19,7 @@ if($router->GetStatus())
     try
     {
         /*
-         * Processo de Renderiza
+         * Processo de Renderização
          */
         //Renderização do tema
         $render->SetTheme();

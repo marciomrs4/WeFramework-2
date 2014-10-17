@@ -141,8 +141,6 @@ class Router
      */
     public function AddRoute($controller)
     {
-
-
         //Instância do Layout
         $layout = Layout::GetInstance();
         //Instância do Render
@@ -153,7 +151,6 @@ class Router
         $dir_theme = WE_THEME_DIR . WE_THEME . DS;
         //Verificando Resposta HTTP
         $checkHttp = $this->CheckHtppResponse($controller);
-
 
         if($checkHttp)
         {
@@ -324,7 +321,4 @@ class Router
         }
         return $flag;
     }
-
-
-
 } 

@@ -174,6 +174,19 @@ class Layout
         return $index;
     }
 
+    public function GetPackage()
+    {
+        $package = '';
+        if(defined('WE_THEME'))
+        {
+            if(isset(self::$themes_definitions[WE_THEME]['package']))
+            {
+                $package = self::$themes_definitions[WE_THEME]['package'];
+            }
+        }
+        return $package;
+    }
+
     public function GetDirMainTheme()
     {
         $path = LAY_BASEPATH . 'themes' . DS;

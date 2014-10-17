@@ -33,6 +33,11 @@ $rs->get('/(:params+)', function() use ($rs, $router) {
             define('WE_IS_HOT_THEME', $router->IsHotTheme($controller));
             //Definido tema atual
             define('WE_THEME', (WE_IS_HOT_THEME) ? $controller : WE_MAIN_THEME);
+            //Definindo caminho do tema atual
+            define('WE_THEME_PATH', WE_THEME_DIR . WE_THEME . DS);
+            //Definindo pacote do back-end do tema
+            define('WE_PACKAGE', \core\layout\Layout::GetInstance()->GetPackage());
+
             //Walking URL - Caso seja um tema, descartamos o controller
             if(WE_IS_HOT_THEME)
             {
