@@ -189,12 +189,17 @@ class Router
      * @access public
      * @return string
      */
-    public function BaseURL()
+    public function BaseURL($mount_url = true)
     {
         if(!isset(self::$base_url) || isset(self::$default_config))
         {
             self::$default_config = $this->GetFileConfig('default.ini');
         }
+
+        //Se $mount_url for falso, apenas será retornado o nome da url base
+        if(!$mount_url)
+            return self::$default_config['base_url'];
+
         //wrapper protocol - http, https, ftp...
         $wrapper = (!empty(self::$default_config['wrapper']) ? self::$default_config['wrapper'] : 'http') . '://';
         //Url base

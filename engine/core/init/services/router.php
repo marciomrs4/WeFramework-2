@@ -37,6 +37,8 @@ $rs->get('/(:params+)', function() use ($rs, $router) {
             define('WE_THEME_PATH', WE_THEME_DIR . WE_THEME . DS);
             //Definindo pacote do back-end do tema
             define('WE_PACKAGE', \core\layout\Layout::GetInstance()->GetPackage());
+            //Definindo caminho do pacote da aplicação
+            define('WE_PACKAGE_PATH', APP_BASEPATH . 'package' . DS . ((!empty(WE_PACKAGE)) ? WE_PACKAGE . DS : ''));
 
             //Walking URL - Caso seja um tema, descartamos o controller
             if(WE_IS_HOT_THEME)
@@ -47,6 +49,9 @@ $rs->get('/(:params+)', function() use ($rs, $router) {
             }
             //Adiciona Rota
             $router->AddRoute($controller);
+
+            //Definindo constante para controlador
+            define('WE_CONTROLLER', (!$controller) ? \core\layout\Layout::GetInstance()->GetPageIndex() : $controller);
         }
         //Verificamos se o header foi alterado para outro código após a verificação dos arquivos html
         if($http_header != 200)

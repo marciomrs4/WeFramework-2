@@ -23,7 +23,7 @@ if($router->GetStatus())
          */
         //Renderização do tema
         $render->SetTheme();
-        $render->RenderTheme();
+        $render->RenderApp();
     }
     catch(\core\exceptions\RenderException $e)
     {

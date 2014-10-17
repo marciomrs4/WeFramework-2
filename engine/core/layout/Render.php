@@ -13,7 +13,10 @@ namespace core\layout;
 
 
 use core\exceptions\RenderException;
+use core\package\mvc\Controller;
+use core\router\Router;
 use helpers\weframework\classes\Singleton;
+use core\package\Package;
 
 class Render
 {
@@ -66,7 +69,7 @@ class Render
      *
      * @access public
      * @param $html
-     * @throws \core\exceptions\LayoutException
+     * @throws LayoutException
      * @return void
      */
     public static function RenderFile($html)
@@ -187,8 +190,83 @@ class Render
         self::$render_theme = $theme_path;
     }
 
-    public function RenderTheme()
+    public function RenderApp()
     {
+        /*
+         * MC - Model & Controller
+         */
+        if(WE_MODE == 'application')
+        {
+            //Model
+            if(is_file(Package::GetInstance()->GetModelFile()))
+            {
+                include_once(Package::GetInstance()->GetModelFile());
+                //Controller
+                if(is_file(Package::GetInstance()->GetControllerFile()))
+                {
+                    include_once(Package::GetInstance()->GetControllerFile());
+
+                    if(defined('WE_CONTROLLER'))
+                    {
+                        //Renderizando MVC
+                        $controller_class = ucfirst(WE_CONTROLLER);
+                        if(class_exists($controller_class))
+                        {
+                            //Controller
+                            $controller = new $controller_class();
+                            $reflection = new \ReflectionClass($controller);
+
+                            //Método index
+                            //Ex: http://dominio.com.br
+                            if(!Router::GetInstance()->GetArg(0) && !Router::GetInstance()->GetArg(1))
+                            {
+                                if($reflection->hasMethod('Index'))
+                                {
+                                    $reflection_method = $reflection->getMethod('Index');
+                                    if($reflection_method->isPublic() && $reflection_method->class == $controller_class)
+                                    {
+                                        $controller->Index();
+                                    }
+                                }
+                            }
+                            //Ex: http://dominio.com.br/controller
+                            elseif(Router::GetInstance()->GetArg(0)
+                                && ucfirst(Router::GetInstance()->GetArg(0)) == $controller_class
+                                && !Router::GetInstance()->GetArg(1)
+                            )
+                            {
+                                if($reflection->hasMethod('Index'))
+                                {
+                                    $reflection_method = $reflection->getMethod('Index');
+                                    if($reflection_method->isPublic() && $reflection_method->class == $controller_class)
+                                    {
+                                        $controller->Index();
+                                    }
+                                }
+                            }
+                            //Ex: http://dominio.com.br/controller/method
+                            elseif(Router::GetInstance()->GetArg(0)
+                                && Router::GetInstance()->GetArg(1)
+                                && ucfirst(Router::GetInstance()->GetArg(0)) == $controller_class
+                            )
+                            {
+                                $method = ucfirst(Router::GetInstance()->GetArg(1));
+                                if($reflection->hasMethod($method))
+                                {
+                                    $reflection_method = $reflection->getMethod($method);
+                                    if($reflection_method->isPublic() && $reflection_method->class == $controller_class)
+                                    {
+                                        $controller->$method();
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        //View
         if(isset(self::$render_theme))
         {
             include_once self::$render_theme;

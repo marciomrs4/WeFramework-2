@@ -24,6 +24,8 @@
         define('APP_BASEPATH', $env->GetAppPath());
         //Diretório de layout
         define('LAY_BASEPATH', $env->GetLayoutPath());
+        //Mode
+        define('WE_MODE', $env->GetMode());
     }
     catch (\core\exceptions\EnvironmentException $e)
     {

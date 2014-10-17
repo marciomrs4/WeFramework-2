@@ -187,6 +187,7 @@ class Layout
         return $package;
     }
 
+
     public function GetDirMainTheme()
     {
         $path = LAY_BASEPATH . 'themes' . DS;

@@ -10,10 +10,17 @@
  */
 
     //Classe Package
-    $packege = new \core\package\Package();
+    $package = new \core\package\Package();
+    //Consistência de ações
     try
     {
-
+        if(WE_MODE == 'application')
+        {
+            if($package->SetPackage(WE_PACKAGE))
+            {
+                $package->SetControllerPath(WE_CONTROLLER);
+            }
+        }
     }
     catch(\core\exceptions\PackageException $e)
     {

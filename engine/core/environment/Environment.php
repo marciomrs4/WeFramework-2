@@ -335,7 +335,14 @@
             return $this->flag;
         }
 
+        public function GetMode()
+        {
+            $config = Config::GetInstance();
+            $configuration = $config::$configuration;
+            $mode = $configuration['mode'];
 
+            return $mode;
+        }
 
         /**
          * CheckEnvironment
