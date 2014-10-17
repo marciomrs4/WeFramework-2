@@ -57,27 +57,10 @@ abstract class Controller
      */
     public function View($view, $data)
     {
-        if($this->flag_load)
+        if($this->flag_load === true)
         {
-            //URI
-            $uri = trim($_SERVER['REQUEST_URI'], '/');
-            $uri = explode('/', $uri);
-            //URL Base
-            $url_base = Router::GetInstance()->BaseURL(false);
-            //Veiricamos se na URI existe a url base, se sim, retiramos
-            if(in_array($url_base, $uri))
-            {
-                $key = array_search($url_base, $uri);
-                unset($uri[0]);
-            }
-            //Montamos a nova uri
-            $uri = implode($uri, '/');
-
-            //Comparamos agora a URI com a view
-            if($uri == $view)
-            {
-                self::$data_view = $data;
-            }
+            $mvc = new View();
+            $mvc->SetView($view, $data);
         }
         else
         {

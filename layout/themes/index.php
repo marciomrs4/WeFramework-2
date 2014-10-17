@@ -1,9 +1,9 @@
 <?php
 
-    GetHead();
+    //GetHead();
 
-    GetHeader();
+    //GetHeader();
 
-    GetContent();
+    //GetContent();
 
-    GetFooter();
+    //GetFooter();

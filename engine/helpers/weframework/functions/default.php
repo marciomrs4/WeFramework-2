@@ -19,21 +19,9 @@
  * @param $file_path
  * @return string
  */
-function GlobalInclude($file_path) {
-    // Verifica se o arquivo existe
-    if (isset($file_path) && is_file($file_path))
-    {
-        // Extrai variáveis do escopo global
-        extract($GLOBALS, EXTR_REFS);
-        ob_start();
-        include_once $file_path;
-        return ob_get_clean();
-    }
-    else
-    {
-        ob_clean();
-       exit('Failed to include ' . $file_path . '. File not found.');
-    }
+function TemplateContent($file_path)
+{
+    return \core\package\mvc\View::GetInstance()->Compile($file_path, true);
 }
 
 /*
@@ -49,7 +37,7 @@ function GetHead()
     //Arquivo para include
     $file = $main_theme . 'inc' . DS . 'base' . DS. 'head.php';
     //Imprimindo arquivo
-    echo GlobalInclude($file);
+    echo TemplateContent($file);
 }
 
 /*
@@ -65,7 +53,7 @@ function GetHeader()
     //Arquivo para include
     $file = $main_theme . 'inc' . DS . 'base' . DS. 'header.php';
     //Imprimindo arquivo
-    echo GlobalInclude($file);
+    echo TemplateContent($file);
 }
 
 /*
@@ -81,7 +69,7 @@ function GetContent()
     //Arquivo para include
     $file = $main_theme . 'inc' . DS . 'base' . DS. 'content.php';
     //Imprimindo arquivo
-    echo GlobalInclude($file);
+    echo TemplateContent($file);
 }
 
 /*
@@ -110,5 +98,124 @@ function GetFooter()
     //Arquivo para include
     $file = $main_theme . 'inc' . DS . 'base' . DS. 'footer.php';
     //Imprimindo arquivo
-    echo GlobalInclude($file);
+    echo TemplateContent($file);
+}
+
+/**
+ * GetBaseThemePath()
+ * Esta função retorna o caminho do tema atual
+ *
+ * @return string
+ */
+function GetBaseThemePath()
+{
+    if(defined('WE_THEME_PATH'))
+    {
+        return WE_THEME_PATH;
+    }
+    return '';
+}
+
+/**
+ * PageIndex
+ * @return string
+ */
+function PageIndex()
+{
+    if(defined('WE_THEME_PAGE_INDEX'))
+    {
+        return WE_THEME_PAGE_INDEX;
+    }
+    return '';
+}
+
+/**
+ * BaseURL
+ * @return string
+ */
+function BaseUrl()
+{
+    if(defined('WE_BASE_URL'))
+    {
+        return WE_BASE_URL;
+    }
+    return '';
+}
+
+/**
+ * ThemeBaseUrl
+ * Retorna  a URL do tema atual
+ * @return string
+ */
+function ThemeBaseUrl()
+{
+    return 'http://'.$_SERVER['HTTP_HOST'].'/'.WE_REAL_BASE_URL.'/layout/themes/'.WE_THEME.'/';
+}
+
+/**
+ * IncludeFile
+ * Inclusão de um arquivo
+ *
+ * @return void
+ * @param $file
+ */
+function IncludeFile($file)
+{
+    $file = GetBaseThemePath().$file;
+    if(is_file($file))
+        echo TemplateContent($file);
+    else
+        echo 'File not found: '.$file;
+}
+
+/**
+ * RequirePage
+ * Esta funcção testa a fágine e inclui um arquivo
+ * @param $url_page
+ * @param null $file
+ * @return bool
+ */
+function RequirePage($url_page, $file = null)
+{
+    //URI da aplicação sem a URL base
+    $uri = explode('/', WE_URI_PROJECT);
+    //URL requisitada
+    $url = explode('/', $url_page);
+    //Variáveis de controle
+    $flag = 0;
+    $flag_final = false;
+
+    //Verificamos se o tema atual é adicional e não o principal
+    //Se sim, retiramos o primeiro elemento da URI
+    if(WE_IS_HOT_THEME)
+        unset($uri[0]);
+
+    //Verificamos se o número da requisição é igual ao URI
+    if(count($url) > 0 && count($url) == count($uri))
+    {
+        //Percorrendo URL
+        foreach($url as $k => $page)
+        {
+            //Testando valores
+            if($uri[$k] == $page || $page == '*')
+            {
+                $flag++;
+            }
+            else
+            {
+                break;
+                $flag_final = false;
+            }
+        }
+
+        if($flag > 0 && $flag == count($uri))
+        {
+            $flag_final = true;
+        }
+    }
+    if(isset($file) && $flag_final === true)
+    {
+        IncludeFile($file);
+    }
+    return $flag_final;
 }

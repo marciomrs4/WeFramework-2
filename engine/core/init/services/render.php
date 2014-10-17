@@ -12,7 +12,7 @@
 //Carregando Rota
 $router = \core\router\Router::GetInstance();
 $rs = \Slim\Slim::getInstance();
-$render = \core\layout\Render::GetInstance();;
+$render = \core\layout\Render::GetInstance();
 //Response 200
 if($router->GetStatus())
 {
@@ -24,6 +24,8 @@ if($router->GetStatus())
         //Renderização do tema
         $render->SetTheme();
         $render->RenderApp();
+
+
     }
     catch(\core\exceptions\RenderException $e)
     {

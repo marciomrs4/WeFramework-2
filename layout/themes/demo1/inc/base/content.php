@@ -1,4 +1,7 @@
-<p>Hi, Diogo</p>
 <?php
-    GetLoop();
-?>
+/**
+ * Conteúdo dinâmico
+ */
+GetLoop();
+
+

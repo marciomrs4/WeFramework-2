@@ -116,6 +116,8 @@ class Router
                                     );
 
 
+    private static $uri_project = null;
+
 
     /**
      * Varifica se o código do cabeçalho existe
@@ -186,6 +188,7 @@ class Router
      * BaseURL
      * URL base da aplicação
      *
+     * @param bool $mount_url
      * @access public
      * @return string
      */
@@ -326,4 +329,45 @@ class Router
         }
         return $flag;
     }
-} 
+
+    /**
+     * GetUriProject
+     * URI do aplicação, a pasta do projeto base_url é excluído do URI
+     * @access public
+     * @return null
+     */
+    public function SetUriProject()
+    {
+        //URI
+        $uri = trim($_SERVER['REQUEST_URI'], '/');
+        $uri = explode('/', $uri);
+        //URL Base
+        $url_base = Router::GetInstance()->BaseURL(false);
+        //Veiricamos se na URI existe a url base, se sim, retiramos
+        if(in_array($url_base, $uri))
+        {
+            $key = array_search($url_base, $uri);
+            unset($uri[$key]);
+        }
+        //Montamos a nova uri
+        $uri = implode($uri, '/');
+
+        self::$uri_project = $uri;
+    }
+
+    /**
+     * GetUriProject
+     * URI do aplicação, a pasta do projeto base_url é excluído do URI
+     * @access public
+     * @return null
+     */
+    public function GetUriProject()
+    {
+        if(!isset(self::$uri_project))
+        {
+            $this->SetUriProject();
+        }
+
+        return self::$uri_project;
+    }
+}

@@ -39,6 +39,16 @@ $rs->get('/(:params+)', function() use ($rs, $router) {
             define('WE_PACKAGE', \core\layout\Layout::GetInstance()->GetPackage());
             //Definindo caminho do pacote da aplicação
             define('WE_PACKAGE_PATH', APP_BASEPATH . 'package' . DS . ((!empty(WE_PACKAGE)) ? WE_PACKAGE . DS : ''));
+            //Definindo constante para a URL Base
+            define('WE_BASE_URL', $router->BaseURL());
+            //Definido a URL original definido no arquivo de configuração
+            define('WE_REAL_BASE_URL', $router->BaseURL(false));
+            //Definindo constante para página inicial do tema
+            define('WE_THEME_PAGE_INDEX', \core\layout\Layout::GetInstance()->GetPageIndex());
+            //URL
+            define('WE_URL', $_SERVER['REQUEST_URI']);
+            //URL da aplicação, excluido a url base
+            define('WE_URI_PROJECT', $router->GetUriProject());
 
             //Walking URL - Caso seja um tema, descartamos o controller
             if(WE_IS_HOT_THEME)
@@ -51,7 +61,7 @@ $rs->get('/(:params+)', function() use ($rs, $router) {
             $router->AddRoute($controller);
 
             //Definindo constante para controlador
-            define('WE_CONTROLLER', (!$controller) ? \core\layout\Layout::GetInstance()->GetPageIndex() : $controller);
+            define('WE_CONTROLLER', (!$controller) ? WE_THEME_PAGE_INDEX : $controller);
         }
         //Verificamos se o header foi alterado para outro código após a verificação dos arquivos html
         if($http_header != 200)

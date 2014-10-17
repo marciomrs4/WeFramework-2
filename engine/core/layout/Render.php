@@ -14,6 +14,7 @@ namespace core\layout;
 
 use core\exceptions\RenderException;
 use core\package\mvc\Controller;
+use core\package\mvc\View;
 use core\router\Router;
 use helpers\weframework\classes\Singleton;
 use core\package\Package;
@@ -266,7 +267,7 @@ class Render
             }
         }
 
-        //View
+        //Theme template index
         if(isset(self::$render_theme))
         {
             include_once self::$render_theme;
