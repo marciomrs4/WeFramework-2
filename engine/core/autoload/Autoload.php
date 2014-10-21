@@ -17,6 +17,9 @@
         public function __construct()
         {
             $this->CoreLoader();
+            $this->AppLoader();
+            $this->PackageLoader();
+            $this->MVCLoader();
         }
 
 
@@ -41,6 +44,64 @@
 
 
         /**
+         * AppAutoloader
+         * Carrega classes da pasta application
+         *
+         * @access private
+         * @param $class
+         * @return void
+         */
+        private function AppAutoloader($class)
+        {
+            $file = str_replace('\\', DS, $class);
+
+            $file = APP_BASEPATH . $file . '.php';
+            if(file_exists($file))
+            {
+                include_once $file;
+            }
+        }
+
+        /**
+         * PackageAutoload
+         * Carrega classes package
+         *
+         * @access private
+         * @param $class
+         * @return void
+         */
+        private function PackageAutoload($class)
+        {
+            $file = str_replace('\\', DS, $class);
+
+            $file = APP_BASEPATH . 'package' . DS . $file . '.php';
+            if(file_exists($file))
+            {
+                include_once $file;
+            }
+        }
+
+        /**
+         * MVCAutoload
+         * Carrega classes package
+         *
+         * @access private
+         * @param $class
+         * @return void
+         */
+        private function MVCAutoload($class)
+        {
+            $file = str_replace('\\', DS, $class);
+
+            $file = ENGPATH . 'core' . DS . 'package' . DS . $file . '.php';
+            if(file_exists($file))
+            {
+                include_once $file;
+            }
+        }
+
+
+        /**
          * CoreLoader
          * Registra método CoreAutoloader() na SPL
          *
@@ -50,6 +111,42 @@
         private function CoreLoader()
         {
             spl_autoload_register(array($this, 'CoreAutoloader'));
+        }
+
+        /**
+         * AppLoader
+         * Registra método AppAutoloader() na SPL
+         *
+         * @access private
+         * @return void
+         */
+        private function AppLoader()
+        {
+            spl_autoload_register(array($this, 'AppAutoloader'));
+        }
+
+        /**
+         * PackageLoader
+         * Registra método PackageAutoload() na SPL
+         *
+         * @access private
+         * @return void
+         */
+        private function PackageLoader()
+        {
+            spl_autoload_register(array($this, 'PackageAutoload'));
+        }
+
+        /**
+         * MVCLoader
+         * Registra método MVCAutoload() na SPL
+         *
+         * @access private
+         * @return void
+         */
+        private function MVCLoader()
+        {
+            spl_autoload_register(array($this, 'MVCAutoload'));
         }
 
     }

@@ -8,7 +8,7 @@
  * @package WeFramework
  * @subpackage MVC/View
  */
-namespace core\package\mvc;
+namespace mvc;
 
 use core\layout\Template;
 use core\router\Router;
@@ -62,26 +62,66 @@ class View
      */
     public function SetView($view, $data)
     {
-        //URI
-        $uri = trim($_SERVER['REQUEST_URI'], '/');
-        $uri = explode('/', $uri);
-        //URL Base
-        $url_base = Router::GetInstance()->BaseURL(false);
-        //Veiricamos se na URI existe a url base, se sim, retiramos
-        if(in_array($url_base, $uri))
-        {
-            $key = array_search($url_base, $uri);
-            unset($uri[$key]);
-        }
-        //Montamos a nova uri
-        $uri = implode($uri, '/');
-        self::$uri_project = $uri;
-
-        //Comparamos agora a URI com a view
-        if($uri == $view)
+        if($this->RequirePage($view))
         {
             self::$data_view = $data;
         }
+    }
+
+    public function RequirePage($url_page)
+    {
+        //Verificamos se a requisão é para a página inicial
+        if($url_page == 'index' && WE_URI_PROJECT == '')
+            return true;
+
+        //URI da aplicação sem a URL base
+        $uri = explode('/', WE_URI_PROJECT);
+        //URL requisitada
+        $url = explode('/', $url_page);
+
+        //Variáveis de controle
+        $flag = 0;
+        $flag_final = false;
+
+        //Verificamos se o tema atual é adicional e não o principal
+        //Se sim, retiramos o primeiro elemento da URI
+
+        if(WE_IS_HOT_THEME && isset($uri[0]))
+        {
+            unset($uri[0]);
+            $uri = array_values($uri);
+
+            //Verificamos se o array está vazio e colocamos uma chave com valor vazio
+            if(count($uri) == 0)
+                $uri[0] = '';
+        }
+
+        var_dump(WE_URI_PROJECT);
+
+        //Verificamos se o número da requisição é igual ao URI
+        if(count($url) > 0 && count($url) == count($uri))
+        {
+            //Percorrendo URL
+            foreach($url as $k => $page)
+            {
+                //Testando valores
+                if($uri[$k] == $page || $page == '*')
+                {
+                    $flag++;
+                }
+                else
+                {
+                    break;
+                    $flag_final = false;
+                }
+            }
+
+            if($flag > 0 && $flag == count($uri))
+            {
+                $flag_final = true;
+            }
+        }
+        return $flag_final;
     }
 
 

@@ -21,7 +21,7 @@
  */
 function TemplateContent($file_path)
 {
-    return \core\package\mvc\View::GetInstance()->Compile($file_path, true);
+    return mvc\View::GetInstance()->Compile($file_path, true);
 }
 
 /*
@@ -33,7 +33,7 @@ function GetHead()
     //Recuperando instância da classe Layout
     $lay = \core\layout\Layout::GetInstance();
     //Retonrnado o diretório do tema principal
-    $main_theme = $lay->GetDirMainTheme();
+    $main_theme = $lay->GetDirTheme();
     //Arquivo para include
     $file = $main_theme . 'inc' . DS . 'base' . DS. 'head.php';
     //Imprimindo arquivo
@@ -49,7 +49,7 @@ function GetHeader()
     //Recuperando instância da classe Layout
     $lay = \core\layout\Layout::GetInstance();
     //Retonrnado o diretório do tema principal
-    $main_theme = $lay->GetDirMainTheme();
+    $main_theme = $lay->GetDirTheme();
     //Arquivo para include
     $file = $main_theme . 'inc' . DS . 'base' . DS. 'header.php';
     //Imprimindo arquivo
@@ -65,7 +65,7 @@ function GetContent()
     //Recuperando instância da classe Layout
     $lay = \core\layout\Layout::GetInstance();
     //Retonrnado o diretório do tema principal
-    $main_theme = $lay->GetDirMainTheme();
+    $main_theme = $lay->GetDirTheme();
     //Arquivo para include
     $file = $main_theme . 'inc' . DS . 'base' . DS. 'content.php';
     //Imprimindo arquivo
@@ -78,9 +78,14 @@ function GetContent()
  */
 function GetLoop()
 {
-    if(!\core\layout\Render::GetInstance()->Render())
+    $file_loop = \core\layout\Render::GetInstance()->Render(true);
+    if(!$file_loop)
     {
         header('Location: '.\core\router\Router::GetInstance()->BaseURL() . '404');
+    }
+    else
+    {
+        echo TemplateContent($file_loop);
     }
     echo PHP_EOL;
 }
@@ -94,7 +99,7 @@ function GetFooter()
     //Recuperando instância da classe Layout
     $lay = \core\layout\Layout::GetInstance();
     //Retonrnado o diretório do tema principal
-    $main_theme = $lay->GetDirMainTheme();
+    $main_theme = $lay->GetDirTheme();
     //Arquivo para include
     $file = $main_theme . 'inc' . DS . 'base' . DS. 'footer.php';
     //Imprimindo arquivo
@@ -177,45 +182,10 @@ function IncludeFile($file)
  */
 function RequirePage($url_page, $file = null)
 {
-    //URI da aplicação sem a URL base
-    $uri = explode('/', WE_URI_PROJECT);
-    //URL requisitada
-    $url = explode('/', $url_page);
-    //Variáveis de controle
-    $flag = 0;
-    $flag_final = false;
-
-    //Verificamos se o tema atual é adicional e não o principal
-    //Se sim, retiramos o primeiro elemento da URI
-    if(WE_IS_HOT_THEME)
-        unset($uri[0]);
-
-    //Verificamos se o número da requisição é igual ao URI
-    if(count($url) > 0 && count($url) == count($uri))
-    {
-        //Percorrendo URL
-        foreach($url as $k => $page)
-        {
-            //Testando valores
-            if($uri[$k] == $page || $page == '*')
-            {
-                $flag++;
-            }
-            else
-            {
-                break;
-                $flag_final = false;
-            }
-        }
-
-        if($flag > 0 && $flag == count($uri))
-        {
-            $flag_final = true;
-        }
-    }
-    if(isset($file) && $flag_final === true)
+    $flag = mvc\View::GetInstance()->RequirePage($url_page);
+    if(isset($file) && $flag === true)
     {
         IncludeFile($file);
     }
-    return $flag_final;
+    return $flag;
 }

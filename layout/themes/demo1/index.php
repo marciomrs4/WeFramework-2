@@ -1,8 +1,24 @@
 <?php
-    GetHead();
+/**
+ * Head
+ * inc/base/head.php
+ */
 
-    GetHeader();
+GetHead();
+/**
+ * Header
+ * inc/base/header.php
+ */
+GetHeader();
 
-    GetContent();
+/**
+ * Content
+ * inc/base/content.php
+ */
+GetContent();
 
-    GetFooter();
+/**
+ * Footer
+ * inc/base/footer.php
+ */
+GetFooter();

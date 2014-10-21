@@ -212,7 +212,10 @@ class Router
         {
             if(defined('WE_THEME'))
             {
-                $url = $url . WE_THEME . '/';
+                if(defined('WE_THEME_ALIAS_NAME') && WE_THEME_ALIAS_NAME != '')
+                    $url = $url . WE_THEME_ALIAS_NAME . '/';
+                else
+                    $url = $url . WE_THEME . '/';
             }
         }
 
@@ -315,12 +318,18 @@ class Router
      */
     public function IsHotTheme($controller)
     {
+
         $flag = false;
         if(defined('WE_THEMES_INSTALLED') && defined('WE_THEME_SWITCH_MODE'))
         {
             if(WE_THEMES_INSTALLED > 1 && $controller != '' && WE_THEME_SWITCH_MODE)
             {
-                if(is_dir(WE_THEME_DIR . $controller))
+                //Verificamos o alias
+                if(Layout::GetInstance()->GetThemeByAlias($controller))
+                {
+                    $flag = true;
+                }
+                elseif(is_dir(WE_THEME_DIR . $controller))
                 {
                     //Constante para indicar que a aplicação está em um tema adicional
                     $flag = true;

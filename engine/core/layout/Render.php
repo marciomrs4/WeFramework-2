@@ -13,8 +13,7 @@ namespace core\layout;
 
 
 use core\exceptions\RenderException;
-use core\package\mvc\Controller;
-use core\package\mvc\View;
+use mvc\View;
 use core\router\Router;
 use helpers\weframework\classes\Singleton;
 use core\package\Package;
@@ -93,9 +92,9 @@ class Render
      * @access public
      * @return bool
      */
-    public function Render()
+    public function Render($get_file = false)
     {
-        return $this->DefaultRender();
+        return $this->DefaultRender($get_file);
     }
 
     /**
@@ -105,7 +104,7 @@ class Render
      * @access private
      * @return bool
      */
-    private function DefaultRender()
+    private function DefaultRender($file = false)
     {
         if(count(self::$render_queue) > 0)
         {
@@ -115,7 +114,10 @@ class Render
                 if(file_exists($item))
                 {
                     self::$rendered = true;
-                    include_once $item;
+                    if($file === false)
+                        include_once $item;
+                    else
+                        return $item;
                     $i++;
                 }
                 elseif(strpos($item, DS) === false)
@@ -198,78 +200,77 @@ class Render
          */
         if(WE_MODE == 'application')
         {
-            //Model
-            if(is_file(Package::GetInstance()->GetModelFile()))
+
+            //Controller
+            if(is_file(Package::GetInstance()->GetControllerFile()))
             {
-                include_once(Package::GetInstance()->GetModelFile());
-                //Controller
-                if(is_file(Package::GetInstance()->GetControllerFile()))
+                if(defined('WE_CONTROLLER'))
                 {
-                    include_once(Package::GetInstance()->GetControllerFile());
-
-                    if(defined('WE_CONTROLLER'))
+                    //Renderizando MVC
+                    $controller_class = ltrim(WE_PACKAGE . '\\' . WE_CONTROLLER . '\\' . 'controller\\' . ucfirst(WE_CONTROLLER), '\\');
+                    if(class_exists($controller_class))
                     {
-                        //Renderizando MVC
-                        $controller_class = ucfirst(WE_CONTROLLER);
-                        if(class_exists($controller_class))
-                        {
-                            //Controller
-                            $controller = new $controller_class();
-                            $reflection = new \ReflectionClass($controller);
+                        //Controller
+                        $controller = new $controller_class();
+                        $reflection = new \ReflectionClass($controller);
 
-                            //Método index
-                            //Ex: http://dominio.com.br
-                            if(!Router::GetInstance()->GetArg(0) && !Router::GetInstance()->GetArg(1))
+                        //Método index
+                        //Ex: http://dominio.com.br
+                        if(!Router::GetInstance()->GetArg(0) && !Router::GetInstance()->GetArg(1))
+                        {
+                            if($reflection->hasMethod('Index'))
                             {
-                                if($reflection->hasMethod('Index'))
+                                $reflection_method = $reflection->getMethod('Index');
+                                if($reflection_method->isPublic() && $reflection_method->class == $controller_class)
                                 {
-                                    $reflection_method = $reflection->getMethod('Index');
-                                    if($reflection_method->isPublic() && $reflection_method->class == $controller_class)
-                                    {
-                                        $controller->Index();
-                                    }
+                                    $controller->Index();
                                 }
                             }
-                            //Ex: http://dominio.com.br/controller
-                            elseif(Router::GetInstance()->GetArg(0)
-                                && ucfirst(Router::GetInstance()->GetArg(0)) == $controller_class
-                                && !Router::GetInstance()->GetArg(1)
-                            )
+                        }
+                        //Ex: http://dominio.com.br/controller
+                        elseif(Router::GetInstance()->GetArg(0)
+                            && ucfirst(Router::GetInstance()->GetArg(0)) == $controller_class
+                            && !Router::GetInstance()->GetArg(1)
+                        )
+                        {
+                            if($reflection->hasMethod('Index'))
                             {
-                                if($reflection->hasMethod('Index'))
+                                $reflection_method = $reflection->getMethod('Index');
+                                if($reflection_method->isPublic() && $reflection_method->class == $controller_class)
                                 {
-                                    $reflection_method = $reflection->getMethod('Index');
-                                    if($reflection_method->isPublic() && $reflection_method->class == $controller_class)
-                                    {
-                                        $controller->Index();
-                                    }
+                                    $controller->Index();
                                 }
                             }
-                            //Ex: http://dominio.com.br/controller/method
-                            elseif(Router::GetInstance()->GetArg(0)
-                                && Router::GetInstance()->GetArg(1)
-                                && ucfirst(Router::GetInstance()->GetArg(0)) == $controller_class
-                            )
+                        }
+                        //Ex: http://dominio.com.br/controller/method
+                        elseif(Router::GetInstance()->GetArg(0)
+                            && Router::GetInstance()->GetArg(1)
+                            && ucfirst(Router::GetInstance()->GetArg(0)) == $controller_class
+                        )
+                        {
+                            $method = ucfirst(Router::GetInstance()->GetArg(1));
+                            if($reflection->hasMethod($method))
                             {
-                                $method = ucfirst(Router::GetInstance()->GetArg(1));
-                                if($reflection->hasMethod($method))
+                                $reflection_method = $reflection->getMethod($method);
+                                if($reflection_method->isPublic() && $reflection_method->class == $controller_class)
                                 {
-                                    $reflection_method = $reflection->getMethod($method);
-                                    if($reflection_method->isPublic() && $reflection_method->class == $controller_class)
-                                    {
-                                        $controller->$method();
-                                    }
+                                    $controller->$method();
                                 }
                             }
                         }
                     }
                 }
             }
+
         }
 
         //Theme template index
         if(isset(self::$render_theme))
         {
+            $data_view = View::GetInstance()->GetDataView();
+            if(count($data_view) > 0)
+                extract($data_view);
+
             include_once self::$render_theme;
         }
         else

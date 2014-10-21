@@ -24,8 +24,6 @@ if($router->GetStatus())
         //Renderização do tema
         $render->SetTheme();
         $render->RenderApp();
-
-
     }
     catch(\core\exceptions\RenderException $e)
     {

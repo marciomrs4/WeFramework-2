@@ -28,6 +28,8 @@ class Layout
     private static $main_theme_path = null;
     private static $themes_installed = 1;
     private static $themes_definitions = array();
+    private static $themes_alias = array();
+    private static $theme_alias = null;
 
     public function SetConfig($config_file, $flag = false)
     {
@@ -59,8 +61,11 @@ class Layout
 
                     self::$themes_definitions[$theme] = array(
                         'package' => $definitions['package'],
-                        'page_index' => $definitions['page_index']
+                        'page_index' => $definitions['page_index'],
+                        'alias_theme' => $definitions['alias_theme']
                     );
+                    //Registrando Alias para performace do carregamento dos temas
+                    self::$themes_alias[$theme] = $definitions['alias_theme'];
                 }
             }
             //Verificando se existe mais de um tema
@@ -203,6 +208,57 @@ class Layout
             }
         }
         return false;
+    }
+
+    public function GetThemeByAlias($controller, $return_alias = false)
+    {
+        $alias = '';
+        //Verifica se o alias já foi encontrado e armazenado
+        if(!isset(self::$theme_alias) && $return_alias === false)
+        {
+            $k_alias = array_search($controller, self::$themes_alias);
+            if($k_alias)
+            {
+                $alias = $k_alias;
+                self::$theme_alias  = $alias;
+            }
+
+            elseif(isset(self::$themes_alias[$controller]))
+            {
+                $alias = $controller;
+            }
+        }
+        elseif($return_alias === true)
+        {
+            $k_alias = array_search($controller, self::$themes_alias);
+            if($k_alias)
+            {
+                $alias = self::$themes_alias[$k_alias];
+            }
+        }
+        else
+        {
+            return self::$theme_alias;
+        }
+
+        return $alias;
+
+    }
+
+    public function GetDirTheme()
+    {
+        if(defined('WE_THEME_PATH'))
+        {
+            $path = WE_THEME_PATH;
+            if(is_dir($path))
+                return $path;
+            else
+                return null;
+        }
+        else
+        {
+            $this->GetDirMainTheme();
+        }
     }
 
     public function CheckLayout()
