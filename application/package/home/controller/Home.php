@@ -1,23 +1,80 @@
 <?php
+/**
+ * Class Home
+ * Classe responsável por realizar operações da página Home
+ *
+ * @author Diogo Brito <diogo@weverest.com.br>
+ * @package WeFramewrok
+ * @subpackage Package/Home
+ * @version 0.1 - 23/10/2014
+ */
 
     namespace home\controller;
 
-    use \core\package\mvc\Controller;
+    use \mvc\Controller;
 
     class Home extends Controller
     {
+        /**
+         * Index
+         * Carregamento inicial - método pincipal
+         *
+         * @access public
+         * @return void
+         */
         public function Index()
         {
-            echo 'here';
-            $this->Load()->Model('Home');
-            $this->Home->HelloModel();
-            //var_dump($this->Home);
-            $this->Load()->View('index', array('param1' => 1, 'param2' => 2));
+            /*
+             * Exemplo de carregamento de outras camadas:
+             *
+             * Model
+             * $this->Load()->Model('nome_do_arquivo', 'alias');
+             *  - Usando
+             *       $this->alias->Method;
+             *
+             * Component
+             * $this->Load()->Component('nome_do_arquivo', 'alias');
+             *  - Usando
+             *       $this->alias->Method;
+             *
+             * View
+             * $this->Load()->View('pagina', array('data1' => $dado1, 'data2' => $dado2));
+             */
+
+
+            $this->Load()->Model('Home', 'HomeModel');
+
+            //Verifica se outras camadas foram carregadas
+            if($this->Loaded())
+            {
+                $welcome_message = $this->HomeModel->Welcome();
+
+                /*
+                 * Enviando dados para a View
+                 */
+                $this->Load()->View('index|home', array('welcome_message' => $welcome_message));
+            }
         }
 
-        public function Hello()
+        /**
+         * Component
+         * Carregamento de componente de teste
+         *
+         * @return void
+         * @access public
+         */
+        public function Component()
         {
-            $this->Load()->View('home', array('param1' => 1, 'param2' => 2));
-        }
+            $this->Load()->Component('test/Component', 'TComponent');
 
+            if($this->Loaded())
+            {
+                $data_comp = $this->TComponent->HelloComponent();
+
+                // Enviando para View
+                $this->Load()->View('home/component', array('component_message' => $data_comp));
+            }
+            else
+                die($this->Load()->GetError());
+        }
     }

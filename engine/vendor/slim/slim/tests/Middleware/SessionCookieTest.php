@@ -38,7 +38,7 @@ class SessionCookieTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test session cookie is set and constructed correctly
+     * test session cookie is set and constructed correctly
      *
      * We test for two things:
      *
@@ -67,7 +67,7 @@ class SessionCookieTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test $_SESSION is populated from an encrypted HTTP cookie
+     * test $_SESSION is populated from an encrypted HTTP cookie
      *
      * The encrypted cookie contains the serialized array ['foo' => 'bar']. The
      * global secret, cipher, and cipher mode are assumed to be the default
@@ -95,7 +95,7 @@ class SessionCookieTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test $_SESSION is populated from an unencrypted HTTP cookie
+     * test $_SESSION is populated from an unencrypted HTTP cookie
      *
      * The unencrypted cookie contains the serialized array ['foo' => 'bar'].
      * The global cookies.encrypt setting is set to false
@@ -155,7 +155,7 @@ class SessionCookieTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test $_SESSION is populated as empty array if no HTTP cookie
+     * test $_SESSION is populated as empty array if no HTTP cookie
      */
     public function testSessionIsPopulatedAsEmptyIfNoCookie()
     {

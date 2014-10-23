@@ -555,7 +555,7 @@ class RouteTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test dispatch with params
+     * test dispatch with params
      */
     public function testDispatch()
     {
@@ -566,7 +566,7 @@ class RouteTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test dispatch with middleware
+     * test dispatch with middleware
      */
     public function testDispatchWithMiddleware()
     {
@@ -583,7 +583,7 @@ class RouteTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test middleware with arguments
+     * test middleware with arguments
      */
     public function testRouteMiddlwareArguments()
     {

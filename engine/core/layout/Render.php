@@ -208,6 +208,7 @@ class Render
                 {
                     //Renderizando MVC
                     $controller_class = ltrim(WE_PACKAGE . '\\' . WE_CONTROLLER . '\\' . 'controller\\' . ucfirst(WE_CONTROLLER), '\\');
+
                     if(class_exists($controller_class))
                     {
                         //Controller
@@ -229,12 +230,14 @@ class Render
                         }
                         //Ex: http://dominio.com.br/controller
                         elseif(Router::GetInstance()->GetArg(0)
-                            && ucfirst(Router::GetInstance()->GetArg(0)) == $controller_class
+                            && ucfirst(Router::GetInstance()->GetArg(0)) == ucfirst(WE_CONTROLLER)
                             && !Router::GetInstance()->GetArg(1)
                         )
                         {
+
                             if($reflection->hasMethod('Index'))
                             {
+
                                 $reflection_method = $reflection->getMethod('Index');
                                 if($reflection_method->isPublic() && $reflection_method->class == $controller_class)
                                 {
@@ -245,7 +248,7 @@ class Render
                         //Ex: http://dominio.com.br/controller/method
                         elseif(Router::GetInstance()->GetArg(0)
                             && Router::GetInstance()->GetArg(1)
-                            && ucfirst(Router::GetInstance()->GetArg(0)) == $controller_class
+                            && ucfirst(Router::GetInstance()->GetArg(0)) == ucfirst(WE_CONTROLLER)
                         )
                         {
                             $method = ucfirst(Router::GetInstance()->GetArg(1));
@@ -254,6 +257,7 @@ class Render
                                 $reflection_method = $reflection->getMethod($method);
                                 if($reflection_method->isPublic() && $reflection_method->class == $controller_class)
                                 {
+
                                     $controller->$method();
                                 }
                             }

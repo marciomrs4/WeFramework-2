@@ -70,12 +70,30 @@ class View
 
     public function RequirePage($url_page)
     {
+        $original_uri = strtolower(WE_URI_PROJECT);
+
         //Verificamos se a requisão é para a página inicial
-        if($url_page == 'index' && WE_URI_PROJECT == '')
+        if($url_page == 'index' && $original_uri == '')
             return true;
 
+        if(strpos($url_page, '|') ==! false)
+        {
+            $conditions = explode('|', $url_page);
+            foreach($conditions as $page)
+            {
+                if($page == 'index' && $original_uri == '')
+                {
+                    return true;
+                }
+                elseif($page == $original_uri)
+                {
+                    return true;
+                }
+            }
+        }
+
         //URI da aplicação sem a URL base
-        $uri = explode('/', WE_URI_PROJECT);
+        $uri = explode('/', $original_uri);
         //URL requisitada
         $url = explode('/', $url_page);
 
@@ -95,8 +113,6 @@ class View
             if(count($uri) == 0)
                 $uri[0] = '';
         }
-
-        var_dump(WE_URI_PROJECT);
 
         //Verificamos se o número da requisição é igual ao URI
         if(count($url) > 0 && count($url) == count($uri))

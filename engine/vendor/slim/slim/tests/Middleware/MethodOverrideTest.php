@@ -57,7 +57,7 @@ class CustomAppMethod
 class MethodOverrideTest extends PHPUnit_Framework_TestCase
 {
     /**
-     * Test overrides method as POST
+     * test overrides method as POST
      */
     public function testOverrideMethodAsPost()
     {
@@ -79,7 +79,7 @@ class MethodOverrideTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test does not override method if not POST
+     * test does not override method if not POST
      */
     public function testDoesNotOverrideMethodIfNotPost()
     {
@@ -98,7 +98,7 @@ class MethodOverrideTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test does not override method if no method override parameter
+     * test does not override method if no method override parameter
      */
     public function testDoesNotOverrideMethodAsPostWithoutParameter()
     {
@@ -125,7 +125,7 @@ class MethodOverrideTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test overrides method with X-Http-Method-Override header
+     * test overrides method with X-Http-Method-Override header
      */
     public function testOverrideMethodAsHeader()
     {

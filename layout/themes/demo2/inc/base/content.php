@@ -1,7 +1,0 @@
-<?php
-/**
- * Conteúdo dinâmico
- */
-GetLoop();
-
-

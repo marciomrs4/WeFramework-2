@@ -41,7 +41,7 @@ class SlimFlashTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test set flash message for next request
+     * test set flash message for next request
      */
     public function testSetFlashForNextRequest()
     {
@@ -52,7 +52,7 @@ class SlimFlashTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test set flash message for current request
+     * test set flash message for current request
      */
     public function testSetFlashForCurrentRequest()
     {
@@ -62,7 +62,7 @@ class SlimFlashTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test loads flash from previous request
+     * test loads flash from previous request
      */
     public function testLoadsFlashFromPreviousRequest()
     {
@@ -73,7 +73,7 @@ class SlimFlashTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test keep flash message for next request
+     * test keep flash message for next request
      */
     public function testKeepFlashFromPreviousRequest()
     {
@@ -86,7 +86,7 @@ class SlimFlashTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test flash messages from previous request do not persist to next request
+     * test flash messages from previous request do not persist to next request
      */
     public function testFlashMessagesFromPreviousRequestDoNotPersist()
     {
@@ -97,7 +97,7 @@ class SlimFlashTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test set Flash using array access
+     * test set Flash using array access
      */
     public function testFlashArrayAccess()
     {
@@ -112,7 +112,7 @@ class SlimFlashTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test iteration
+     * test iteration
      */
     public function testIteration()
     {
@@ -127,7 +127,7 @@ class SlimFlashTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test countable
+     * test countable
      */
     public function testCountable()
     {

@@ -62,7 +62,7 @@ class CustomMiddleware extends \Slim\Middleware
         $res = $this->app->response();
         $env['slim.test'] = 'Hello';
         $this->next->call();
-        $res->header('X-Slim-Test', 'Hello');
+        $res->header('X-Slim-test', 'Hello');
         $res->write('Hello');
     }
 }
@@ -91,7 +91,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
      ************************************************/
 
     /**
-     * Test version constant is string
+     * test version constant is string
      */
     public function testHasVersionConstant()
     {
@@ -99,7 +99,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test default instance properties
+     * test default instance properties
      */
     public function testDefaultInstanceProperties()
     {
@@ -115,7 +115,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test get default instance
+     * test get default instance
      */
     public function testGetDefaultInstance()
     {
@@ -127,7 +127,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test get named instance
+     * test get named instance
      */
     public function testGetNamedInstance()
     {
@@ -137,7 +137,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test Slim autoloader ignores non-Slim classes
+     * test Slim autoloader ignores non-Slim classes
      *
      * Pre-conditions:
      * Instantiate a non-Slim class;
@@ -155,7 +155,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
      ************************************************/
 
     /**
-     * Test get setting that exists
+     * test get setting that exists
      */
     public function testGetSettingThatExists()
     {
@@ -164,7 +164,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test get setting that does not exist
+     * test get setting that does not exist
      */
     public function testGetSettingThatDoesNotExist()
     {
@@ -173,7 +173,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test set setting
+     * test set setting
      */
     public function testSetSetting()
     {
@@ -184,7 +184,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test batch set settings
+     * test batch set settings
      */
     public function testBatchSetSettings()
     {
@@ -200,7 +200,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test set settings recursively
+     * test set settings recursively
      */
     public function testSetSettingsRecursively()
     {
@@ -223,7 +223,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
             )
         );
         
-        // Test recursive batch behaviour
+        // test recursive batch behaviour
         $s->config($override, true);
 
         $expected =  array(
@@ -236,7 +236,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals($expected, $s->config('my_module'));
 
-        // Test default batch behaviour
+        // test default batch behaviour
         $s = new \Slim\Slim($config);
         $s->config($override);
 
@@ -248,7 +248,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
      ************************************************/
 
     /**
-     * Test default mode
+     * test default mode
      */
     public function testGetDefaultMode()
     {
@@ -257,7 +257,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test custom mode from environment
+     * test custom mode from environment
      */
     public function testGetModeFromEnvironment()
     {
@@ -267,7 +267,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test custom mode from app settings
+     * test custom mode from app settings
      */
     public function testGetModeFromSettings()
     {
@@ -278,7 +278,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
         }
 
     /**
-     * Test mode configuration
+     * test mode configuration
      */
     public function testModeConfiguration()
     {
@@ -296,7 +296,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test mode configuration when mode does not match
+     * test mode configuration when mode does not match
      */
     public function testModeConfigurationWhenModeDoesNotMatch()
     {
@@ -310,7 +310,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test mode configuration when not callable
+     * test mode configuration when not callable
      */
     public function testModeConfigurationWhenNotCallable()
     {
@@ -321,7 +321,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test custom mode from getenv()
+     * test custom mode from getenv()
      */
     public function testGetModeFromGetEnv()
     {
@@ -335,7 +335,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
      ************************************************/
 
     /**
-     * Test GENERIC route
+     * test GENERIC route
      */
     public function testGenericRoute()
     {
@@ -347,7 +347,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test GET routes also get mapped as a HEAD route
+     * test GET routes also get mapped as a HEAD route
      */
     public function testGetRouteIsAlsoMappedAsHead()
     {
@@ -358,7 +358,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test GET route
+     * test GET route
      */
     public function testGetRoute()
     {
@@ -374,7 +374,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test POST route
+     * test POST route
      */
     public function testPostRoute()
     {
@@ -395,7 +395,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test PUT route
+     * test PUT route
      */
     public function testPutRoute()
     {
@@ -416,7 +416,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test PATCH route
+     * test PATCH route
      */
     public function testPatchRoute()
     {
@@ -437,7 +437,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test DELETE route
+     * test DELETE route
      */
     public function testDeleteRoute()
     {
@@ -458,7 +458,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test OPTIONS route
+     * test OPTIONS route
      */
     public function testOptionsRoute()
     {
@@ -479,7 +479,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-    * Test route groups
+    * test route groups
     */
     public function testRouteGroups()
     {
@@ -500,7 +500,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
     }
 
     /*
-     * Test ANY route
+     * test ANY route
      */
     public function testAnyRoute()
     {
@@ -524,7 +524,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test if route does NOT expect trailing slash and URL has one
+     * test if route does NOT expect trailing slash and URL has one
      */
     public function testRouteWithoutSlashAndUrlWithOne()
     {
@@ -555,7 +555,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test if route contains URL encoded characters
+     * test if route contains URL encoded characters
      */
     public function testRouteWithUrlEncodedCharacters()
     {
@@ -574,7 +574,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
      ************************************************/
 
     /**
-     * Test set view with string class name
+     * test set view with string class name
      */
     public function testSetSlimViewFromString()
     {
@@ -585,7 +585,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test set view with object instance
+     * test set view with object instance
      */
     public function testSetSlimViewFromInstance()
     {
@@ -596,7 +596,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test view data is transferred to newer view
+     * test view data is transferred to newer view
      */
     public function testViewDataTransfer()
     {
@@ -612,7 +612,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
      ************************************************/
 
     /**
-     * Test template path is passed to view
+     * test template path is passed to view
      */
     public function testViewGetsTemplatesPath()
     {
@@ -622,7 +622,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test render with template and data
+     * test render with template and data
      */
     public function testRenderTemplateWithData()
     {
@@ -637,7 +637,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test render with template and data and status
+     * test render with template and data and status
      */
     public function testRenderTemplateWithDataAndStatus()
     {
@@ -656,7 +656,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
      ************************************************/
 
     /**
-     * Test get log
+     * test get log
      *
      * This asserts that a Slim app has a default Log
      * upon instantiation. The Log itself is tested
@@ -673,7 +673,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
      ************************************************/
 
     /**
-     * Test Last-Modified match
+     * test Last-Modified match
      */
     public function testLastModifiedMatch()
     {
@@ -692,7 +692,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test Last-Modified match
+     * test Last-Modified match
      */
     public function testLastModifiedDoesNotMatch()
     {
@@ -718,13 +718,13 @@ class SlimTest extends PHPUnit_Framework_TestCase
         ));
         $s = new \Slim\Slim();
         $s->get('/bar', function () use ($s) {
-            $s->lastModified('Test');
+            $s->lastModified('test');
         });
         $s->call();
     }
 
     /**
-     * Test Last Modified header format
+     * test Last Modified header format
      */
     public function testLastModifiedHeaderFormat()
     {
@@ -743,7 +743,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test ETag matches
+     * test ETag matches
      */
     public function testEtagMatches()
     {
@@ -761,7 +761,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test ETag does not match
+     * test ETag does not match
      */
     public function testEtagDoesNotMatch()
     {
@@ -779,7 +779,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test ETag with invalid type
+     * test ETag with invalid type
      */
     public function testETagWithInvalidType()
     {
@@ -797,7 +797,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test Expires
+     * test Expires
      */
     public function testExpiresAsString()
     {
@@ -821,7 +821,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test Expires
+     * test Expires
      */
     public function testExpiresAsInteger()
     {
@@ -873,7 +873,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test get cookie
+     * test get cookie
      *
      * This method ensures that the `Cookie:` HTTP request
      * header is parsed if present, and made accessible via the
@@ -900,7 +900,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test get cookie when cookie does not exist
+     * test get cookie when cookie does not exist
      */
     public function testGetCookieThatDoesNotExist()
     {
@@ -913,7 +913,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test delete cookie
+     * test delete cookie
      *
      * This method ensures that the `Set-Cookie:` HTTP response
      * header is set. The implementation of setting the response
@@ -943,7 +943,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
      ************************************************/
 
     /**
-     * Test get filesystem path to Slim app root directory
+     * test get filesystem path to Slim app root directory
      */
     public function testGetRoot()
     {
@@ -953,7 +953,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test stop
+     * test stop
      */
     public function testStop()
     {
@@ -963,7 +963,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test stop with subsequent output
+     * test stop with subsequent output
      */
     public function testStopWithSubsequentOutput()
     {
@@ -978,7 +978,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test stop with output buffer on and pre content
+     * test stop with output buffer on and pre content
      */
     public function testStopOutputWithOutputBufferingOnAndPreContent()
     {
@@ -995,7 +995,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test stop does not leave output buffers open
+     * test stop does not leave output buffers open
      */
     public function testStopDoesNotLeaveOutputBuffersOpen()
     {
@@ -1009,7 +1009,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test halt
+     * test halt
      */
     public function testHalt()
     {
@@ -1025,7 +1025,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test halt with output buffering and pre content
+     * test halt with output buffering and pre content
      */
     public function testHaltOutputWithOutputBufferingOnAndPreContent()
     {
@@ -1042,7 +1042,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test halt does not leave output buffers open
+     * test halt does not leave output buffers open
      */
     public function testHaltDoesNotLeaveOutputBuffersOpen()
     {
@@ -1056,7 +1056,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test pass cleans buffer and throws exception
+     * test pass cleans buffer and throws exception
      */
     public function testPass()
     {
@@ -1072,7 +1072,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test pass when there is a subsequent fallback route
+     * test pass when there is a subsequent fallback route
      */
     public function testPassWithSubsequentRoute()
     {
@@ -1093,7 +1093,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test pass when there is not a subsequent fallback route
+     * test pass when there is not a subsequent fallback route
      */
     public function testPassWithoutSubsequentRoute()
     {
@@ -1111,7 +1111,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test content type
+     * test content type
      */
     public function testContentType()
     {
@@ -1125,7 +1125,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test status
+     * test status
      */
     public function testStatus()
     {
@@ -1138,7 +1138,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test URL for
+     * test URL for
      */
     public function testSlimUrlFor()
     {
@@ -1148,7 +1148,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test redirect sets status and header
+     * test redirect sets status and header
      */
     public function testRedirect()
     {
@@ -1169,7 +1169,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
      ************************************************/
 
     /**
-     * Test that runner sends headers and body
+     * test that runner sends headers and body
      */
     public function testRun()
     {
@@ -1182,7 +1182,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test runner output with output buffering on and pre content
+     * test runner output with output buffering on and pre content
      */
     public function testRunOutputWithOutputBufferingOnAndPreContent()
     {
@@ -1198,7 +1198,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test that runner does not leave output buffers open
+     * test that runner does not leave output buffers open
      */
     public function testRunDoesNotLeaveAnyOutputBuffersOpen()
     {
@@ -1214,7 +1214,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
      ************************************************/
 
     /**
-     * Test add middleware
+     * test add middleware
      *
      * This asserts that middleware are queued and called
      * in sequence. This also asserts that the environment
@@ -1229,11 +1229,11 @@ class SlimTest extends PHPUnit_Framework_TestCase
             echo 'Foo';
         });
         $s->run();
-        $this->assertEquals('Hello', $s->response()->header('X-Slim-Test'));
+        $this->assertEquals('Hello', $s->response()->header('X-Slim-test'));
     }
 
     /**
-     * Test exception when adding circular middleware queues
+     * test exception when adding circular middleware queues
      *
      * This asserts that the same middleware can NOT be queued twice (usually by accident).
      * Circular middleware stack causes a troublesome to debug PHP Fatal error:
@@ -1293,7 +1293,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
      ************************************************/
 
     /**
-     * Test custom Not Found handler
+     * test custom Not Found handler
      */
     public function testNotFound()
     {
@@ -1313,7 +1313,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
      ************************************************/
 
     /**
-     * Test default and custom error handlers
+     * test default and custom error handlers
      *
      * Pre-conditions:
      * Invoked app route calls default error handler;
@@ -1334,7 +1334,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test default error handler logs the error when debug is false.
+     * test default error handler logs the error when debug is false.
      *
      * Pre-conditions:
      * Invoked app route calls default error handler;
@@ -1359,7 +1359,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test triggered errors are converted to ErrorExceptions
+     * test triggered errors are converted to ErrorExceptions
      *
      * Pre-conditions:
      * Custom error handler defined;
@@ -1390,7 +1390,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test error triggered with multiple applications
+     * test error triggered with multiple applications
      *
      * Pre-conditions:
      * Multiple Slim apps are instantiated;
@@ -1423,7 +1423,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test custom error handler uses existing Response object
+     * test custom error handler uses existing Response object
      */
     public function testErrorHandlerUsesCurrentResponseObject()
     {
@@ -1448,13 +1448,13 @@ class SlimTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test custom global error handler
+     * test custom global error handler
      */
     public function testHandleErrors()
     {
         $defaultErrorReporting = error_reporting();
 
-        // Test 1
+        // test 1
         error_reporting(E_ALL ^ E_NOTICE); // <-- Report all errors EXCEPT notices
         try {
             \Slim\Slim::handleErrors(E_NOTICE, 'test error', 'Slim.php', 119);
@@ -1462,7 +1462,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
             $this->fail('Slim::handleErrors reported a disabled error level.');
         }
 
-        // Test 2
+        // test 2
         error_reporting(E_ALL | E_STRICT); // <-- Report all errors, including E_STRICT
         try {
             \Slim\Slim::handleErrors(E_STRICT, 'test error', 'Slim.php', 119);
@@ -1517,7 +1517,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
      ************************************************/
 
     /**
-     * Test hook listener
+     * test hook listener
      *
      * Pre-conditions:
      * Slim app instantiated;
@@ -1541,7 +1541,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test hook listener if listener is not callable
+     * test hook listener if listener is not callable
      *
      * Pre-conditions:
      * Slim app instantiated;
@@ -1561,7 +1561,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test hook invocation if hook does not exist
+     * test hook invocation if hook does not exist
      *
      * Pre-conditions:
      * Slim app instantiated;
@@ -1579,7 +1579,7 @@ class SlimTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test clear hooks
+     * test clear hooks
      *
      * Pre-conditions:
      * Slim app instantiated;
@@ -1603,12 +1603,12 @@ class SlimTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test late static binding
+     * test late static binding
      *
      * Pre-conditions:
      * Slim app is extended by Derived class and instantiated;
      * Derived class overrides the 'getDefaultSettings' function and adds an extra default config value
-     * Test that the new config value exists
+     * test that the new config value exists
      *
      * Post-conditions:
      * Config value exists and is equal to expected value

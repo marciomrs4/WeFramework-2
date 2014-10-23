@@ -33,7 +33,7 @@
 class RequestTest extends PHPUnit_Framework_TestCase
 {
     /**
-     * Test sets HTTP method
+     * test sets HTTP method
      */
     public function testGetMethod()
     {
@@ -45,7 +45,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test HTTP GET method detection
+     * test HTTP GET method detection
      */
     public function testIsGet()
     {
@@ -57,7 +57,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test HTTP POST method detection
+     * test HTTP POST method detection
      */
     public function testIsPost()
     {
@@ -69,7 +69,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test HTTP PUT method detection
+     * test HTTP PUT method detection
      */
     public function testIsPut()
     {
@@ -81,7 +81,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test HTTP DELETE method detection
+     * test HTTP DELETE method detection
      */
     public function testIsDelete()
     {
@@ -93,7 +93,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test HTTP OPTIONS method detection
+     * test HTTP OPTIONS method detection
      */
     public function testIsOptions()
     {
@@ -105,7 +105,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test HTTP HEAD method detection
+     * test HTTP HEAD method detection
      */
     public function testIsHead()
     {
@@ -117,7 +117,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test HTTP PATCH method detection
+     * test HTTP PATCH method detection
      */
     public function testIsPatch()
     {
@@ -129,7 +129,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test AJAX method detection w/ header
+     * test AJAX method detection w/ header
      */
     public function testIsAjaxWithHeader()
     {
@@ -142,7 +142,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test AJAX method detection w/ query parameter
+     * test AJAX method detection w/ query parameter
      */
     public function testIsAjaxWithQueryParameter()
     {
@@ -155,7 +155,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test AJAX method detection without header or query parameter
+     * test AJAX method detection without header or query parameter
      */
     public function testIsAjaxWithoutHeaderOrQueryParameter()
     {
@@ -166,7 +166,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test AJAX method detection with misspelled header
+     * test AJAX method detection with misspelled header
      */
     public function testIsAjaxWithMisspelledHeader()
     {
@@ -179,7 +179,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test params from query string
+     * test params from query string
      */
     public function testParamsFromQueryString()
     {
@@ -194,7 +194,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test params from request body
+     * test params from request body
      */
     public function testParamsFromRequestBody()
     {
@@ -211,7 +211,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test fetch GET params
+     * test fetch GET params
      */
     public function testGet()
     {
@@ -226,7 +226,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test fetch GET params without multibyte
+     * test fetch GET params without multibyte
      */
     public function testGetWithoutMultibyte()
     {
@@ -242,7 +242,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test fetch POST params
+     * test fetch POST params
      */
     public function testPost()
     {
@@ -260,7 +260,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test fetch POST params without multibyte
+     * test fetch POST params without multibyte
      */
     public function testPostWithoutMultibyte()
     {
@@ -279,7 +279,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test fetch POST without slim.input
+     * test fetch POST without slim.input
      */
     public function testPostWithoutInput()
     {
@@ -291,7 +291,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test fetch POST params even if multipart/form-data request
+     * test fetch POST params even if multipart/form-data request
      */
     public function testPostWithMultipartRequest()
     {
@@ -309,7 +309,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test fetch PUT params
+     * test fetch PUT params
      */
     public function testPut()
     {
@@ -328,7 +328,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test fetch PATCH params
+     * test fetch PATCH params
      */
     public function testPatch()
     {
@@ -347,7 +347,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test fetch DELETE params
+     * test fetch DELETE params
      */
     public function testDelete()
     {
@@ -366,7 +366,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test fetch COOKIE params
+     * test fetch COOKIE params
      */
     public function testCookies()
     {
@@ -380,7 +380,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test is form data
+     * test is form data
      */
     public function testIsFormDataContentFormUrlencoded()
     {
@@ -394,7 +394,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test is form data
+     * test is form data
      */
     public function testIsFormDataPostContentUnknown()
     {
@@ -407,7 +407,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test is form data
+     * test is form data
      */
     public function testIsFormDataPostContentUnknownWithMethodOverride()
     {
@@ -421,7 +421,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test is not form data
+     * test is not form data
      */
     public function testIsNotFormData()
     {
@@ -434,7 +434,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test headers
+     * test headers
      */
     public function testHeaders()
     {
@@ -456,7 +456,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test accurately removes HTTP_ prefix from input header name
+     * test accurately removes HTTP_ prefix from input header name
      */
     public function testHeaderRemovesHttpPrefix()
     {
@@ -472,7 +472,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test get body
+     * test get body
      */
     public function testGetBodyWhenExists()
     {
@@ -486,7 +486,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test get body
+     * test get body
      */
     public function testGetBodyWhenNotExists()
     {
@@ -496,7 +496,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test get content type
+     * test get content type
      */
     public function testGetContentTypeWhenExists()
     {
@@ -509,7 +509,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test get content type for built-in PHP server
+     * test get content type for built-in PHP server
      */
     public function testGetContentTypeForBuiltInServer()
     {
@@ -522,7 +522,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test get content type
+     * test get content type
      */
     public function testGetContentTypeWhenNotExists()
     {
@@ -532,7 +532,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test get content type with built-in server
+     * test get content type with built-in server
      */
     public function testGetContentTypeWithBuiltInServer()
     {
@@ -545,7 +545,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test get media type
+     * test get media type
      */
     public function testGetMediaTypeWhenExists()
     {
@@ -557,7 +557,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test get media type
+     * test get media type
      */
     public function testGetMediaTypeWhenNotExists()
     {
@@ -567,7 +567,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test get media type
+     * test get media type
      */
     public function testGetMediaTypeWhenNoParamsExist()
     {
@@ -580,7 +580,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test get media type params
+     * test get media type params
      */
     public function testGetMediaTypeParams()
     {
@@ -595,7 +595,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test get media type params
+     * test get media type params
      */
     public function testGetMediaTypeParamsWhenNotExists()
     {
@@ -607,7 +607,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test get content charset
+     * test get content charset
      */
     public function testGetContentCharset()
     {
@@ -620,7 +620,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test get content charset
+     * test get content charset
      */
     public function testGetContentCharsetWhenNotExists()
     {
@@ -633,7 +633,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test get content length
+     * test get content length
      */
     public function testGetContentLength()
     {
@@ -647,7 +647,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test get content length
+     * test get content length
      */
     public function testGetContentLengthWhenNotExists()
     {
@@ -659,7 +659,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test get host
+     * test get host
      */
     public function testGetHost()
     {
@@ -672,7 +672,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test get host when it has a port number
+     * test get host when it has a port number
      */
     public function testGetHostAndStripPort()
     {
@@ -685,7 +685,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test get host
+     * test get host
      */
     public function testGetHostWhenNotExists()
     {
@@ -699,7 +699,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test get host with port
+     * test get host with port
      */
     public function testGetHostWithPort()
     {
@@ -714,7 +714,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test get host with port doesn't duplicate port numbers
+     * test get host with port doesn't duplicate port numbers
      */
     public function testGetHostDoesntDuplicatePort()
     {
@@ -729,7 +729,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test get port
+     * test get port
      */
     public function testGetPort()
     {
@@ -742,7 +742,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test get scheme
+     * test get scheme
      */
     public function testGetSchemeIfHttp()
     {
@@ -754,7 +754,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test get scheme
+     * test get scheme
      */
     public function testGetSchemeIfHttps()
     {
@@ -766,7 +766,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test get [script name, root uri, path, path info, resource uri] in subdirectory without htaccess
+     * test get [script name, root uri, path, path info, resource uri] in subdirectory without htaccess
      */
     public function testAppPathsInSubdirectoryWithoutHtaccess()
     {
@@ -783,7 +783,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test get [script name, root uri, path, path info, resource uri] in subdirectory with htaccess
+     * test get [script name, root uri, path, path info, resource uri] in subdirectory with htaccess
      */
     public function testAppPathsInSubdirectoryWithHtaccess()
     {
@@ -800,7 +800,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test get [script name, root uri, path, path info, resource uri] in root directory without htaccess
+     * test get [script name, root uri, path, path info, resource uri] in root directory without htaccess
      */
     public function testAppPathsInRootDirectoryWithoutHtaccess()
     {
@@ -817,7 +817,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test get [script name, root uri, path, path info, resource uri] in root directory with htaccess
+     * test get [script name, root uri, path, path info, resource uri] in root directory with htaccess
      */
     public function testAppPathsInRootDirectoryWithHtaccess()
     {
@@ -834,7 +834,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test get URL
+     * test get URL
      */
     public function testGetUrl()
     {
@@ -849,7 +849,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test get URL
+     * test get URL
      */
     public function testGetUrlWithCustomPort()
     {
@@ -864,7 +864,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test get URL
+     * test get URL
      */
     public function testGetUrlWithHttps()
     {
@@ -879,7 +879,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test get IP
+     * test get IP
      *  @dataProvider dataTestIp
      */
     public function testGetIp(array $server, $expected)
@@ -901,7 +901,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test get referer
+     * test get referer
      */
     public function testGetReferrer()
     {
@@ -914,7 +914,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test get referer
+     * test get referer
      */
     public function testGetReferrerWhenNotExists()
     {
@@ -925,7 +925,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test get user agent string
+     * test get user agent string
      */
     public function testGetUserAgent()
     {
@@ -937,7 +937,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test get user agent string when not set
+     * test get user agent string when not set
      */
     public function testGetUserAgentWhenNotExists()
     {

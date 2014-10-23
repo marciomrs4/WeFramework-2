@@ -42,7 +42,7 @@ class PHPMailerLangTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test language files for missing and excess translations
+     * test language files for missing and excess translations
      * All languages are compared with English
      * @group languages
      */

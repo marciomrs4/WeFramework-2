@@ -43,7 +43,7 @@ class ContentTypesTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test parses JSON
+     * test parses JSON
      */
     public function testParsesJson()
     {
@@ -62,7 +62,7 @@ class ContentTypesTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test ignores JSON with errors
+     * test ignores JSON with errors
      */
     public function testParsesJsonWithError()
     {
@@ -81,7 +81,7 @@ class ContentTypesTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test parses XML
+     * test parses XML
      */
     public function testParsesXml()
     {
@@ -100,7 +100,7 @@ class ContentTypesTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test ignores XML with errors
+     * test ignores XML with errors
      */
     public function testParsesXmlWithError()
     {
@@ -120,7 +120,7 @@ class ContentTypesTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test parses CSV
+     * test parses CSV
      */
     public function testParsesCsv()
     {
@@ -141,7 +141,7 @@ class ContentTypesTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test parses request body based on media-type only, disregarding
+     * test parses request body based on media-type only, disregarding
      * any extra content-type header parameters
      */
     public function testParsesRequestBodyWithMediaType()

@@ -1,6 +1,9 @@
 <div class="jumbotron">
-    <h1>Home 2 is Alive!</h1>
-    <p class="lead">Esta é a pagina inicial do website. Construa pequenas e médias apicações com o <b>We Framework</b>.</p>
+    <?php
+    if(isset($component_message))
+        echo '<h2>' . $component_message . '</h2>';
+    ?>
+    <p class="lead">Status do componente: <?php echo (isset($component_message) ? 'Carregado' : 'Componente não carregado') ?></p>
 </div>
 
 <div class="row marketing">
@@ -19,6 +22,6 @@
 
         <h4>Easy Easy</h4>
         <p>Uma ferramenta muito fácil de usar, defina como você quer que o We Framework funcione para se adequar as suas
-        necessidades atrés de arquivos de configurações.</p>
+            necessidades atrés de arquivos de configurações.</p>
     </div>
 </div>

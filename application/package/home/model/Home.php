@@ -1,10 +1,25 @@
 <?php
     namespace home\model;
 
-    class Home
+    use \mvc\Model;
+
+    class Home extends Model
     {
-        public function HelloModel()
+        public function Welcome()
         {
-            echo 'Hello Model';
+            /*
+             * Exemplo da camada Repository (Banco de Dados)
+             *
+             * $this->Load()->Repository('FirstRepo', 'Repo');
+             * $data = $this->Repo->RepositoryMethod();
+             * var_dump($data);
+             *
+             * Exemplo de carregamento de outros models
+             * $this->Load()->Model('AnotherModel', 'AModel');
+             * $this->BannerModel->HelloAnotherModel();
+             *
+             */
+
+            return 'Home is Alive!';
         }
     }

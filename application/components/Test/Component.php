@@ -1,10 +1,10 @@
 <?php
 namespace components\test;
 
-class Componente
+class Component
 {
     public function HelloComponent()
     {
-        echo '<br/>Hello Component<br/>';
+        return 'Componente Carregado';
     }
 }

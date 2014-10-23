@@ -54,7 +54,6 @@ $rs->get('/(:params+)', function() use ($rs, $router) {
             define('WE_URL', $_SERVER['REQUEST_URI']);
             //URL da aplicação, excluido a url base
             define('WE_URI_PROJECT', $router->GetUriProject());
-
             //Walking URL - Caso seja um tema, descartamos o controller
             if(WE_IS_HOT_THEME)
             {
@@ -66,7 +65,7 @@ $rs->get('/(:params+)', function() use ($rs, $router) {
             $router->AddRoute($controller);
 
             //Definindo constante para controlador
-            define('WE_CONTROLLER', (!$controller) ? WE_THEME_PAGE_INDEX : $controller);
+            define('WE_CONTROLLER', (!$controller) ? WE_THEME_PAGE_INDEX : lcfirst($controller));
         }
         //Verificamos se o header foi alterado para outro código após a verificação dos arquivos html
         if($http_header != 200)

@@ -33,7 +33,7 @@
 class SlimHttpUtilTest extends PHPUnit_Framework_TestCase
 {
     /**
-     * Test strip slashes when magic quotes disabled
+     * test strip slashes when magic quotes disabled
      */
     public function testStripSlashesWithoutMagicQuotes()
     {
@@ -43,7 +43,7 @@ class SlimHttpUtilTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test strip slashes from array when magic quotes disabled
+     * test strip slashes from array when magic quotes disabled
      */
     public function testStripSlashesFromArrayWithoutMagicQuotes()
     {
@@ -53,7 +53,7 @@ class SlimHttpUtilTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test strip slashes when magic quotes enabled
+     * test strip slashes when magic quotes enabled
      */
     public function testStripSlashesWithMagicQuotes()
     {
@@ -63,7 +63,7 @@ class SlimHttpUtilTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test strip slashes from array when magic quotes enabled
+     * test strip slashes from array when magic quotes enabled
      */
     public function testStripSlashesFromArrayWithMagicQuotes()
     {
@@ -73,7 +73,7 @@ class SlimHttpUtilTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test encrypt and decrypt with valid data
+     * test encrypt and decrypt with valid data
      */
     public function testEncryptAndDecryptWithValidData()
     {
@@ -87,7 +87,7 @@ class SlimHttpUtilTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test encrypt when data is empty string
+     * test encrypt when data is empty string
      */
     public function testEncryptWhenDataIsEmptyString()
     {
@@ -99,7 +99,7 @@ class SlimHttpUtilTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test decrypt when data is empty string
+     * test decrypt when data is empty string
      */
     public function testDecryptWhenDataIsEmptyString()
     {
@@ -111,7 +111,7 @@ class SlimHttpUtilTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test encrypt when IV and key sizes are too long
+     * test encrypt when IV and key sizes are too long
      */
     public function testEncryptAndDecryptWhenKeyAndIvAreTooLong()
     {
@@ -135,7 +135,7 @@ class SlimHttpUtilTest extends PHPUnit_Framework_TestCase
         $encodedValue = \Slim\Http\Util::encodeSecureCookie($value, $expires, $secret, $algorithm, $mode);
         $decodedValue = \Slim\Http\Util::decodeSecureCookie($encodedValue, $secret, $algorithm, $mode);
 
-        //Test secure cookie value
+        //test secure cookie value
         $parts = explode('|', $encodedValue);
         $this->assertEquals(3, count($parts));
         $this->assertEquals($expires, $parts[0]);
@@ -143,7 +143,7 @@ class SlimHttpUtilTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test encode/decode secure cookie with old expiration
+     * test encode/decode secure cookie with old expiration
      *
      * In this test, the expiration date is purposefully set to a time before now.
      * When decoding the encoded cookie value, FALSE is returned since the cookie
@@ -162,7 +162,7 @@ class SlimHttpUtilTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test encode/decode secure cookie with tampered data
+     * test encode/decode secure cookie with tampered data
      *
      * In this test, the encoded data is purposefully changed to simulate someone
      * tampering with the client-side cookie data. When decoding the encoded cookie value,
@@ -325,7 +325,7 @@ class SlimHttpUtilTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test serializeCookies and decrypt with string expires
+     * test serializeCookies and decrypt with string expires
      *
      * In this test a cookie with a string typed value for 'expires' is set,
      * which should be parsed by `strtotime` to a timestamp when it's added to
@@ -401,7 +401,7 @@ class SlimHttpUtilTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test parses Cookie: HTTP header
+     * test parses Cookie: HTTP header
      */
     public function testParsesCookieHeader()
     {
@@ -414,7 +414,7 @@ class SlimHttpUtilTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test parses Cookie: HTTP header with `=` in the cookie value
+     * test parses Cookie: HTTP header with `=` in the cookie value
      */
     public function testParsesCookieHeaderWithEqualSignInValue()
     {

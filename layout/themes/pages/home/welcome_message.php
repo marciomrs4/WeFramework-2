@@ -1,5 +1,8 @@
 <div class="jumbotron">
-    <h1>Home is Alive!</h1>
+    <?php
+    if(isset($welcome_message))
+        echo '<h1>' . $welcome_message . '</h1>';
+    ?>
     <p class="lead">Esta é a pagina inicial do website. Construa pequenas e médias apicações com o <b>We Framework</b>.</p>
 </div>
 
@@ -19,6 +22,6 @@
 
         <h4>Easy Easy</h4>
         <p>Uma ferramenta muito fácil de usar, defina como você quer que o We Framework funcione para se adequar as suas
-        necessidades atrés de arquivos de configurações.</p>
+            necessidades atrés de arquivos de configurações.</p>
     </div>
 </div>

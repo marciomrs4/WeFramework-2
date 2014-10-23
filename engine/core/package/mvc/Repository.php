@@ -29,7 +29,7 @@ abstract class Repository
      * Instância do PDO
      * @var null
      */
-    public $db = null;
+    public $DB = null;
 
     /**
      * Instância do banco de dados
@@ -238,9 +238,9 @@ abstract class Repository
         try
         {
             self::$db_instance = new \PDO($dsn, $user, $password, $attributes);
-            $this->db = self::$db_instance;
+            $this->DB = self::$db_instance;
             if(isset($charset) && is_string($charset))
-                $this->db->exec("SET NAMES ". $charset);
+                $this->DB->exec("SET NAMES ". $charset);
 
             return true;
         }
@@ -260,6 +260,9 @@ abstract class Repository
      */
     public function DBConnect($connection = null)
     {
+
+        if(!isset($connection) && isset($this->DB))
+            return true;
 
         //Verifica se a conexão foi definida
         if(isset($connection))
@@ -345,6 +348,18 @@ abstract class Repository
         }
 
         return false;
+    }
+
+    /**
+     * CloseConnection
+     * Fechar conexão com o banco de dados
+     *
+     * @acces public
+     * @return void
+     */
+    public function CloseConnection()
+    {
+        $this->DB = null;
     }
 
     /**

@@ -33,7 +33,7 @@
 class PrettyExceptionsTest extends PHPUnit_Framework_TestCase
 {
     /**
-     * Test middleware returns successful response unchanged
+     * test middleware returns successful response unchanged
      */
     public function testReturnsUnchangedSuccessResponse()
     {
@@ -54,7 +54,7 @@ class PrettyExceptionsTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test middleware returns diagnostic screen for error response
+     * test middleware returns diagnostic screen for error response
      */
     public function testReturnsDiagnosticsForErrorResponse()
     {
@@ -66,7 +66,7 @@ class PrettyExceptionsTest extends PHPUnit_Framework_TestCase
             'log.enabled' => false
         ));
         $app->get('/foo', function () {
-            throw new \Exception('Test Message', 100);
+            throw new \Exception('test Message', 100);
         });
         $mw = new \Slim\Middleware\PrettyExceptions();
         $mw->setApplication($app);
@@ -77,7 +77,7 @@ class PrettyExceptionsTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test middleware overrides response content type to html
+     * test middleware overrides response content type to html
      */
     public function testResponseContentTypeIsOverriddenToHtml()
     {
@@ -90,7 +90,7 @@ class PrettyExceptionsTest extends PHPUnit_Framework_TestCase
         ));
         $app->get('/foo', function () use ($app) {
             $app->contentType('application/json;charset=utf-8'); //<-- set content type to something else
-            throw new \Exception('Test Message', 100);
+            throw new \Exception('test Message', 100);
         });
         $mw = new \Slim\Middleware\PrettyExceptions();
         $mw->setApplication($app);
@@ -101,7 +101,7 @@ class PrettyExceptionsTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test exception type is in response body
+     * test exception type is in response body
      */
     public function testExceptionTypeIsInResponseBody()
     {
@@ -113,7 +113,7 @@ class PrettyExceptionsTest extends PHPUnit_Framework_TestCase
             'log.enabled' => false
         ));
         $app->get('/foo', function () use ($app) {
-            throw new \LogicException('Test Message', 100);
+            throw new \LogicException('test Message', 100);
         });
         $mw = new \Slim\Middleware\PrettyExceptions();
         $mw->setApplication($app);
@@ -124,7 +124,7 @@ class PrettyExceptionsTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test with custom log
+     * test with custom log
      */
     public function testWithCustomLogWriter()
     {
@@ -141,7 +141,7 @@ class PrettyExceptionsTest extends PHPUnit_Framework_TestCase
             return new \Slim\Log(new \Slim\LogWriter('php://temp'));
         });
         $app->get('/foo', function () use ($app) {
-            throw new \LogicException('Test Message', 100);
+            throw new \LogicException('test Message', 100);
         });
         $mw = new \Slim\Middleware\PrettyExceptions();
         $mw->setApplication($app);

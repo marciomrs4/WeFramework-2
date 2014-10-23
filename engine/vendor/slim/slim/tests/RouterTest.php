@@ -217,7 +217,7 @@ class RouterTest extends PHPUnit_Framework_TestCase
         $this->assertSame($route1, $matchedRoutes[0]);
     }
 
-    // Test url for named route
+    // test url for named route
 
     public function testUrlFor()
     {

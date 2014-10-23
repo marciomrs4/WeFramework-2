@@ -58,7 +58,7 @@ class EnvironmentTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test mock environment
+     * test mock environment
      *
      * This should return the custom values where specified
      * and the default values otherwise.
@@ -77,7 +77,7 @@ class EnvironmentTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test sets HTTP method
+     * test sets HTTP method
      */
     public function testSetsHttpMethod()
     {
@@ -86,7 +86,7 @@ class EnvironmentTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test parses script name and path info
+     * test parses script name and path info
      *
      * Pre-conditions:
      * URL Rewrite is disabled;
@@ -100,7 +100,7 @@ class EnvironmentTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test parses script name and path info
+     * test parses script name and path info
      *
      * Pre-conditions:
      * URL Rewrite is disabled;
@@ -117,7 +117,7 @@ class EnvironmentTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test parses script name and path info
+     * test parses script name and path info
      *
      * Pre-conditions:
      * URL Rewrite disabled;
@@ -136,7 +136,7 @@ class EnvironmentTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test parses script name and path info
+     * test parses script name and path info
      *
      * Pre-conditions:
      * URL Rewrite enabled;
@@ -153,7 +153,7 @@ class EnvironmentTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test parses script name and path info
+     * test parses script name and path info
      *
      * Pre-conditions:
      * URL Rewrite enabled;
@@ -171,7 +171,7 @@ class EnvironmentTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test parses script name and path info
+     * test parses script name and path info
      *
      * Pre-conditions:
      * URL Rewrite enabled;
@@ -190,7 +190,7 @@ class EnvironmentTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test parses query string
+     * test parses query string
      *
      * Pre-conditions:
      * $_SERVER['QUERY_STRING'] exists and is not empty;
@@ -202,7 +202,7 @@ class EnvironmentTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test removes query string from PATH_INFO when using URL Rewrite
+     * test removes query string from PATH_INFO when using URL Rewrite
      *
      * Pre-conditions:
      * $_SERVER['QUERY_STRING'] exists and is not empty;
@@ -218,7 +218,7 @@ class EnvironmentTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test environment's PATH_INFO retains URL encoded characters (e.g. #)
+     * test environment's PATH_INFO retains URL encoded characters (e.g. #)
      *
      * In earlier version, \Slim\Environment would use PATH_INFO instead
      * of REQUEST_URI to determine the root URI and resource URI.
@@ -238,7 +238,7 @@ class EnvironmentTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test parses query string
+     * test parses query string
      *
      * Pre-conditions:
      * $_SERVER['QUERY_STRING'] does not exist;
@@ -251,7 +251,7 @@ class EnvironmentTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test SERVER_NAME is not empty
+     * test SERVER_NAME is not empty
      */
     public function testServerNameIsNotEmpty()
     {
@@ -260,7 +260,7 @@ class EnvironmentTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test SERVER_PORT is not empty
+     * test SERVER_PORT is not empty
      */
     public function testServerPortIsNotEmpty()
     {
@@ -269,7 +269,7 @@ class EnvironmentTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test unsets HTTP_CONTENT_TYPE and HTTP_CONTENT_LENGTH
+     * test unsets HTTP_CONTENT_TYPE and HTTP_CONTENT_LENGTH
      *
      * Pre-conditions:
      * HTTP_CONTENT_TYPE is sent with HTTP request;
@@ -283,7 +283,7 @@ class EnvironmentTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test sets special request headers if not empty
+     * test sets special request headers if not empty
      *
      * Pre-conditions:
      * CONTENT_TYPE, CONTENT_LENGTH, X_REQUESTED_WITH are sent in client HTTP request;
@@ -314,7 +314,7 @@ class EnvironmentTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test detects HTTPS
+     * test detects HTTPS
      *
      * Pre-conditions:
      * $_SERVER['HTTPS'] is set to a non-empty value;
@@ -327,7 +327,7 @@ class EnvironmentTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test detects not HTTPS
+     * test detects not HTTPS
      *
      * Pre-conditions:
      * $_SERVER['HTTPS'] is set to an empty value;
@@ -340,7 +340,7 @@ class EnvironmentTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test detects not HTTPS on IIS
+     * test detects not HTTPS on IIS
      *
      * Pre-conditions:
      * $_SERVER['HTTPS'] is set to "off";
@@ -353,7 +353,7 @@ class EnvironmentTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test input is an empty string (and not false)
+     * test input is an empty string (and not false)
      *
      * Pre-conditions:
      * Input at php://input may only be read once; subsequent attempts
@@ -366,7 +366,7 @@ class EnvironmentTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test valid resource handle to php://stdErr
+     * test valid resource handle to php://stdErr
      */
     public function testErrorResource()
     {

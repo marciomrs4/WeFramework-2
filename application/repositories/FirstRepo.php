@@ -5,11 +5,11 @@
 
     class FirstRepo extends Repository
     {
-        public function Repo()
+        public function RepositoryMethod()
         {
-            echo '<br>Repository Is Alive</br>';
-            var_dump($this->DBConnect());
-            var_dump($this->db);
-            //$this->DBConnect();
+//            $sql = "SELECT * FROM table_name";
+//            $stmt = $this->DB->prepare($sql);
+//            $stmt->execute();
+//            return $stmt->fetchAll(\PDO::FETCH_OBJ);
         }
     }

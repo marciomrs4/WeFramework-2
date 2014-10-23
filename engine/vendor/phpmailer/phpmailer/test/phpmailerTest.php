@@ -82,7 +82,7 @@ class PHPMailerTest extends PHPUnit_Framework_TestCase
         }
         $this->Mail->FromName = 'Unit Tester';
         $this->Mail->Sender = '';
-        $this->Mail->Subject = 'Unit Test';
+        $this->Mail->Subject = 'Unit test';
         $this->Mail->Body = '';
         $this->Mail->AltBody = '';
         $this->Mail->WordWrap = 0;
@@ -110,7 +110,7 @@ class PHPMailerTest extends PHPUnit_Framework_TestCase
             $this->Mail->Sender = 'unit_test@phpmailer.example.com';
         }
         if (array_key_exists('mail_to', $_REQUEST)) {
-            $this->setAddress($_REQUEST['mail_to'], 'Test User', 'to');
+            $this->setAddress($_REQUEST['mail_to'], 'test User', 'to');
         }
         if (array_key_exists('mail_cc', $_REQUEST) and strlen($_REQUEST['mail_cc']) > 0) {
             $this->setAddress($_REQUEST['mail_cc'], 'Carbon User', 'cc');
@@ -160,7 +160,7 @@ class PHPMailerTest extends PHPUnit_Framework_TestCase
         $ReportBody = '';
 
         $ReportBody .= '---------------------' . $eol;
-        $ReportBody .= 'Unit Test Information' . $eol;
+        $ReportBody .= 'Unit test Information' . $eol;
         $ReportBody .= '---------------------' . $eol;
         $ReportBody .= 'phpmailer version: ' . $this->Mail->Version . $eol;
         $ReportBody .= 'Content Type: ' . $this->Mail->ContentType . $eol;
@@ -299,12 +299,12 @@ class PHPMailerTest extends PHPUnit_Framework_TestCase
     {
         $this->assertTrue(
             file_exists('./testbootstrap.php'),
-            'Test config params missing - copy testbootstrap.php to testbootstrap-dist.php and change as appropriate'
+            'test config params missing - copy testbootstrap.php to testbootstrap-dist.php and change as appropriate'
         );
     }
 
     /**
-     * Test CRAM-MD5 authentication
+     * test CRAM-MD5 authentication
      * Needs a connection to a server that supports this auth mechanism, so commented out by default
      */
     public function testAuthCRAMMD5()
@@ -316,7 +316,7 @@ class PHPMailerTest extends PHPUnit_Framework_TestCase
         $this->Mail->AuthType = 'CRAM-MD5';
         $this->Mail->Username = 'username';
         $this->Mail->Password = 'password';
-        $this->Mail->Body = 'Test body';
+        $this->Mail->Body = 'test body';
         $this->Mail->Subject .= ': Auth CRAM-MD5';
         $this->Mail->From = 'from@example.com';
         $this->Mail->Sender = 'from@example.com';
@@ -326,8 +326,8 @@ class PHPMailerTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test email address validation
-     * Test addresses obtained from http://isemail.info
+     * test email address validation
+     * test addresses obtained from http://isemail.info
      * Some failing cases commented out that are apparently up for debate!
      */
     public function testValidate()
@@ -435,7 +435,7 @@ class PHPMailerTest extends PHPUnit_Framework_TestCase
             '+@b.com',
             'a@b.co-foo.uk',
             '"hello my name is"@stutter.com',
-            '"Test \"Fail\" Ing"@iana.org',
+            '"test \"Fail\" Ing"@iana.org',
             'valid@about.museum',
             'shaitan@my-domain.thisisminekthx',
             'foobar@192.168.0.1',
@@ -676,7 +676,7 @@ class PHPMailerTest extends PHPUnit_Framework_TestCase
         $this->Mail->Body = 'Here is the main body.  There should be ' .
             'a reply to address in this message.';
         $this->Mail->Subject .= ': Low Priority';
-        $this->Mail->addReplyTo('nobody@nobody.com', 'Nobody (Unit Test)');
+        $this->Mail->addReplyTo('nobody@nobody.com', 'Nobody (Unit test)');
 
         $this->buildBody();
         $this->assertTrue($this->Mail->send(), $this->Mail->ErrorInfo);
@@ -775,7 +775,7 @@ EOT;
     }
 
     /**
-     * Test simple message builder and html2text converters
+     * test simple message builder and html2text converters
      */
     public function testMsgHTML()
     {
@@ -959,7 +959,7 @@ EOT;
     }
 
     /**
-     * Test sending multiple messages with separate connections
+     * test sending multiple messages with separate connections
      */
     public function testMultipleSend()
     {
@@ -976,7 +976,7 @@ EOT;
     }
 
     /**
-     * Test sending using SendMail
+     * test sending using SendMail
      */
     public function testSendmailSend()
     {
@@ -990,7 +990,7 @@ EOT;
     }
 
     /**
-     * Test sending using Qmail
+     * test sending using Qmail
      */
     public function testQmailSend()
     {
@@ -1009,7 +1009,7 @@ EOT;
     }
 
     /**
-     * Test sending using PHP mail() function
+     * test sending using PHP mail() function
      */
     public function testMailSend()
     {
@@ -1026,7 +1026,7 @@ EOT;
     }
 
     /**
-     * Test sending an empty body
+     * test sending an empty body
      */
     public function testEmptyBody()
     {
@@ -1041,7 +1041,7 @@ EOT;
     }
 
     /**
-     * Test keepalive (sending multiple messages in a single connection)
+     * test keepalive (sending multiple messages in a single connection)
      */
     public function testSmtpKeepAlive()
     {
@@ -1085,7 +1085,7 @@ EOT;
     }
 
     /**
-     * Test error handling
+     * test error handling
      */
     public function testError()
     {
@@ -1101,7 +1101,7 @@ EOT;
     }
 
     /**
-     * Test addressing
+     * test addressing
      */
     public function testAddressing()
     {
@@ -1132,14 +1132,14 @@ EOT;
     }
 
     /**
-     * Test address escaping
+     * test address escaping
      */
     public function testAddressEscaping()
     {
         $this->Mail->Subject .= ': Address escaping';
         $this->Mail->clearAddresses();
         $this->Mail->addAddress('foo@example.com', 'Tim "The Book" O\'Reilly');
-        $this->Mail->Body = 'Test correct escaping of quotes in addresses.';
+        $this->Mail->Body = 'test correct escaping of quotes in addresses.';
         $this->buildBody();
         $this->Mail->preSend();
         $b = $this->Mail->getSentMIMEMessage();
@@ -1147,7 +1147,7 @@ EOT;
     }
 
     /**
-     * Test BCC-only addressing
+     * test BCC-only addressing
      */
     public function testBCCAddressing()
     {
@@ -1215,7 +1215,7 @@ EOT;
             'localityName' => 'There',
             'organizationName' => 'PHP',
             'organizationalUnitName' => 'PHPMailer',
-            'commonName' => 'PHPMailer Test',
+            'commonName' => 'PHPMailer test',
             'emailAddress' => 'phpmailer@example.com'
         );
         $password = 'password';
@@ -1273,7 +1273,7 @@ EOT;
     }
 
     /**
-     * Test line break reformatting
+     * test line break reformatting
      */
     public function testLineBreaks()
     {
@@ -1289,11 +1289,11 @@ EOT;
     }
 
     /**
-     * Test setting and retrieving message ID
+     * test setting and retrieving message ID
      */
     public function testMessageID()
     {
-        $this->Mail->Body = 'Test message ID.';
+        $this->Mail->Body = 'test message ID.';
         $id = md5(12345);
         $this->Mail->MessageID = $id;
         $this->buildBody();
@@ -1321,7 +1321,7 @@ EOT;
         $this->Mail->createHeader();
         $this->assertFalse($this->Mail->set('x', 'y'), 'Invalid property set succeeded');
         $this->assertTrue($this->Mail->set('Timeout', 11), 'Valid property set failed');
-        //Test pathinfo
+        //test pathinfo
         $a = '/mnt/files/飛兒樂 團光茫.mp3';
         $q = PHPMailer::mb_pathinfo($a);
         $this->assertEquals($q['dirname'], '/mnt/files', 'UNIX dirname not matched');
@@ -1353,7 +1353,7 @@ EOT;
         $this->pids[] = $pid;
 
         sleep(2);
-        //Test a known-good login
+        //test a known-good login
         $this->assertTrue(
             POP3::popBeforeSmtp('localhost', 1100, 10, 'user', 'test', $this->Mail->SMTPDebug),
             'POP before SMTP failed'
@@ -1375,7 +1375,7 @@ EOT;
         $this->pids[] = $pid;
 
         sleep(2);
-        //Test a known-bad login
+        //test a known-bad login
         $this->assertFalse(
             POP3::popBeforeSmtp('localhost', 1101, 10, 'user', 'xxx', $this->Mail->SMTPDebug),
             'POP before SMTP should have failed'
@@ -1385,7 +1385,7 @@ EOT;
     }
 
     /**
-     * Test SMTP host connections.
+     * test SMTP host connections.
      * This test can take a long time, so run it last
      */
     public function testSmtpConnect()
@@ -1416,7 +1416,7 @@ EOT;
  * which is probably more useful if you run these tests a lot
  * <html>
  * <body>
- * <h3>phpmailer Unit Test</h3>
+ * <h3>phpmailer Unit test</h3>
  * By entering a SMTP hostname it will automatically perform tests with SMTP.
  *
  * <form name="phpmailer_unit" action=__FILE__ method="get">
@@ -1429,7 +1429,7 @@ EOT;
  * <br/>
  * SMTP Hostname: <input type="text" size="50" name="mail_host" value="<?php echo get("mail_host"); ?>"/>
  * <p/>
- * <input type="submit" value="Run Test"/>
+ * <input type="submit" value="Run test"/>
  *
  * </form>
  * </body>
