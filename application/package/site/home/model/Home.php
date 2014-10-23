@@ -1,10 +1,17 @@
 <?php
     namespace site\home\model;
 
-    class Home
+    use \mvc\Model;
+
+    class Home extends Model
     {
         public function HelloModel()
         {
-            echo 'Hello Model';
+              echo '<br/>Hello<br/>';
+              $this->Load()->Repository('FirstRepo', 'Repo');
+              $this->Repo->Repo();
+//            $this->Load()->Model('Banner', 'BannerModel');
+//            $this->BannerModel->HelloModelBanner();
+            //echo 'Hello Model';
         }
     }

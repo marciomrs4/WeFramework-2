@@ -166,7 +166,7 @@ class Router
             }
             $render->RenderQueueAddError($page);
             //Novo cabeçalho
-            $slim->response->setStatus(404);
+            $slim->response->setStatus($checkHttp);
         }
         elseif(!$controller)
         {

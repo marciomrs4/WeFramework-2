@@ -9,18 +9,17 @@
         public function Index()
         {
             $this->Load()->Model('Home', 'HomeModel');
-            $this->Load()->Model('Banner', 'BannerModel');
             $this->Load()->Component('test/Componente', 'Comp');
-            //var_dump($this->GetError());
+
             if($this->Loaded())
             {
-                $this->Comp->HelloComponent();
                 $this->HomeModel->HelloModel();
-                $this->BannerModel->HelloModelBanner();
-
+                $this->Comp->HelloComponent();
             }
+
             $this->Load()->View('index', array('param1' => 1, 'param2' => 2));
         }
+
 
         public function Hello()
         {
