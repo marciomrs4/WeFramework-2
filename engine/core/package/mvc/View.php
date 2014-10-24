@@ -87,7 +87,8 @@ class View
                 }
                 elseif($page == $original_uri)
                 {
-                    return true;
+                    $url_page = $page;
+                    break;
                 }
             }
         }
