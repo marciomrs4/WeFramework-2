@@ -21,27 +21,25 @@
          *
          * @access public
          * @return void
+         * @example
+         *
+         * Exemplo de carregamento de outras camadas:
+         *
+         * Model
+         * $this->Load()->Model('nome_do_arquivo', 'alias');
+         *  - Usando
+         *       $this->alias->Method;
+         *
+         * Component
+         * $this->Load()->Component('nome_do_arquivo', 'alias');
+         *  - Usando
+         *       $this->alias->Method;
+         *
+         * View
+         * $this->Load()->View('pagina', array('data1' => $dado1, 'data2' => $dado2));
          */
         public function Index()
         {
-            /*
-             * Exemplo de carregamento de outras camadas:
-             *
-             * Model
-             * $this->Load()->Model('nome_do_arquivo', 'alias');
-             *  - Usando
-             *       $this->alias->Method;
-             *
-             * Component
-             * $this->Load()->Component('nome_do_arquivo', 'alias');
-             *  - Usando
-             *       $this->alias->Method;
-             *
-             * View
-             * $this->Load()->View('pagina', array('data1' => $dado1, 'data2' => $dado2));
-             */
-
-
             $this->Load()->Model('Home', 'HomeModel');
 
             //Verifica se outras camadas foram carregadas
