@@ -11,6 +11,8 @@
  */
 namespace mvc\loaders\layers;
 
+use repositories\FirstRepo;
+
 class Repository
 {
     /**

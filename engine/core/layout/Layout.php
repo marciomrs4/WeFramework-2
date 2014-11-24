@@ -182,11 +182,18 @@ class Layout
     public function GetPackage()
     {
         $package = '';
-        if(defined('WE_THEME'))
+        if(defined('WE_THEME') && strlen(WE_THEME) > 0)
         {
             if(isset(self::$themes_definitions[WE_THEME]['package']))
             {
                 $package = self::$themes_definitions[WE_THEME]['package'];
+            }
+        }
+        else
+        {
+            if(isset(self::$themes_definitions['default']['package']))
+            {
+                $package = self::$themes_definitions['default']['package'];
             }
         }
         return $package;

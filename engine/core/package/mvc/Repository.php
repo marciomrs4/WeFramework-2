@@ -10,6 +10,7 @@
  */
 namespace mvc;
 
+
 use helpers\weframework\classes\Config;
 
 abstract class Repository
@@ -48,6 +49,12 @@ abstract class Repository
      * @var null
      */
     private static $db_error = null;
+
+    /**
+     * Instãncia do Adapter
+     * @var null
+     */
+    private static $adapter = null;
 
 
     /**
@@ -102,15 +109,19 @@ abstract class Repository
                     //Senha do banco de dados
                     $password = $db['password'];
                     //Separando connexãoes por pacote
-                    self::$package_connection[strtolower($db['package'])] = array('dsn' => $dsn,
-                                                                            'user' => $user,
-                                                                            'password' => $password,
-                                                                            'attr' => $db['set_attribute'],
-                                                                            'p_connection' => strtolower($db['persistent_connection']),
-                                                                            'autostart' => strtolower($db['autostart']),
-                                                                            'error_redirect' => strtolower($db['error_redirect']),
-                                                                            'page_error' => strtolower($db['page_error']),
-                                                                            'charset' => $db['charset']
+                    self::$package_connection[strtolower($db['package'])] = array(
+                        'dsn' => $dsn,
+                        'host' => $db['host'],
+                        'adapter' => $db['adapter'],
+                        'database' => $db['database'],
+                        'user' => $user,
+                        'password' => $password,
+                        'attr' => $db['set_attribute'],
+                        'p_connection' => strtolower($db['persistent_connection']),
+                        'autostart' => strtolower($db['autostart']),
+                        'error_redirect' => strtolower($db['error_redirect']),
+                        'page_error' => strtolower($db['page_error']),
+                        'charset' => $db['charset']
                     );
                 }
             }
@@ -132,9 +143,12 @@ abstract class Repository
                 if(self::$package_connection[WE_PACKAGE]['autostart'] == 'on')
                     $this->ConnectionPackage();
             }
+            //Nenhuma conexão encontrada
+            return false;
+
             //Caso nenhuma das validações acima seja verdade, a primeira connexção será inicializada coso o autostart
             //estja On
-            else
+            /*else
             {
                 if(count(self::$package_connection) > 0)
                 {
@@ -148,7 +162,7 @@ abstract class Repository
                         }
                     }
                 }
-            }
+            }*/
         }
     }
 
@@ -175,10 +189,10 @@ abstract class Repository
 
         //Junção da variável $attr com a $dbp
         if(count($dbp['attr']) > 0)
-            $attr = array_merge($attr, $dbp['attr']);
+            $dbp['attr'] = array_merge($attr, $dbp['attr']);
 
         //Iniciando conexão
-        if(!$this->Connection($dbp['dsn'], $dbp['user'], $dbp['password'], $dbp['charset'], $attr))
+        if(!$this->Connection($dbp))
         {
             if($dbp['error_redirect'] == 'on')
                 $this->Redirect($dbp['page_error']);
@@ -206,12 +220,20 @@ abstract class Repository
         if($dbp['p_connection'] == 'on')
             $attr[\PDO::ATTR_PERSISTENT] = true;
 
+        //Constantes PDO
+        for($i =0; $i < count($dbp['attr']); $i++)
+        {
+            $const_pdo = '\\' . $dbp['attr'][$i];
+            $dbp['attr'][$i] = $const_pdo;
+        }
+
         //Junção da variável $attr com a $dbp
         if(count($dbp['attr']) > 0)
-            $attr = array_merge($attr, $dbp['attr']);
+            $dbp['attr'] = array_merge($attr, $dbp['attr']);
+
 
         //Iniciando Conexão
-        if(!$this->Connection($dbp['dsn'], $dbp['user'], $dbp['password'], $dbp['charset'], $attr))
+        if(!$this->Connection($dbp))
         {
             if($dbp['error_redirect'] == 'on')
                 $this->Redirect($dbp['page_error']);
@@ -226,29 +248,37 @@ abstract class Repository
      * Connection
      * Método responsável por realizar a conexão com a base de dados
      *
-     * @param $dsn
-     * @param $user
-     * @param $password
-     * @param $charset
-     * @param null $attributes
+     * @param $properties
      * @return bool
      */
-    private function Connection($dsn, $user, $password, $charset = null, $attributes = null)
+    private function Connection($properties)
     {
-        try
+        //Adapter da base de dados
+        $adpater = ucfirst($properties['adapter']);
+        $adpater_class = '\\core\\package\\database\\adapters\\' . $adpater;
+        if(class_exists($adpater_class))
         {
-            self::$db_instance = new \PDO($dsn, $user, $password, $attributes);
-            $this->DB = self::$db_instance;
-            if(isset($charset) && is_string($charset))
-                $this->DB->exec("SET NAMES ". $charset);
 
-            return true;
+            //Instacia Adapter
+            $adpater_obj = new $adpater_class($properties);
+            self::$adapter = $adpater_obj;
+            if($adpater_obj->Connection())
+            {
+                self::$db_instance = $adpater_obj->DBInstance();
+                $this->DB = self::$db_instance;
+                return true;
+            }
+            else
+            {
+                self::$db_error = $adpater_obj->DBError();
+            }
         }
-        catch (\PDOException $e)
+        else
         {
-            self::$db_error = $e->getMessage();
-            return false;
+            self::$db_error = 'Adapter <b>' . ucfirst($adpater) . '</b> not exists.';
         }
+
+        return false;
     }
 
     /**
@@ -298,7 +328,6 @@ abstract class Repository
                         $i++;
                     }
                 }
-
                 //Após a conexão ter sido encontrada, verificamos qual é o tipo dela
                 if(isset($pk_connect))
                 {
@@ -308,7 +337,7 @@ abstract class Repository
                         return $this->ConnectionPackage($pk_connect);
                 }
             }
-            //Se a conexão não foir numérica, tentamos a conexão por pacote informada como argumento
+            //Se a conexão não for numérica, tentamos a conexão por pacote informada como argumento
             elseif(is_string($connection))
             {
                 //verificamos se a conexão existe
@@ -330,8 +359,9 @@ abstract class Repository
             {
                 return $this->ConnectionAll();
             }
+
             //Conexão com a primeira conxão definida no arquivo
-            else
+            /*else
             {
                 if(count(self::$package_connection) > 0)
                 {
@@ -344,7 +374,7 @@ abstract class Repository
                         }
                     }
                 }
-            }
+            }*/
         }
 
         return false;
@@ -359,6 +389,10 @@ abstract class Repository
      */
     public function CloseConnection()
     {
+        if(isset(self::$adapter))
+        {
+            self::$adapter->CloseConnection();
+        }
         $this->DB = null;
     }
 
