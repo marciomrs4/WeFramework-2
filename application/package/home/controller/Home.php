@@ -11,6 +11,7 @@
 
     namespace home\controller;
 
+    use helpers\weframework\components\session\Session;
     use \mvc\Controller;
 
     class Home extends Controller
