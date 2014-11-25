@@ -1,9 +1,9 @@
 <?php
-    namespace home\model;
+    namespace test\model;
 
     use \mvc\Model;
 
-    class Home extends Model
+    class Test extends Model
     {
         public function Welcome()
         {

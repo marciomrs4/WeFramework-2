@@ -1,7 +1,29 @@
 <div class="jumbotron">
     <p class="lead">Olá, essa é a página de teste.</p>
 </div>
-
+<?php
+    if(isset($message))
+    {
+        if($status == true)
+        {
+            ?>
+            <div class="alert alert-success">
+                <a href="#" class="close" data-dismiss="alert">&times;</a>
+                <strong>Sucesso!</strong> <?=$message?>
+            </div>
+            <?php
+        }
+        else
+        {
+            ?>
+            <div class="alert alert-danger">
+                <a href="#" class="close" data-dismiss="alert">&times;</a>
+                <strong>Error!</strong> <?=$message?>
+            </div>
+            <?php
+        }
+    }
+?>
 <div class="col-md-12">
     <form role="form" method="post">
       <div class="form-group">

@@ -4,6 +4,7 @@
     },
     "require": {
         "phpmailer/phpmailer": "5.2.9",
-        "slim/slim": "2.*"
+        "slim/slim": "2.4.3",
+        "respect/validation": "0.7.*@dev"
     }
 }
