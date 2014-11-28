@@ -26,6 +26,23 @@
         define('LAY_BASEPATH', $env->GetLayoutPath());
         //Mode
         define('WE_MODE', $env->GetMode());
+
+        /*
+         * Set Enviorement Erros
+         */
+        try
+        {
+            //Error Level
+            $error = new \core\error\Error();
+            $error->SetErrorLevel();
+        }
+        catch(\core\exceptions\ErrorException $e)
+        {
+            $error = $e->getMessage();
+        }
+
+        define('ENVIRONMENT', \core\error\Error::$configuration['level']);
+
     }
     catch (\core\exceptions\EnvironmentException $e)
     {

@@ -8,11 +8,11 @@
         public function RepositoryMethod()
         {
 
-            /*$sql = "SELECT * FROM tbl_test";
-            $stmt = $this->DB->prepare($sql);
-            $stmt->execute();
-            var_dump($stmt->fetchAll(\PDO::FETCH_OBJ));
-            $this->CloseConnection();*/
-
+            /*
+             * $sql = "SELECT * FROM tbl_test";
+             * $stmt = $this->DB->prepare($sql);
+             * $stmt->execute();
+             * retrun $stmt->fetchAll(\PDO::FETCH_OBJ);
+             */
         }
     }

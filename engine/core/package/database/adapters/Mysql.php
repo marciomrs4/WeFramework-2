@@ -12,6 +12,7 @@ use core\package\database\interfaces\IDatabase;
  */
 class Mysql implements IDatabase
 {
+
     /**
      * Armezena propriedades de informações da base de dados
      * @access private
@@ -63,7 +64,27 @@ class Mysql implements IDatabase
 
         try
         {
-            $this->db_instance = new \PDO($dsn, $user, $password, $attributes);
+            $pdo_attr = array();
+            //Constantes do PDO
+            if(count($attributes) > 0)
+            {
+                foreach($attributes as $pdo_constant)
+                {
+                    //Se a constante existir
+                    if(defined($pdo_constant))
+                    {
+                        $pdo_attr[] = (string) $pdo_constant;
+                    }
+                }
+            }
+
+            $this->db_instance = new \PDO($dsn, $user, $password);
+            if(count($pdo_attr) > 0)
+            {
+                $expression = '$this->db_instance->setAttribute('.implode(',' , $pdo_attr).');';
+                eval($expression);
+            }
+
             if(isset($charset) && is_string($charset))
                 $this->db_instance->exec("SET NAMES ". $charset);
             return true;

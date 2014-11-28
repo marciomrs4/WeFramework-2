@@ -15,7 +15,6 @@
 
     class Environment
     {
-
         /**
          * Variável responsável por armazenar o caminho do diretório da aplicação
          * O padrão do framework é ./application
@@ -89,7 +88,6 @@
         {
             return self::$layout_path;
         }
-
 
         private function CheckCoreFiles()
         {

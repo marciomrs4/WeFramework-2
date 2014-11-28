@@ -1,3 +1,10 @@
+<?php
+if(isset($alert))
+{
+    echo $alert;
+}
+?>
+
 <div class="jumbotron">
     <?php
     if(isset($welcome_message))

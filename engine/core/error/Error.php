@@ -13,10 +13,14 @@ namespace core\error;
 use core\exceptions\ConfigException;
 use core\exceptions\ErrorException;
 use helpers\weframework\classes\Config;
+use helpers\weframework\classes\Singleton;
+use core\log\Log;
 
 class Error
 {
     use Config;
+    use Singleton;
+
 
     /**
      * Variável que armazena o arquivo error.ini
@@ -35,6 +39,7 @@ class Error
     {
         $this->LoadConfig($config);
     }
+
 
     /**
      * LoadConfig
@@ -68,12 +73,56 @@ class Error
         }
     }
 
+    /**
+     * SetErrorLevel
+     * Define nível de erro da aplicação
+     *
+     * @return void
+     */
     public function SetErrorLevel()
     {
-        var_dump(self::$configuration_error);
+        ini_set("log_errors", 1);
+        ini_set("error_log", Log::LogPath() . Log::LogPHP());
+
+        $level = self::$configuration_error['level'];
+        switch($level)
+        {
+            case 'development':
+                ini_set('display_errors', 'On');
+                error_reporting(-1);
+                break;
+
+            case 'production':
+                ini_set('display_errors', 'Off');
+                error_reporting(-1);
+                break;
+            case 'custom':
+                if(isset(self::$configuration_error['display_custom_errors']))
+                {
+                    $display = self::$configuration_error['display_custom_errors'];
+                    if(strtolower($display) == 'on')
+                        ini_set('display_errors', 'On');
+                    elseif(strtolower($display) == 'off')
+                        ini_set('display_errors', 'Off');
+                }
+
+                $custom = self::$configuration_error['custom_level_error'];
+                if(count($custom) > 0)
+                {
+                    $c_level = array();
+                    foreach($custom as $c)
+                    {
+                        if(defined($c))
+                        {
+                            $c_level[] = $c;
+                        }
+                    }
+                    $expression = 'error_reporting(' . implode(' | ', $c_level) . ');';
+                    eval($expression);
+                }
+                break;
+        }
     }
-
 }
-
 // End of file Error.php
 // Location: ./engine/core/error/Error.php

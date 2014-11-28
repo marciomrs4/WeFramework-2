@@ -1,0 +1,9 @@
+deny from all
+ErrorDocument 400 /dpg-framework-2/index.php?error=400
+ErrorDocument 401 /dpg-framework-2/index.php?error=401
+ErrorDocument 403 /dpg-framework-2/index.php?error=403
+ErrorDocument 404 /dpg-framework-2/index.php?error=404
+ErrorDocument 500 /dpg-framework-2/index.php?error=500
+ErrorDocument 502 /dpg-framework-2/index.php?error=502
+ErrorDocument 503 /dpg-framework-2/index.php?error=503
+ErrorDocument 504 /dpg-framework-2/index.php?error=504

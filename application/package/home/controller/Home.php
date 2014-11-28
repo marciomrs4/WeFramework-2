@@ -8,10 +8,9 @@
  * @subpackage Package/Home
  * @version 0.1 - 23/10/2014
  */
-
     namespace home\controller;
-
-    use helpers\weframework\components\session\Session;
+    use helpers\weframework\components\alert\Alert;
+    use helpers\weframework\components\log\Log;
     use \mvc\Controller;
 
     class Home extends Controller
@@ -41,6 +40,8 @@
          */
         public function Index()
         {
+            Log::LogWeFramework('Nothing to show');
+
             $this->Load()->Model('Home', 'HomeModel');
 
             //Verifica se outras camadas foram carregadas

@@ -5,7 +5,7 @@
      */
     if(RequirePage('index|home', 'pages/home/welcome_message.php'))
     {
-    	$page_control = true;
+        $page_control = true;
     }
 
     /*

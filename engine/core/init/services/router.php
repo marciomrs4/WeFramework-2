@@ -16,8 +16,13 @@ $rs = new \Slim\Slim();
 $rs->get('/(:params+)', function() use ($rs, $router) {
     try
     {
+        if(isset($_GET['error']))
+            $rs->redirect($router->BaseURL() . $_GET['error']);
+
+
         // Header HTTP
         $http_header = $rs->response->getStatus();
+
         if($http_header == 200)
         {
             //Argumentos da URL
@@ -67,6 +72,7 @@ $rs->get('/(:params+)', function() use ($rs, $router) {
             //Definindo constante para controlador
             define('WE_CONTROLLER', (!$controller) ? WE_THEME_PAGE_INDEX : lcfirst($controller));
         }
+
         //Verificamos se o header foi alterado para outro código após a verificação dos arquivos html
         if($http_header != 200)
         {

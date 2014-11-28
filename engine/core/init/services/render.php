@@ -18,6 +18,7 @@ if($router->GetStatus())
 {
     try
     {
+
         /*
          * Processo de Renderização
          */

@@ -13,10 +13,9 @@
 //Passando como parâmetro o caminho do diretório da aplicação
 $app = new core\application\Application(APP_BASEPATH);
 
-
 try
 {
-
+    $app->SetDefaultTimeZone();
 }
 catch (\core\exceptions\ApplicationException $e)
 {
@@ -25,10 +24,3 @@ catch (\core\exceptions\ApplicationException $e)
 
 // End of file application.php
 // Location: ./engine/core/application/services/application.php
-
-
-
-
-
-
-

@@ -222,7 +222,6 @@ class Router
         return $url;
     }
 
-
     /**
      * GetStatus
      * Status da rota

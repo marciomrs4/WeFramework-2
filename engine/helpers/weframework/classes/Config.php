@@ -23,10 +23,10 @@ trait Config
     /**
      * GetFileConfig
      * Método construtor que possuí um parâmetro opcional que indica o local aonde se encontra o arquivo
-     * @access public
-     * @param string $config_path
-     * @throws ConfigException
+     * @param $config_path
+     * @param bool $flag
      * @return array
+     * @throws \core\exceptions\ConfigException
      */
     public static function GetFileConfig($config_path, $flag = false)
     {

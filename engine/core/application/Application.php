@@ -11,11 +11,13 @@
  *
  */
     namespace core\application;
+    use helpers\weframework\classes\Config;
     use helpers\weframework\classes\Singleton;
 
     class Application
     {
         use Singleton;
+        use Config;
         /**
          * Armazena o caminho do diretório da aplicação
          * @var string
@@ -29,5 +31,14 @@
         public function __construtc($app_path)
         {
             $this->app_path = $app_path;
+        }
+
+        public function SetDefaultTimeZone()
+        {
+            $default = $this->GetFileConfig('default.ini');
+            if(isset($default['datetimezone']))
+            {
+                date_default_timezone_set($default['datetimezone']);
+            }
         }
     }
