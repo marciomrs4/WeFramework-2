@@ -1,2 +1,2 @@
 .idea
-engine/core/session/*.*
+engine/core/session/sess_.*
