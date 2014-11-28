@@ -189,3 +189,15 @@ function RequirePage($url_page, $file = null)
     }
     return $flag;
 }
+
+/**
+ * MenuActive
+ *
+ * @param $page
+ * @param $class
+ */
+function MenuActive($page, $class)
+{
+    if(RequirePage($page))
+        echo $class;
+}

@@ -90,6 +90,11 @@ class View
                     $url_page = $page;
                     break;
                 }
+                elseif(strpos($page, '/'))
+                {
+                    $url_page = $page;
+                    break;
+                }
             }
         }
 
