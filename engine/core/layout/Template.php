@@ -17,9 +17,8 @@ class Template
     /**
      * Compile
      * Compila página HTML e retorna o conteúdo do arquivo
-     *
-     * @access public
      * @param $file
+     * @param null $data
      * @return string
      */
     public function Compile($file, $data = null)

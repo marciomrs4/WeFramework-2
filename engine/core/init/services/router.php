@@ -44,7 +44,7 @@ $rs->get('/(:params+)', function() use ($rs, $router) {
             //Definido tema atual
             define('WE_THEME', (WE_IS_HOT_THEME) ? WE_THEME_ALIAS : WE_MAIN_THEME);
             //Definindo caminho do tema atual
-            define('WE_THEME_PATH', WE_THEME_DIR . WE_THEME . DS);
+            define('WE_THEME_PATH', WE_THEME_DIR . WE_THEME . (!empty(WE_THEME) ? DS : ''));
             //Definindo pacote do back-end do tema
             define('WE_PACKAGE', \core\layout\Layout::GetInstance()->GetPackage());
             //Definindo caminho do pacote da aplicação
@@ -59,6 +59,8 @@ $rs->get('/(:params+)', function() use ($rs, $router) {
             define('WE_URL', $_SERVER['REQUEST_URI']);
             //URL da aplicação, excluido a url base
             define('WE_URI_PROJECT', $router->GetUriProject());
+
+
             //Walking URL - Caso seja um tema, descartamos o controller
             if(WE_IS_HOT_THEME)
             {
@@ -89,8 +91,13 @@ $rs->get('/(:params+)', function() use ($rs, $router) {
 $rs->post('/(:params+)', function() use ($rs, $router) {
     try
     {
+        if(isset($_GET['error']))
+            $rs->redirect($router->BaseURL() . $_GET['error']);
+
+
         // Header HTTP
         $http_header = $rs->response->getStatus();
+
         if($http_header == 200)
         {
             //Argumentos da URL
@@ -103,11 +110,16 @@ $rs->post('/(:params+)', function() use ($rs, $router) {
             /*
              * Constantes
              */
+            //Constante para temas adicionais
             define('WE_IS_HOT_THEME', $router->IsHotTheme($controller));
+            //Thema por Alias
+            define('WE_THEME_ALIAS', \core\layout\Layout::GetInstance()->GetThemeByAlias($controller));
+            //Definindo Alias
+            define('WE_THEME_ALIAS_NAME', \core\layout\Layout::GetInstance()->GetThemeByAlias($controller, true));
             //Definido tema atual
-            define('WE_THEME', (WE_IS_HOT_THEME) ? $controller : WE_MAIN_THEME);
+            define('WE_THEME', (WE_IS_HOT_THEME) ? WE_THEME_ALIAS : WE_MAIN_THEME);
             //Definindo caminho do tema atual
-            define('WE_THEME_PATH', WE_THEME_DIR . WE_THEME . DS);
+            define('WE_THEME_PATH', WE_THEME_DIR . WE_THEME . (!empty(WE_THEME) ? DS : ''));
             //Definindo pacote do back-end do tema
             define('WE_PACKAGE', \core\layout\Layout::GetInstance()->GetPackage());
             //Definindo caminho do pacote da aplicação
@@ -123,6 +135,7 @@ $rs->post('/(:params+)', function() use ($rs, $router) {
             //URL da aplicação, excluido a url base
             define('WE_URI_PROJECT', $router->GetUriProject());
 
+
             //Walking URL - Caso seja um tema, descartamos o controller
             if(WE_IS_HOT_THEME)
             {
@@ -134,8 +147,9 @@ $rs->post('/(:params+)', function() use ($rs, $router) {
             $router->AddRoute($controller);
 
             //Definindo constante para controlador
-            define('WE_CONTROLLER', (!$controller) ? WE_THEME_PAGE_INDEX : $controller);
+            define('WE_CONTROLLER', (!$controller) ? WE_THEME_PAGE_INDEX : lcfirst($controller));
         }
+
         //Verificamos se o header foi alterado para outro código após a verificação dos arquivos html
         if($http_header != 200)
         {

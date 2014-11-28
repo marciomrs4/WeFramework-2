@@ -150,7 +150,7 @@ class Router
         //Slim
         $slim = Slim::getInstance();
         //Diretório do tema
-        $dir_theme = WE_THEME_DIR . WE_THEME . DS;
+        $dir_theme = rtrim(WE_THEME_DIR . WE_THEME . DS, DS) . DS;
         //Verificando Resposta HTTP
         $checkHttp = $this->CheckHtppResponse($controller);
 
@@ -354,7 +354,7 @@ class Router
     }
 
     /**
-     * GetUriProject
+     * SetUriProject
      * URI do aplicação, a pasta do projeto base_url é excluído do URI
      * @access public
      * @return null
@@ -363,19 +363,15 @@ class Router
     {
         //URI
         $uri = trim($_SERVER['REQUEST_URI'], '/');
-        $uri = explode('/', $uri);
         //URL Base
         $url_base = Router::GetInstance()->BaseURL(false);
-        //Veiricamos se na URI existe a url base, se sim, retiramos
-        if(in_array($url_base, $uri))
-        {
-            $key = array_search($url_base, $uri);
-            unset($uri[$key]);
-        }
-        //Montamos a nova uri
-        $uri = implode($uri, '/');
 
-        self::$uri_project = $uri;
+        if(strpos($uri, $url_base) !== false)
+        {
+            $uri = str_replace($url_base, '' , $uri);
+        }
+
+        self::$uri_project = trim($uri, '/');
     }
 
     /**

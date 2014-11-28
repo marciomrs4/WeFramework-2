@@ -22,3 +22,4 @@
 [28-Nov-2014 14:49:49 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected 'return' (T_RETURN) in C:\wamp\www\dpg-framework-2\application\package\home\model\Home.php on line 26
 [28-Nov-2014 14:49:49 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected 'return' (T_RETURN) in C:\wamp\www\dpg-framework-2\application\package\home\model\Home.php on line 26
 [28-Nov-2014 14:49:50 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected 'return' (T_RETURN) in C:\wamp\www\dpg-framework-2\application\package\home\model\Home.php on line 26
+[28-Nov-2014 17:34:47 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected end of file in C:\wamp\www\f\framework\layout\themes\pages\home\home.php on line 21

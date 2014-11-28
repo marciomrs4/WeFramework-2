@@ -40,8 +40,6 @@
          */
         public function Index()
         {
-            Log::LogWeFramework('Nothing to show');
-
             $this->Load()->Model('Home', 'HomeModel');
 
             //Verifica se outras camadas foram carregadas

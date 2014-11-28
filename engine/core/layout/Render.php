@@ -188,8 +188,9 @@ class Render
     {
         if(defined('WE_THEME'))
         {
-            $theme_path = WE_THEME_DIR . WE_THEME . DS . 'index.php';
+            $theme_path = ((empty(WE_THEME)) ? WE_THEME_DIR  : WE_THEME_DIR . WE_THEME . DS) . 'index.php';
         }
+
         self::$render_theme = $theme_path;
     }
 
@@ -200,12 +201,12 @@ class Render
          */
         if(WE_MODE == 'application')
         {
-
             //Controller
             if(is_file(Package::GetInstance()->GetControllerFile()))
             {
                 if(defined('WE_CONTROLLER'))
                 {
+
                     //Renderizando MVC
                     $controller_class = ltrim(WE_PACKAGE . '\\' . WE_CONTROLLER . '\\' . 'controller\\' . ucfirst(WE_CONTROLLER), '\\');
 
@@ -225,6 +226,7 @@ class Render
                                 if($reflection_method->isPublic() && $reflection_method->class == $controller_class)
                                 {
                                     $controller->Index();
+
                                 }
                             }
                         }
