@@ -17,6 +17,14 @@ use helpers\weframework\classes\Singleton;
 class View
 {
     use Singleton;
+
+    /**
+     * Controle de requisição de páginas
+     *
+     * @access private
+     * @var array
+     */
+    private static $controll_page = array();
     /**
      * Variavel responsavel por armzanar dados enviados para a view
      * @access private
@@ -178,6 +186,28 @@ class View
     public function GetDataView()
     {
         return self::$data_view;
+    }
+
+
+    /**
+     * ControllPage
+     * Controle de requisição de páginas
+     *
+     * @param null $flag
+     * @return bool
+     */
+    public static function ControllPage($flag = null)
+    {
+        if(isset($flag))
+            self::$controll_page[] = ($flag === true) ? 1 : 0 ;
+
+        echo '<pre>';
+        print_r(self::$controll_page);
+        echo '</pre>';
+        if(!in_array(1, self::$controll_page))
+            return false;
+
+        return true;
     }
 
 }

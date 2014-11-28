@@ -13,6 +13,15 @@
 
 
 /**
+ * GLOBALS VARS
+ *
+ */
+static $CONTROLL_PAGE = array();
+
+
+
+
+/**
  * GlobalInclude
  * Inclui dentro do escopo as variávies globais
  *
@@ -178,16 +187,36 @@ function IncludeFile($file)
  * Esta funcção testa a fágine e inclui um arquivo
  * @param $url_page
  * @param null $file
+ * @param $controll
  * @return bool
  */
-function RequirePage($url_page, $file = null)
+function RequirePage($url_page, $file = null, $controll = false)
 {
     $flag = mvc\View::GetInstance()->RequirePage($url_page);
     if(isset($file) && $flag === true)
     {
         IncludeFile($file);
     }
+
+    var_dump($flag);
+
+    if($controll === true)
+        ControllPage($flag);
+
     return $flag;
+}
+
+
+/**
+ * ControllPage
+ * Controle de requisições de páginas
+ *
+ * @param null $flag
+ * @return bool
+ */
+function ControllPage($flag = null)
+{
+    return mvc\View::GetInstance()->ControllPage($flag);
 }
 
 /**

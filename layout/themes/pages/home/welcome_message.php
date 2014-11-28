@@ -1,10 +1,3 @@
-<?php
-if(isset($alert))
-{
-    echo $alert;
-}
-?>
-
 <div class="jumbotron">
     <?php
     if(isset($welcome_message))
@@ -29,6 +22,6 @@ if(isset($alert))
 
         <h4>Easy Easy</h4>
         <p>Uma ferramenta muito fácil de usar, defina como você quer que o We Framework funcione para se adequar as suas
-            necessidades atrés de arquivos de configurações.</p>
+            necessidades através de arquivos de configurações.</p>
     </div>
 </div>
