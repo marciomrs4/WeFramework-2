@@ -200,13 +200,28 @@ class Router
         }
 
         //Se $mount_url for falso, apenas será retornado o nome da url base
-        if(!$mount_url)
-            return self::$default_config['base_url'];
+        if($mount_url === false)
+        {
+            if(!empty(self::$default_config['base_url']))
+            {
+                self::$base_url = trim(self::$default_config['base_url'], '/');
+                return self::$base_url;
+            }
+            else
+            {
+                self::$base_url = trim(dirname($_SERVER['SCRIPT_NAME']), '/');
+                return self::$base_url;
+            }
+        }
+        else
+        {
+            self::$base_url = trim(dirname($_SERVER['SCRIPT_NAME']), '/');
+        }
 
         //wrapper protocol - http, https, ftp...
         $wrapper = (!empty(self::$default_config['wrapper']) ? self::$default_config['wrapper'] : 'http') . '://';
         //Url base
-        $url = $wrapper . $_SERVER['HTTP_HOST'] . '/' . rtrim(self::$default_config['base_url'], '/') . '/';
+        $url = $wrapper . $_SERVER['HTTP_HOST'] . '/' . self::$base_url . '/';
 
         if(defined('WE_IS_HOT_THEME') && WE_IS_HOT_THEME)
         {
