@@ -2,6 +2,7 @@
 namespace core\package\database\adapters;
 
 use core\package\database\interfaces\IDatabase;
+use helpers\weframework\components\log\Log;
 
 /**
  * Class Myslq
@@ -92,6 +93,7 @@ class Mysql implements IDatabase
         catch (\PDOException $e)
         {
             $this->db_error = $e->getMessage();
+            Log::DataBase($e->getMessage());
             return false;
         }
     }

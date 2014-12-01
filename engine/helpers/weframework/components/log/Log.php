@@ -8,6 +8,12 @@ use core\log\Log as CLog;
 
 class Log
 {
+    /**
+     * @param $message
+     * @param int $message_type
+     * @param null $destination
+     * @param null $extra_headers
+     */
     public static function DataBase($message , $message_type = 3, $destination = null, $extra_headers = null)
     {
         if(!isset($destination))
@@ -18,6 +24,12 @@ class Log
         error_log($layout . PHP_EOL, $message_type, $destination, $extra_headers);
     }
 
+    /**
+     * @param $message
+     * @param int $message_type
+     * @param null $destination
+     * @param null $extra_headers
+     */
     public static function LogWeFramework($message , $message_type = 3, $destination = null, $extra_headers = null)
     {
         if(!isset($destination))
@@ -28,6 +40,12 @@ class Log
         error_log($layout . PHP_EOL, $message_type, $destination, $extra_headers);
     }
 
+    /**
+     * @param $message
+     * @param int $message_type
+     * @param null $destination
+     * @param null $extra_headers
+     */
     public static function LogApplication($message , $message_type = 3, $destination = null, $extra_headers = null)
     {
         if(!isset($destination))

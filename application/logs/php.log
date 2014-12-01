@@ -1,2 +1,0 @@
-[28-Nov-2014 22:09:35 Europe/Paris] PHP Parse error:  syntax error, unexpected '}' in C:\wamp\www\dpg-framework-2\engine\helpers\weframework\functions\default.php on line 197
-[28-Nov-2014 19:47:24 America/Sao_Paulo] PHP Notice:  Undefined variable: CONTROLL_PAGE in C:\wamp\www\dpg-framework-2\layout\themes\pages\home\home.php on line 20

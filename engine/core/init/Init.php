@@ -46,7 +46,9 @@
         }
         catch (\core\exceptions\ServiceException $e)
         {
-            exit($e->getMessage());
+            \helpers\weframework\components\log\Log::LogWeFramework($e->getMessage());
+            //CrashHendler('crash');
+            //exit($e->getMessage());
         }
 
 // End of file Init.php

@@ -15,6 +15,7 @@
  *
  */
 
+
 /*
  * ---------------------------------------------------------------
  *  ENGINE PATH
@@ -37,50 +38,101 @@
     //Rais da aplpicação
     define('BASEPATH', dirname(__FILE__) . DS);
 
-    if(defined('BASEPATH'))
+    /*
+     * Constate CRASH_TEMPLATE_PATH
+     * Diretório para manitpulação de erros encontrados durante a renderização da aplicação
+     */
+    define('CRASH_TEMPLATE_PATH', 'layout' . DS . 'framework' . DS);
+
+    /*
+     * Templates de erros
+     */
+    $template_errors = array(
+        'crash' => 'crash-system.html',
+        'version' => 'version.html'
+    );
+
+    /**
+     * CrashHendler
+     * Função para manupular erros internos encontrado durante a execução da aplicação
+     *
+     * @param $error
+     * @param null $log
+     * @param null $destination
+     */
+    function CrashHendler($error, $log = null, $destination = null)
     {
-        if (realpath($engine_path) !== FALSE)
+        global $template_errors;
+
+        if(isset($log) && $destination)
         {
-            $engine_path = realpath($engine_path). DS;
+            $template_log = '['.date('d-M-Y H:i:s').' '.date_default_timezone_get().'] Framework error: ' . $log . PHP_EOL;
+            error_log($template_log, 3, $destination);
         }
 
-        // Certificando-se "/"
-        $engine_path = rtrim($engine_path, DS). DS;
 
-        // Verfica se p diretório $engine_path existe
-        if ( ! is_dir($engine_path))
+        if(isset($template_errors[$error]))
+            include CRASH_TEMPLATE_PATH . $template_errors[$error];
+
+        die();
+    }
+
+    /*
+     * PHP Version 5.4 +
+     */
+    if (version_compare(PHP_VERSION, '5.4.0') >= 0)
+    {
+        if(defined('BASEPATH'))
         {
-            exit("Your system folder path does not appear to be set correctly. Please open the following file
-                <b>" . pathinfo(__FILE__, PATHINFO_BASENAME) . "</b> and correct this");
-        }
-        else
-        {
-            //Definção do diretório do "motor" do framework
-            define('ENGPATH', $engine_path);
-
-            /*
-             *
-             * Iniciando o WeFramework...
-             * Inclusão e execução do arquivo
-             *
-             */
-
-            $initFile = ENGPATH . 'core' . DS . 'init' . DS . 'Init.php';
-            if( is_file($initFile) )
+            if (realpath($engine_path) !== FALSE)
             {
-                include_once $initFile;
+                $engine_path = realpath($engine_path). DS;
+            }
+
+            // Certificando-se "/"
+            $engine_path = rtrim($engine_path, DS). DS;
+
+            // Verfica se p diretório $engine_path existe
+            if ( ! is_dir($engine_path))
+            {
+                exit("Your system folder path does not appear to be set correctly. Please open the following file
+                    <b>" . pathinfo(__FILE__, PATHINFO_BASENAME) . "</b> and correct this");
             }
             else
             {
-                exit('The Framework cannot be started, <b>' . $initFile . '</b> was not found.');
+                //Definção do diretório do "motor" do framework
+                define('ENGPATH', $engine_path);
+
+                /*
+                 *
+                 * Iniciando o WeFramework...
+                 * Inclusão e execução do arquivo
+                 *
+                 */
+
+                $initFile = ENGPATH . 'core' . DS . 'init' . DS . 'Init.php';
+                if( is_file($initFile) )
+                {
+                    include_once $initFile;
+                }
+                else
+                {
+                    $error = 'The Framework cannot be started, <b>' . $initFile . '</b> was not found.';
+                    CrashHendler('crash', $error, 'application/logs/system.log');
+                }
             }
+        }
+        else
+        {
+            $error = 'The Framework cannot be started, BASEPATH not defined.';
+            CrashHendler('crash', $error, 'application/logs/system.log');
         }
     }
     else
     {
-        exit('The Framework cannot be started, BASEPATH not defined.');
+        $error = 'Version ' . PHP_VERSION . ' is not compatible with framework';
+        CrashHendler('version', $error, 'application/logs/system.log');
     }
-
 
 // End of file index.php
 // Location: ./index.php
