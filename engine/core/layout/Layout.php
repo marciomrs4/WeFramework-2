@@ -166,7 +166,7 @@ class Layout
         $index = 'home';
         if(defined('WE_THEME'))
         {
-            if(empty(WE_THEME))
+            if(WE_THEME == '')
                 $theme = 'default';
             else
                 $theme = WE_THEME;
