@@ -201,9 +201,6 @@ class View
         if(isset($flag))
             self::$controll_page[] = ($flag === true) ? 1 : 0 ;
 
-        echo '<pre>';
-        print_r(self::$controll_page);
-        echo '</pre>';
         if(!in_array(1, self::$controll_page))
             return false;
 

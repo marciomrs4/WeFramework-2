@@ -172,14 +172,25 @@ function ThemeBaseUrl()
  *
  * @return void
  * @param $file
+ * @param $controll
  */
-function IncludeFile($file)
+function IncludeFile($file, $controll = null)
 {
     $file = GetBaseThemePath().$file;
     if(is_file($file))
+    {
+        if($controll === true)
+            StatusPage(true);
+
         echo TemplateContent($file);
+    }
     else
+    {
+        if($controll === true)
+            StatusPage(false);
+
         echo 'File not found: '.$file;
+    }
 }
 
 /**
@@ -195,13 +206,8 @@ function RequirePage($url_page, $file = null, $controll = false)
     $flag = mvc\View::GetInstance()->RequirePage($url_page);
     if(isset($file) && $flag === true)
     {
-        IncludeFile($file);
+        IncludeFile($file, $controll);
     }
-
-    var_dump($flag);
-
-    if($controll === true)
-        ControllPage($flag);
 
     return $flag;
 }
@@ -214,9 +220,23 @@ function RequirePage($url_page, $file = null, $controll = false)
  * @param null $flag
  * @return bool
  */
-function ControllPage($flag = null)
+function StatusPage($flag = null)
 {
     return mvc\View::GetInstance()->ControllPage($flag);
+}
+
+/**
+ * StatusPage
+ * Verifica status da página e redireciona para o status correto
+ *
+ * @return void
+ */
+function ControllPage()
+{
+    $controll = StatusPage();
+
+    if($controll === false)
+        header('Location: ' . BaseURL() . '404');
 }
 
 /**
