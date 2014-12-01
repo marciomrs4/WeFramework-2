@@ -44,7 +44,7 @@ $rs->get('/(:params+)', function() use ($rs, $router) {
             //Definido tema atual
             define('WE_THEME', (WE_IS_HOT_THEME) ? WE_THEME_ALIAS : WE_MAIN_THEME);
             //Definindo caminho do tema atual
-            define('WE_THEME_PATH', WE_THEME_DIR . WE_THEME . (!empty(WE_THEME) ? DS : ''));
+            define('WE_THEME_PATH', WE_THEME_DIR . WE_THEME . (WE_THEME != '') ? DS : '');
             //Definindo pacote do back-end do tema
             define('WE_PACKAGE', \core\layout\Layout::GetInstance()->GetPackage());
             //Definindo caminho do pacote da aplicação
