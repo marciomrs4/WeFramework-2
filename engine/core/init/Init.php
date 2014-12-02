@@ -7,6 +7,9 @@
  * @version 0.1
  */
 
+if(in_array('mod_rewrite', apache_get_modules()))
+{
+
     /*
      * Iniciando Autoloaders
      * As linhas abaixo é responsável por carregar as classes dinâmicamente
@@ -50,6 +53,12 @@
             //CrashHendler('crash');
             //exit($e->getMessage());
         }
+}
+else
+{
+    $error = 'It seems that mod_rewrite is disabled. Could not start the weframework.';
+    CrashHendler('crash', $error, 'application/logs/system.log');
+}
 
 // End of file Init.php
 // Location: ./engine/core/init/Init.php
