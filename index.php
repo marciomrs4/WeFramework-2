@@ -60,17 +60,31 @@
      * @param null $log
      * @param null $destination
      */
-    function CrashHendler($error, $log = null, $destination = null)
+    function CrashHendler($error, $log, $destination)
     {
         global $template_errors;
 
         if(isset($log) && $destination)
         {
+            chown($destination, get_current_user());
             $template_log = '['.date('d-M-Y H:i:s').' '.date_default_timezone_get().'] Framework error: ' . $log . PHP_EOL;
-            error_log($template_log, 3, $destination);
+
+            //Verifica se o diretório tem permissão de escrita
+            if(is_writable($destination))
+            {
+                error_log($template_log, 3, $destination);
+            }
+            //Verificamos se é possível setar privilégios para o usário da pasta
+            elseif(chmod($destination, 0600))
+            {
+                error_log($template_log, 3, $destination);
+            }
+            //Caso contrário, o log será registrado no sistema de log do PHP
+            else
+            {
+                error_log($template_log, 0);
+            }
         }
-
-
         if(isset($template_errors[$error]))
             include CRASH_TEMPLATE_PATH . $template_errors[$error];
 
