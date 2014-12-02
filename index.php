@@ -66,7 +66,6 @@
 
         if(isset($log) && $destination)
         {
-            chown($destination, get_current_user());
             $template_log = '['.date('d-M-Y H:i:s').' '.date_default_timezone_get().'] Framework error: ' . $log . PHP_EOL;
 
             //Verifica se o diretório tem permissão de escrita
@@ -74,14 +73,10 @@
             {
                 error_log($template_log, 3, $destination);
             }
-            //Verificamos se é possível setar privilégios para o usário da pasta
-            elseif(chmod($destination, 0600))
-            {
-                error_log($template_log, 3, $destination);
-            }
             //Caso contrário, o log será registrado no sistema de log do PHP
             else
             {
+                error_log('['.date('d-M-Y H:i:s').' '.date_default_timezone_get().'] Framework error: ./application/logs is not writable. Can not crate log files.' . PHP_EOL, 0);
                 error_log($template_log, 0);
             }
         }

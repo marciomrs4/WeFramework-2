@@ -1,6 +1,7 @@
 <?php
     namespace home\model;
 
+    use helpers\weframework\components\log\Log;
     use \mvc\Model;
 
     class Home extends Model
@@ -19,6 +20,7 @@
              * $this->BannerModel->HelloAnotherModel();
              *
              */
+            Log::LogApplication('Teste');
 
             return 'Home is Alive!';
         }
