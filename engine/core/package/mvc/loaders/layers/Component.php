@@ -24,15 +24,16 @@ class Component
     public function Load($component_name)
     {
 
-        //Verificamos se foi especificado o caminho do Model
         if(strpos($component_name, '/') !== false)
         {
             $class_namespace = ltrim(str_replace('/', '\\', 'components/' . $component_name), '\\');
         }
         else
         {
-            $class_namespace = ltrim('components' . '\\' . ucfirst($component_name), '\\');
+            $class_namespace = ltrim('components' . '\\' . $component_name, '\\');
         }
+
+        die(var_dump($class_namespace));
 
         if(class_exists($class_namespace))
         {
