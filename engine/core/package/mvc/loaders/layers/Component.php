@@ -26,7 +26,7 @@ class Component
 
         if(strpos($component_name, '/') !== false)
         {
-            $class_namespace = ltrim(str_replace('/', '\\', 'components/' . $component_name), '\\');
+            $class_namespace = ltrim(str_replace('/', '\\', 'components/' . $component_name), '/');
         }
         else
         {
