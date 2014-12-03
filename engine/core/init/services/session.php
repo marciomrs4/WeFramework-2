@@ -14,7 +14,6 @@ if(is_dir($save_path))
     }
     else
     {
-        chown($save_path, get_current_user());
         if(chmod($save_path, 0600))
         {
             //Save Path

@@ -76,7 +76,6 @@
             //Caso contrário, o log será registrado no sistema de log do PHP
             else
             {
-                chown(BASEPATH . dirname($destination), get_current_user());
                 error_log('['.date('d-M-Y H:i:s').' '.date_default_timezone_get().'] Framework error: ./application/logs is not writable. Can not crate log files.' . PHP_EOL, 0);
                 error_log($template_log, 0);
             }
