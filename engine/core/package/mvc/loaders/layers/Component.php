@@ -33,8 +33,6 @@ class Component
             $class_namespace = ltrim('components' . '\\' . $component_name, '\\');
         }
 
-        die(var_dump($class_namespace));
-
         if(class_exists($class_namespace))
         {
             return new $class_namespace;

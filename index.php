@@ -14,8 +14,6 @@
  * @author          Diogo Brito <diogo@weverest.com.br>
  *
  */
-
-
 /*
  * ---------------------------------------------------------------
  *  ENGINE PATH

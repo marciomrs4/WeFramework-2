@@ -1,0 +1,3 @@
+[03-Dec-2014 15:09:03 America/Sao_Paulo] PHP Notice:  Use of undefined constant WE_PACKAGE - assumed 'WE_PACKAGE' in C:\wamp\www\dpg-framework-2\engine\core\init\services\package.php on line 19
+[03-Dec-2014 15:09:03 America/Sao_Paulo] PHP Notice:  Undefined variable: theme_path in C:\wamp\www\dpg-framework-2\engine\core\layout\Render.php on line 194
+[03-Dec-2014 15:15:11 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on a non-object in C:\wamp\www\dpg-framework-2\application\repositories\FirstRepo.php on line 18
