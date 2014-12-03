@@ -5,8 +5,6 @@ $save_path = ENGPATH . 'core' . DS . 'session';
 
 if(is_dir($save_path))
 {
-    chown($save_path, get_current_user());
-
     if(is_writable($save_path))
     {
         //Save Path
@@ -14,13 +12,9 @@ if(is_dir($save_path))
     }
     else
     {
-        if(chmod($save_path, 0600))
-        {
-            //Save Path
-            ini_set('session.save_path', $save_path);
-        }
+        $template_log = '['.date('d-M-Y H:i:s').' '.date_default_timezone_get().'] Framework error: ./application/session is not writable. Can not session files.' . PHP_EOL;
+        error_log($template_log, 0);
     }
-
 }
 
 if(!isset($_SESSION))

@@ -66,18 +66,18 @@
 
         if(isset($log) && $destination)
         {
-            $template_log = '['.date('d-M-Y H:i:s').' '.date_default_timezone_get().'] Framework error: ' . $log . PHP_EOL;
+            $template_log = '['.date('d-M-Y H:i:s').' '.date_default_timezone_get().'] Framework error: ';
 
             //Verifica se o diretório tem permissão de escrita
             if(is_writable($destination))
             {
-                error_log($template_log, 3, $destination);
+                error_log($template_log . $log . PHP_EOL, 3, $destination);
             }
             //Caso contrário, o log será registrado no sistema de log do PHP
             else
             {
-                error_log('['.date('d-M-Y H:i:s').' '.date_default_timezone_get().'] Framework error: ./application/logs is not writable. Can not crate log files.' . PHP_EOL, 0);
-                error_log($template_log, 0);
+                error_log($template_log .'./application/logs is not writable. Can not crate log files.' . PHP_EOL, 0);
+                error_log($template_log . $log . PHP_EOL, 0);
             }
         }
         if(isset($template_errors[$error]))
