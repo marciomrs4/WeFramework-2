@@ -64,4 +64,3 @@ if(is_writable(WE_THEME_PATH . 'assets' . DS . 'js'))
         }
     }
 }
-die('hire');
