@@ -60,6 +60,9 @@
      * @param null $log
      * @param null $destination
      */
+var_dump(posix_getpwuid(fileowner (BASEPATH . 'application/logs')));
+
+die();
     function CrashHendler($error, $log, $destination)
     {
         global $template_errors;
@@ -76,6 +79,7 @@
             //Caso contrário, o log será registrado no sistema de log do PHP
             else
             {
+                chown($destination, get_current_user());
                 error_log('['.date('d-M-Y H:i:s').' '.date_default_timezone_get().'] Framework error: ./application/logs is not writable. Can not crate log files.' . PHP_EOL, 0);
                 error_log($template_log, 0);
             }

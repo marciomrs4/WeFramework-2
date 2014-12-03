@@ -20,8 +20,6 @@
              * $this->BannerModel->HelloAnotherModel();
              *
              */
-            Log::LogApplication('Teste');
-
             return 'Home is Alive!';
         }
     }

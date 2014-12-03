@@ -12,10 +12,14 @@ if(is_dir($save_path))
         //Save Path
         ini_set('session.save_path', $save_path);
     }
-    elseif(chmod($save_path, 0600))
+    else
     {
-        //Save Path
-        ini_set('session.save_path', $save_path);
+        chown($save_path, get_current_user());
+        if(chmod($save_path, 0600))
+        {
+            //Save Path
+            ini_set('session.save_path', $save_path);
+        }
     }
 
 }
