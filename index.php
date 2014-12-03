@@ -60,9 +60,6 @@
      * @param null $log
      * @param null $destination
      */
-var_dump(posix_getpwuid(fileowner (BASEPATH . 'application/logs')));
-
-die();
     function CrashHendler($error, $log, $destination)
     {
         global $template_errors;
