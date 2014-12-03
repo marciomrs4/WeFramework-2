@@ -308,8 +308,8 @@
             {
                 foreach($lay_directories as $d)
                 {
-                    if(!is_dir(self::$layout_path . $d))
-                    {
+                   if(!is_dir(self::$layout_path . $d))
+                   {
                         if(strtolower($configuration['auto_create_directories']) == 'on')
                         {
                             if(!mkdir(self::$layout_path .$d))
@@ -324,9 +324,8 @@
                         else
                         {
                             $this->environment_status['CheckLayoutDirectories'] = 0;
-                            throw new EnvironmentException('Could not find the directory <b>' . $d . '</b>.');
                         }
-                    }
+                   }
                 }
             }
             $this->flag = true;

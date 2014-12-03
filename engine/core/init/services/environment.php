@@ -14,6 +14,7 @@
 
     try
     {
+
         //Realizando checagem do ambiente
         $env->CheckEnvironment();
 
@@ -26,6 +27,7 @@
         define('LAY_BASEPATH', $env->GetLayoutPath());
         //Mode
         define('WE_MODE', $env->GetMode());
+
 
         /*
          * Set Enviorement Erros

@@ -53,26 +53,4 @@
                 $this->Load()->View('index|home', array('welcome_message' => $welcome_message));
             }
         }
-
-        /**
-         * Component
-         * Carregamento de componente de teste
-         *
-         * @return void
-         * @access public
-         */
-        public function Component()
-        {
-            $this->Load()->Component('test/Component', 'TComponent');
-
-            if($this->Loaded())
-            {
-                $data_comp = $this->TComponent->HelloComponent();
-
-                // Enviando para View
-                $this->Load()->View('home/component', array('component_message' => $data_comp));
-            }
-            else
-                die($this->Load()->GetError());
-        }
     }

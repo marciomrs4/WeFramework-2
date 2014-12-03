@@ -33,7 +33,7 @@
  * diretório raiz da aplicação.
  */
     define('DS', DIRECTORY_SEPARATOR);
-    //Rais da aplpicação
+    //Raiz da aplicação
     define('BASEPATH', dirname(__FILE__) . DS);
 
     /*
