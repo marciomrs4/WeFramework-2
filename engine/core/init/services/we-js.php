@@ -12,7 +12,7 @@ $jsPath = WE_THEME_PATH . 'assets' . DS . 'js' . DS . 'scripts' . DS . 'weframew
 if(is_writable(WE_THEME_PATH . 'assets' . DS . 'js'))
 {
     //Nome do arquivo
-    $filename = 'weframewok.js';
+    $filename = 'weframework.js';
     //Verifica se o arquivo existe
     if(!file_exists($jsPath . $filename))
     {
