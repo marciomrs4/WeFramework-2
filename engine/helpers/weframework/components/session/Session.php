@@ -37,6 +37,25 @@ class Session
     }
 
     /**
+     * Add
+     * Adiciona itens em uma sessão já criada
+     *
+     * @param $name
+     * @param $value
+     * @param null $key
+     * @return Session|null
+     */
+    public static function Add($name, $value, $key = null)
+    {
+        if(isset($key))
+            $_SESSION[$name][$key] = $value;
+        else
+            $_SESSION[$name][] = $value;
+
+        return self::GetInstance();
+    }
+
+    /**
      * GetInstance
      * Instância Session
      * @return Session|null
