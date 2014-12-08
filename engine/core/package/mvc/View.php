@@ -115,19 +115,7 @@ class View
         $flag = 0;
         $flag_final = false;
 
-        //Verificamos se o tema atual é adicional e não o principal
-        //Se sim, retiramos o primeiro elemento da URI
-
-        if(WE_IS_HOT_THEME && isset($uri[0]))
-        {
-            unset($uri[0]);
-            $uri = array_values($uri);
-
-            //Verificamos se o array está vazio e colocamos uma chave com valor vazio
-            if(count($uri) == 0)
-                $uri[0] = '';
-        }
-
+      
         //Verificamos se o número da requisição é igual ao URI
         if(count($url) > 0 && count($url) == count($uri))
         {
