@@ -9,7 +9,7 @@
 //Pasta que irá ser gerado o arquivo
 $jsPath = WE_THEME_PATH . 'assets' . DS . 'js' . DS . 'scripts' . DS . 'weframework' . DS;
 
-if(is_writable(WE_THEME_PATH . 'assets' . DS . 'js'))
+if(is_writable(WE_THEME_PATH . 'assets' . DS))
 {
     //Nome do arquivo
     $filename = 'weframework.js';
@@ -52,7 +52,7 @@ if(is_writable(WE_THEME_PATH . 'assets' . DS . 'js'))
                 $jsContent .= "function ThemeBaseUrl()". PHP_EOL;
                 $jsContent .= "{". PHP_EOL;
                 $jsContent .= "\t";
-                $jsContent .= "return BaseUrl() + \"layout/themes/" . ((WE_THEME != '') ? WE_THEME . "/" : '') . "\";" . PHP_EOL;
+                $jsContent .= "return \"http://" . $_SERVER['HTTP_HOST'] . "/" . WE_REAL_BASE_URL . "/layout/themes/" . ((WE_THEME != '') ? WE_THEME . "/" : '') . "\";" . PHP_EOL;
                 $jsContent .= "}". PHP_EOL;
                 //Quebra de conteúdo
                 $jsContent .= PHP_EOL;

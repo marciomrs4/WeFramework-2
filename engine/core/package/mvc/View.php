@@ -115,7 +115,7 @@ class View
         $flag = 0;
         $flag_final = false;
 
-      
+
         //Verificamos se o número da requisição é igual ao URI
         if(count($url) > 0 && count($url) == count($uri))
         {
