@@ -64,7 +64,7 @@ class Auth
         {
             if(WE_SECURITY_AUTH)
             {
-
+                Session::Set('WE_AUTH_USER_LOGOUT', false);
                 //Hash Blowfish
                 $hash_blowfish = Encrypt::Blowfish(self::GenerateHashString(), array('cost' => 4));
                 Session::Set('WE_AUTH_TOKEN', $hash_blowfish);
@@ -97,9 +97,11 @@ class Auth
 
     public static function Authenticate()
     {
-
         if(WE_SECURITY_AUTH)
         {
+            if(self::Auth() && Session::Get('WE_AUTH_ERROR'))
+                Session::Destroy('WE_AUTH_ERROR');
+
             if(strtolower(WE_SECURITY_AUTH_LAZY_TIME) !== 'off')
             {
                 if(Session::Get('WE_AUTH_TIME') !== null)
@@ -107,7 +109,6 @@ class Auth
                     if (time() > Session::Get('WE_AUTH_TIME') || Session::Get('WE_AUTH_TIME') > (time() + 86400))
                     {
                         Session::Destroy('WE_AUTH_TOKEN');
-                        Session::Set('WE_ERROR', 'Sessão expirada.');
                     }
                 }
                 Session::Set('WE_AUTH_TIME', (time() + (int) WE_SECURITY_AUTH_LAZY_TIME));
@@ -115,8 +116,31 @@ class Auth
 
             if(!self::Auth() && !RequirePage(WE_SECURITY_AUTH_PAGE))
             {
+                if(Session::Get('WE_AUTH_USER_LOGOUT') === false)
+                    Session::Set('WE_AUTH_ERROR', 'Sessão expirada.');
+
                 header('Location: ' . BaseUrl() . WE_SECURITY_AUTH_PAGE);
             }
+            elseif(self::Auth() && RequirePage(WE_SECURITY_AUTH_PAGE) && WE_SECURITY_AUTH_PAGE != WE_THEME_PAGE_INDEX)
+            {
+                header('Location: ' . BaseUrl() . WE_THEME_PAGE_INDEX);
+            }
+        }
+    }
+
+    /**
+     * Logout
+     */
+    public function Logout()
+    {
+        Session::Destroy('WE_AUTH_ERROR');
+        Session::Destroy('WE_AUTH_TIME');
+        Session::Destroy('WE_AUTH_TOKEN');
+        Session::Set('WE_AUTH_USER_LOGOUT', true);
+
+        if(WE_SECURITY_AUTH)
+        {
+            header('Location: ' . BaseUrl() . WE_SECURITY_AUTH_PAGE);
         }
     }
 
