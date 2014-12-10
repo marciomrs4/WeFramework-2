@@ -2,3 +2,38 @@
 [03-Dec-2014 15:09:03 America/Sao_Paulo] PHP Notice:  Undefined variable: theme_path in C:\wamp\www\dpg-framework-2\engine\core\layout\Render.php on line 194
 [03-Dec-2014 15:15:11 America/Sao_Paulo] PHP Fatal error:  Call to a member function prepare() on a non-object in C:\wamp\www\dpg-framework-2\application\repositories\FirstRepo.php on line 18
 [03-Dec-2014 20:27:51 America/Sao_Paulo] PHP Notice:  Use of undefined constant BASE_URL - assumed 'BASE_URL' in C:\wamp\www\dpg-framework-2\engine\core\init\services\we-js.php on line 2
+[10-Dec-2014 16:47:40 America/Sao_Paulo] PHP Fatal error:  Cannot use object of type core\layout\Layout as array in C:\wamp\www\dpg-framework-2\engine\core\security\Auth.php on line 24
+[10-Dec-2014 16:48:13 America/Sao_Paulo] PHP Notice:  Undefined index: auth in C:\wamp\www\dpg-framework-2\engine\core\security\Auth.php on line 25
+[10-Dec-2014 16:48:13 America/Sao_Paulo] PHP Notice:  Undefined index: auth in C:\wamp\www\dpg-framework-2\engine\core\security\Auth.php on line 25
+[10-Dec-2014 16:48:14 America/Sao_Paulo] PHP Notice:  Undefined index: auth in C:\wamp\www\dpg-framework-2\engine\core\security\Auth.php on line 25
+[10-Dec-2014 16:48:14 America/Sao_Paulo] PHP Notice:  Undefined index: auth in C:\wamp\www\dpg-framework-2\engine\core\security\Auth.php on line 25
+[10-Dec-2014 16:48:14 America/Sao_Paulo] PHP Notice:  Undefined index: auth in C:\wamp\www\dpg-framework-2\engine\core\security\Auth.php on line 25
+[10-Dec-2014 17:21:24 America/Sao_Paulo] PHP Fatal error:  Class 'helpers\weframework\components\clientinfo\ClientInfo' not found in C:\wamp\www\dpg-framework-2\engine\core\security\Auth.php on line 54
+[10-Dec-2014 17:21:40 America/Sao_Paulo] PHP Fatal error:  Class 'helpers\weframework\components\clientinfo\ClientInfo' not found in C:\wamp\www\dpg-framework-2\engine\core\security\Auth.php on line 54
+[10-Dec-2014 17:21:41 America/Sao_Paulo] PHP Fatal error:  Class 'helpers\weframework\components\clientinfo\ClientInfo' not found in C:\wamp\www\dpg-framework-2\engine\core\security\Auth.php on line 54
+[10-Dec-2014 17:22:45 America/Sao_Paulo] PHP Notice:  Undefined variable: binfo in C:\wamp\www\dpg-framework-2\engine\core\security\Auth.php on line 56
+[10-Dec-2014 17:22:56 America/Sao_Paulo] PHP Fatal error:  Class 'helpers\weframework\components\clientinfo\ClientInfo' not found in C:\wamp\www\dpg-framework-2\engine\core\security\Auth.php on line 54
+[10-Dec-2014 17:42:41 America/Sao_Paulo] PHP Warning:  password_hash() expects parameter 3 to be array, string given in C:\wamp\www\dpg-framework-2\engine\helpers\weframework\components\encrypt\Encrypt.php on line 17
+[10-Dec-2014 17:42:56 America/Sao_Paulo] PHP Warning:  password_hash() expects parameter 3 to be array, string given in C:\wamp\www\dpg-framework-2\engine\helpers\weframework\components\encrypt\Encrypt.php on line 17
+[10-Dec-2014 17:42:56 America/Sao_Paulo] PHP Warning:  password_hash() expects parameter 3 to be array, string given in C:\wamp\www\dpg-framework-2\engine\helpers\weframework\components\encrypt\Encrypt.php on line 17
+[10-Dec-2014 17:43:11 America/Sao_Paulo] PHP Warning:  password_hash() expects parameter 3 to be array, string given in C:\wamp\www\dpg-framework-2\engine\helpers\weframework\components\encrypt\Encrypt.php on line 18
+[10-Dec-2014 17:43:12 America/Sao_Paulo] PHP Warning:  password_hash() expects parameter 3 to be array, string given in C:\wamp\www\dpg-framework-2\engine\helpers\weframework\components\encrypt\Encrypt.php on line 18
+[10-Dec-2014 17:43:12 America/Sao_Paulo] PHP Warning:  password_hash() expects parameter 3 to be array, string given in C:\wamp\www\dpg-framework-2\engine\helpers\weframework\components\encrypt\Encrypt.php on line 18
+[10-Dec-2014 17:43:13 America/Sao_Paulo] PHP Warning:  password_hash() expects parameter 3 to be array, string given in C:\wamp\www\dpg-framework-2\engine\helpers\weframework\components\encrypt\Encrypt.php on line 18
+[10-Dec-2014 17:43:13 America/Sao_Paulo] PHP Warning:  password_hash() expects parameter 3 to be array, string given in C:\wamp\www\dpg-framework-2\engine\helpers\weframework\components\encrypt\Encrypt.php on line 18
+[10-Dec-2014 17:43:13 America/Sao_Paulo] PHP Warning:  password_hash() expects parameter 3 to be array, string given in C:\wamp\www\dpg-framework-2\engine\helpers\weframework\components\encrypt\Encrypt.php on line 18
+[10-Dec-2014 17:43:13 America/Sao_Paulo] PHP Warning:  password_hash() expects parameter 3 to be array, string given in C:\wamp\www\dpg-framework-2\engine\helpers\weframework\components\encrypt\Encrypt.php on line 18
+[10-Dec-2014 17:43:14 America/Sao_Paulo] PHP Warning:  password_hash() expects parameter 3 to be array, string given in C:\wamp\www\dpg-framework-2\engine\helpers\weframework\components\encrypt\Encrypt.php on line 18
+[10-Dec-2014 17:43:14 America/Sao_Paulo] PHP Warning:  password_hash() expects parameter 3 to be array, string given in C:\wamp\www\dpg-framework-2\engine\helpers\weframework\components\encrypt\Encrypt.php on line 18
+[10-Dec-2014 17:43:14 America/Sao_Paulo] PHP Warning:  password_hash() expects parameter 3 to be array, string given in C:\wamp\www\dpg-framework-2\engine\helpers\weframework\components\encrypt\Encrypt.php on line 18
+[10-Dec-2014 17:43:15 America/Sao_Paulo] PHP Warning:  password_hash() expects parameter 3 to be array, string given in C:\wamp\www\dpg-framework-2\engine\helpers\weframework\components\encrypt\Encrypt.php on line 18
+[10-Dec-2014 17:52:40 America/Sao_Paulo] PHP Warning:  password_hash(): Invalid bcrypt cost parameter specified: 3 in C:\wamp\www\dpg-framework-2\engine\helpers\weframework\components\encrypt\Encrypt.php on line 17
+[10-Dec-2014 17:52:52 America/Sao_Paulo] PHP Warning:  password_hash(): Invalid bcrypt cost parameter specified: 3 in C:\wamp\www\dpg-framework-2\engine\helpers\weframework\components\encrypt\Encrypt.php on line 17
+[10-Dec-2014 18:12:20 America/Sao_Paulo] PHP Fatal error:  Call to undefined function helpers\weframework\components\decrypt\hash_equals() in C:\wamp\www\dpg-framework-2\engine\helpers\weframework\components\decrypt\Decrypt.php on line 29
+[10-Dec-2014 18:17:36 America/Sao_Paulo] PHP Fatal error:  Call to undefined function helpers\weframework\components\decrypt\hash_equals() in C:\wamp\www\dpg-framework-2\engine\helpers\weframework\components\decrypt\Decrypt.php on line 29
+[10-Dec-2014 18:17:37 America/Sao_Paulo] PHP Fatal error:  Call to undefined function helpers\weframework\components\decrypt\hash_equals() in C:\wamp\www\dpg-framework-2\engine\helpers\weframework\components\decrypt\Decrypt.php on line 29
+[10-Dec-2014 19:03:48 America/Sao_Paulo] PHP Fatal error:  Call to undefined method core\security\Auth::Authenticate() in C:\wamp\www\dpg-framework-2\engine\core\init\services\auth.php on line 15
+[10-Dec-2014 19:03:49 America/Sao_Paulo] PHP Fatal error:  Call to undefined method core\security\Auth::Authenticate() in C:\wamp\www\dpg-framework-2\engine\core\init\services\auth.php on line 15
+[10-Dec-2014 19:03:49 America/Sao_Paulo] PHP Fatal error:  Call to undefined method core\security\Auth::Authenticate() in C:\wamp\www\dpg-framework-2\engine\core\init\services\auth.php on line 15
+[10-Dec-2014 19:03:50 America/Sao_Paulo] PHP Fatal error:  Call to undefined method core\security\Auth::Authenticate() in C:\wamp\www\dpg-framework-2\engine\core\init\services\auth.php on line 15
+[10-Dec-2014 20:04:51 America/Sao_Paulo] PHP Fatal error:  Class 'login\model\Request' not found in C:\wamp\www\dpg-framework-2\application\package\login\model\Login.php on line 15
