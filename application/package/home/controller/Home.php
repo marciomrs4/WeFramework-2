@@ -10,6 +10,8 @@
  */
     namespace home\controller;
     use helpers\weframework\components\alert\Alert;
+    use helpers\weframework\components\decrypt\Decrypt;
+    use helpers\weframework\components\encrypt\Encrypt;
     use helpers\weframework\components\log\Log;
     use \mvc\Controller;
 

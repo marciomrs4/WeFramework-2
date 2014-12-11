@@ -33,4 +33,43 @@ class Decrypt
 
         return (crypt($string, $hash) === $hash);
     }
+
+    /**
+     * Decrypt
+     * @param $encrypted_string
+     * @return string
+     */
+    public static function Decrypt($encrypted_string)
+    {
+        if(defined('WE_ENCRYPTION_KEY'))
+        {
+            if(is_array($encrypted_string) && count($encrypted_string) > 0)
+            {
+                foreach($encrypted_string as $k => $v)
+                {
+                    $encrypted_string[$k] = self::DecryptString($v);
+                }
+
+                return $encrypted_string;
+            }
+
+            return self::DecryptString($encrypted_string);
+        }
+
+        Log::LogWeFramework('WE_ENCRYPTION_KEY not defined. Imposible to encrypt value.');
+        return null;
+    }
+
+    /**
+     * DecryptString
+     * @param $encrypted_string
+     * @return string
+     */
+    public static function DecryptString($encrypted_string)
+    {
+        $iv_size = mcrypt_get_iv_size(MCRYPT_BLOWFISH, MCRYPT_MODE_ECB);
+        $iv = mcrypt_create_iv($iv_size, MCRYPT_RAND);
+        $decrypted_string = mcrypt_decrypt(MCRYPT_BLOWFISH, WE_ENCRYPTION_KEY, $encrypted_string, MCRYPT_MODE_ECB, $iv);
+        return utf8_decode($decrypted_string);
+    }
 }

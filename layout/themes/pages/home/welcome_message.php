@@ -1,5 +1,9 @@
 <div class="jumbotron">
     <?php
+    if(isset($decrypt))
+    {
+        var_dump($decrypt);
+    }
     if(isset($welcome_message))
         echo '<h1>' . $welcome_message . '</h1>';
     ?>

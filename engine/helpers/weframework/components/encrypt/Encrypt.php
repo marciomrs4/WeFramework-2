@@ -1,5 +1,7 @@
 <?php
 namespace helpers\weframework\components\encrypt;
+use helpers\weframework\components\log\Log;
+
 /**
  * Class Encrypt
  * @package helpers\weframework\components\encrypt
@@ -27,5 +29,43 @@ class Encrypt
     public static function SHA256($string, $rounds = 5000, $string_salt = 'weframeworkstringtosaltsha256')
     {
         return crypt($string, '$5$rounds='.$rounds.'$'.$string_salt.'$');
+    }
+
+    /**
+     * @param $string
+     * @return null|string
+     */
+    public static function Encrypt($string)
+    {
+        if(defined('WE_ENCRYPTION_KEY'))
+        {
+            if(is_array($string) && count($string) > 0)
+            {
+                foreach($string as $k => $v)
+                {
+                    $string[$k] = self::EncryptString($v);
+                }
+
+                return $string;
+            }
+
+            return self::EncryptString($string);
+        }
+
+        Log::LogWeFramework('WE_ENCRYPTION_KEY not defined. Imposible to encrypt value.');
+        return null;
+    }
+
+    /**
+     * EncryptString
+     * @param $string
+     * @return string
+     */
+    private static function EncryptString($string)
+    {
+        $iv_size = mcrypt_get_iv_size(MCRYPT_BLOWFISH, MCRYPT_MODE_ECB);
+        $iv = mcrypt_create_iv($iv_size, MCRYPT_RAND);
+        $encrypted_string = mcrypt_encrypt(MCRYPT_BLOWFISH, WE_ENCRYPTION_KEY, utf8_encode($string), MCRYPT_MODE_ECB, $iv);
+        return $encrypted_string;
     }
 }

@@ -37,3 +37,15 @@
 [10-Dec-2014 19:03:49 America/Sao_Paulo] PHP Fatal error:  Call to undefined method core\security\Auth::Authenticate() in C:\wamp\www\dpg-framework-2\engine\core\init\services\auth.php on line 15
 [10-Dec-2014 19:03:50 America/Sao_Paulo] PHP Fatal error:  Call to undefined method core\security\Auth::Authenticate() in C:\wamp\www\dpg-framework-2\engine\core\init\services\auth.php on line 15
 [10-Dec-2014 20:04:51 America/Sao_Paulo] PHP Fatal error:  Class 'login\model\Request' not found in C:\wamp\www\dpg-framework-2\application\package\login\model\Login.php on line 15
+[11-Dec-2014 13:52:57 America/Sao_Paulo] PHP Warning:  utf8_encode() expects parameter 1 to be string, array given in C:\wamp\www\dpg-framework-2\engine\helpers\weframework\components\encrypt\Encrypt.php on line 44
+[11-Dec-2014 13:52:59 America/Sao_Paulo] PHP Warning:  utf8_encode() expects parameter 1 to be string, array given in C:\wamp\www\dpg-framework-2\engine\helpers\weframework\components\encrypt\Encrypt.php on line 44
+[11-Dec-2014 13:56:45 America/Sao_Paulo] PHP Notice:  Array to string conversion in C:\wamp\www\dpg-framework-2\application\package\home\controller\Home.php on line 47
+[11-Dec-2014 13:56:45 America/Sao_Paulo] PHP Warning:  mcrypt_decrypt() expects parameter 3 to be string, array given in C:\wamp\www\dpg-framework-2\engine\helpers\weframework\components\decrypt\Decrypt.php on line 48
+[11-Dec-2014 13:57:46 America/Sao_Paulo] PHP Warning:  mcrypt_decrypt() expects parameter 3 to be string, array given in C:\wamp\www\dpg-framework-2\engine\helpers\weframework\components\decrypt\Decrypt.php on line 48
+[11-Dec-2014 14:02:52 America/Sao_Paulo] PHP Notice:  Undefined variable: decrypt in C:\wamp\www\dpg-framework-2\application\package\home\controller\Home.php on line 60
+[11-Dec-2014 14:02:53 America/Sao_Paulo] PHP Notice:  Undefined variable: decrypt in C:\wamp\www\dpg-framework-2\application\package\home\controller\Home.php on line 60
+[11-Dec-2014 14:02:54 America/Sao_Paulo] PHP Notice:  Undefined variable: decrypt in C:\wamp\www\dpg-framework-2\application\package\home\controller\Home.php on line 60
+[11-Dec-2014 14:02:55 America/Sao_Paulo] PHP Notice:  Undefined variable: decrypt in C:\wamp\www\dpg-framework-2\application\package\home\controller\Home.php on line 60
+[11-Dec-2014 14:02:55 America/Sao_Paulo] PHP Notice:  Undefined variable: decrypt in C:\wamp\www\dpg-framework-2\application\package\home\controller\Home.php on line 60
+[11-Dec-2014 14:02:56 America/Sao_Paulo] PHP Notice:  Undefined variable: decrypt in C:\wamp\www\dpg-framework-2\application\package\home\controller\Home.php on line 60
+[11-Dec-2014 14:02:57 America/Sao_Paulo] PHP Notice:  Undefined variable: decrypt in C:\wamp\www\dpg-framework-2\application\package\home\controller\Home.php on line 60
