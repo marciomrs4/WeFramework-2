@@ -43,17 +43,12 @@ class Decrypt
     {
         if(defined('WE_ENCRYPTION_KEY'))
         {
-            if(is_array($encrypted_string) && count($encrypted_string) > 0)
+            $decrypt = function ($string) use (&$decrypt)
             {
-                foreach($encrypted_string as $k => $v)
-                {
-                    $encrypted_string[$k] = self::DecryptString($v);
-                }
+                return is_array($string) ? array_map($decrypt, $string) : self::DecryptString($string);
+            };
 
-                return $encrypted_string;
-            }
-
-            return self::DecryptString($encrypted_string);
+            return $decrypt($encrypted_string);
         }
 
         Log::LogWeFramework('WE_ENCRYPTION_KEY not defined. Imposible to encrypt value.');
