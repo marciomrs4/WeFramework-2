@@ -42,16 +42,6 @@
          */
         public function Index()
         {
-            $values = array('index1' => 'Diogo Brito', 'index2' => array(1, 2, 3, 4, 5, 6));
-            $encrypt = Encrypt::Encrypt($values);
-            $decrypt = Decrypt::Decrypt($encrypt);
-
-            echo '<pre>';
-            print_r($encrypt);
-            print_r($decrypt);
-
-
-            die();
             $this->Load()->Model('Home', 'HomeModel');
 
             //Verifica se outras camadas foram carregadas
