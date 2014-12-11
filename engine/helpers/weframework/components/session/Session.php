@@ -1,5 +1,8 @@
 <?php
 namespace helpers\weframework\components\session;
+use helpers\weframework\components\decrypt\Decrypt;
+use helpers\weframework\components\encrypt\Encrypt;
+
 /**
  * Class Session
  * @author Diogo Brito
@@ -11,13 +14,18 @@ class Session
      * Get
      * Retorna o valor da sessão específicada
      * @param $name
+     * @param $encrypt
      * @return mixed
      */
-    public static function Get($name)
+    public static function Get($name, $encrypt = false)
     {
         if(isset($_SESSION[$name]))
-            return $_SESSION[$name];
+        {
+            if($encrypt === true)
+                return $_SESSION[$name] = Decrypt::Decrypt($_SESSION[$name]);
 
+            return $_SESSION[$name];
+        }
         return null;
     }
 
@@ -27,11 +35,15 @@ class Session
      *
      * @param $name
      * @param $value
+     * @param $encrypt
      * @return null
      */
-    public static function Set($name, $value)
+    public static function Set($name, $value, $encrypt = false)
     {
-        $_SESSION[$name] = $value;
+        if($encrypt === true)
+            $_SESSION[$name] = Encrypt::Encrypt($value);
+        else
+            $_SESSION[$name] = $value;
 
         return self::GetInstance();
     }
