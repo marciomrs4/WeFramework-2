@@ -45,9 +45,7 @@ class Encrypt
             };
 
             return $encrypt($string);
-
         }
-
         Log::LogWeFramework('WE_ENCRYPTION_KEY not defined. Imposible to encrypt value.');
         return null;
     }

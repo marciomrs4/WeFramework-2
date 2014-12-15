@@ -116,7 +116,7 @@ class Auth
 
             if(!self::Auth() && !RequirePage(WE_SECURITY_AUTH_PAGE))
             {
-                if(Session::Get('WE_AUTH_USER_LOGOUT') === false)
+                if(Session::Get('WE_AUTH_USER_LOGOUT') === false && Session::Get('WE_AUTH_TIME') < (time() + 86400))
                     Session::Set('WE_AUTH_ERROR', 'Sessão expirada.');
 
                 header('Location: ' . BaseUrl() . WE_SECURITY_AUTH_PAGE);
