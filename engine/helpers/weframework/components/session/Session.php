@@ -22,7 +22,7 @@ class Session
         if(isset($_SESSION[$name]))
         {
             if($encrypt === true)
-                return $_SESSION[$name] = Decrypt::Decrypt($_SESSION[$name]);
+                return Decrypt::Decrypt($_SESSION[$name]);
 
             return $_SESSION[$name];
         }

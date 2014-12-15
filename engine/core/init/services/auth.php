@@ -7,7 +7,7 @@ try
     /*
      * Constantes
      */
-    define("WE_ENCRYPTION_KEY", "!@#$%^&*AZaz");
+    define("WE_ENCRYPTION_KEY", "!@#$%^&*");
     define('WE_SECURITY_AUTH', $auth->GetAuth());
     define('WE_SECURITY_AUTH_PAGE', $auth->GetAuthPage());
     define('WE_SECURITY_AUTH_LAZY_TIME', $auth->GetAuthLazyTime());

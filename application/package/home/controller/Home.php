@@ -13,6 +13,7 @@
     use helpers\weframework\components\decrypt\Decrypt;
     use helpers\weframework\components\encrypt\Encrypt;
     use helpers\weframework\components\log\Log;
+    use helpers\weframework\components\session\Session;
     use \mvc\Controller;
 
     class Home extends Controller
@@ -42,6 +43,10 @@
          */
         public function Index()
         {
+            Session::Set('WE', 'Diogo Brito', true);
+            echo Session::Get('WE', true);
+
+            die();
             $this->Load()->Model('Home', 'HomeModel');
 
             //Verifica se outras camadas foram carregadas
