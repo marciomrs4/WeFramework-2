@@ -43,10 +43,7 @@
          */
         public function Index()
         {
-            Session::Set('WE', 'Diogo Brito', true);
-            echo Session::Get('WE', true);
-
-            die();
+           
             $this->Load()->Model('Home', 'HomeModel');
 
             //Verifica se outras camadas foram carregadas
