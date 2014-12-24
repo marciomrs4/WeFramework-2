@@ -43,7 +43,7 @@
          */
         public function Index()
         {
-           
+
             $this->Load()->Model('Home', 'HomeModel');
 
             //Verifica se outras camadas foram carregadas
