@@ -8,3 +8,19 @@ RewriteEngine On
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^ index.php [QSA,L]
+
+##
+# Error pages
+##
+
+# 403
+ErrorDocument 403 /dpg-framework-2/layout/framewok/403.html
+
+# 404
+ErrorDocument 404 /dpg-framework-2/layout/framewok/404.html
+
+# 500
+ErrorDocument 500 /dpg-framework-2/layout/framewok/500.html
+
+# 503
+ErrorDocument 503 /dpg-framework-2/layout/framewok/503.html

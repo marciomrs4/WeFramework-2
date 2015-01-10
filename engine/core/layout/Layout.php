@@ -62,7 +62,10 @@ class Layout
                     self::$themes_definitions[$theme] = array(
                         'package' => $definitions['package'],
                         'page_index' => $definitions['page_index'],
-                        'alias_theme' => $definitions['alias_theme']
+                        'alias_theme' => $definitions['alias_theme'],
+                        'auth' => (bool) $definitions['auth'],
+                        'auth_page' => $definitions['auth_page'],
+                        'auth_lazy_time' => $definitions['auth_lazy_time']
                     );
                     //Registrando Alias para performace do carregamento dos temas
                     self::$themes_alias[$theme] = $definitions['alias_theme'];
@@ -166,7 +169,7 @@ class Layout
         $index = 'home';
         if(defined('WE_THEME'))
         {
-            if(empty(WE_THEME))
+            if(WE_THEME == '')
                 $theme = 'default';
             else
                 $theme = WE_THEME;
@@ -252,6 +255,16 @@ class Layout
 
     }
 
+    public function GetProperties()
+    {
+        if(WE_THEME == '')
+            $theme = 'default';
+        else
+            $theme = WE_THEME;
+
+        return self::$themes_definitions[$theme];
+    }
+
     public function GetDirTheme()
     {
         if(defined('WE_THEME_PATH'))
@@ -273,6 +286,9 @@ class Layout
         $this->SetThemes();
         $this->StartMainTheme();
     }
+
+
+
 }
 
 // End of file Layout.php

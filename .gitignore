@@ -1,2 +1,4 @@
 .idea
-engine/core/session/sess_.*
+.vagrant
+engine/core/session/sess_*
+layout/themes/assets/js/scripts/weframework/weframework.js

@@ -163,7 +163,7 @@ function BaseUrl()
  */
 function ThemeBaseUrl()
 {
-    return 'http://'.$_SERVER['HTTP_HOST'].'/'.WE_REAL_BASE_URL.'/layout/themes/'.WE_THEME.'/';
+    return 'http://'.$_SERVER['HTTP_HOST'].'/'.WE_REAL_BASE_URL.'/layout/themes/'.((WE_THEME != '') ? WE_THEME . '/' : '');
 }
 
 /**

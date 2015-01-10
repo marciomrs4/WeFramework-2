@@ -371,6 +371,14 @@ class Router
             $uri = str_replace($url_base, '' , $uri);
         }
 
+        if(WE_IS_HOT_THEME)
+        {
+            if(WE_THEME_ALIAS_NAME != '')
+                $uri = str_replace(WE_THEME_ALIAS_NAME, '' , $uri);
+            else
+                $uri = str_replace(WE_THEME, '' , $uri);
+        }
+
         self::$uri_project = trim($uri, '/');
     }
 

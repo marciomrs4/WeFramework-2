@@ -14,8 +14,6 @@
  * @author          Diogo Brito <diogo@weverest.com.br>
  *
  */
-
-
 /*
  * ---------------------------------------------------------------
  *  ENGINE PATH
@@ -35,7 +33,7 @@
  * diretório raiz da aplicação.
  */
     define('DS', DIRECTORY_SEPARATOR);
-    //Rais da aplpicação
+    //Raiz da aplicação
     define('BASEPATH', dirname(__FILE__) . DS);
 
     /*
@@ -60,17 +58,26 @@
      * @param null $log
      * @param null $destination
      */
-    function CrashHendler($error, $log = null, $destination = null)
+    function CrashHendler($error, $log, $destination)
     {
         global $template_errors;
 
         if(isset($log) && $destination)
         {
-            $template_log = '['.date('d-M-Y H:i:s').' '.date_default_timezone_get().'] Framework error: ' . $log . PHP_EOL;
-            error_log($template_log, 3, $destination);
+            $template_log = '['.date('d-M-Y H:i:s').' '.date_default_timezone_get().'] Framework error: ';
+
+            //Verifica se o diretório tem permissão de escrita
+            if(is_writable($destination))
+            {
+                error_log($template_log . $log . PHP_EOL, 3, $destination);
+            }
+            //Caso contrário, o log será registrado no sistema de log do PHP
+            else
+            {
+                error_log($template_log .'./application/logs is not writable. Can not crate log files.' . PHP_EOL, 0);
+                error_log($template_log . $log . PHP_EOL, 0);
+            }
         }
-
-
         if(isset($template_errors[$error]))
             include CRASH_TEMPLATE_PATH . $template_errors[$error];
 

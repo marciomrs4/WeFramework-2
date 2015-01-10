@@ -35,7 +35,6 @@ trait Config
        {
            $config_path = APP_BASEPATH . 'configs' . DS . $config_path;
        }
-
        if(strpos($config_path, '.ini') !== false)
        {
            if(file_exists($config_path))

@@ -188,7 +188,7 @@ class Render
     {
         if(defined('WE_THEME'))
         {
-            $theme_path = ((empty(WE_THEME)) ? WE_THEME_DIR  : WE_THEME_DIR . WE_THEME . DS) . 'index.php';
+            $theme_path = ((WE_THEME == '') ? WE_THEME_DIR  : WE_THEME_DIR . WE_THEME . DS) . 'index.php';
         }
 
         self::$render_theme = $theme_path;
